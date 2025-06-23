@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <caption>
+          Nos jeux !
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for game in content %} 
+        <tr>
+            <th scope="row">{{game['name']}}</th>
+            <td>{{game['price']}} €</td>
+            <td>{{game['description']}}</td>
+            <td>
+                <button><a href="/ajout?id={{ loop.index0 }}&delete=true">Supprimer ce jeu</a></button>
+                <button><a href="/update?id={{ loop.index0 }}">Modifier ce jeu</a></button>
+            </td>
+        <!-- here the loop.index0 gets the index of the loop -->
+        </tr>
+        
+        {% endfor %}
+          
+        </tbody>
+      </table>
+
+      <div style="display: flex; flex-direction: column; gap: 15px;">
+        <a href="/">Revenir au menu</a>
+        <a href="/saisie">Ajouter un jeu</a>
+      </div>
+      
+</body>
+</html>
