@@ -17,7 +17,7 @@ La création du projet et le choix du thème a été choisi collectivement. Ensu
 - [x] Création de la base de données
 - [x] Création tables selon le MCD
 - [ ] Ajout valeurs dans chaque table
-- [ ] Création [model.py](./model.py)
+- [x] Création [model.py](./model.py)
 - [ ] Définition demandes à la base de données (create, insert, select, delete)
 - [ ] Gestion initialisation (def init() → insert into)
 - [ ] Gestion récupération des données pour l'affichage(def show() → select)
