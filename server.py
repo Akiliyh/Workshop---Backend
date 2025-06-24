@@ -8,8 +8,10 @@ from flask_cors import CORS
 myapp = Flask(__name__)
 CORS(myapp)
 
-model.connect_db()
-# myCountries = model.get_countries()
+mydb, mycursor = model.connect_db()
+model.update(mycursor)
+model.disconnect_db(mydb, mycursor)
+
 
 @myapp.route("/")
 def home():
