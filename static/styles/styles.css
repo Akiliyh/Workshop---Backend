@@ -50,6 +50,10 @@ tfoot td {
   font-weight: bold;
 }
 
+nav h1 {
+  text-align: center;
+}
+
 .main-section {
   display: flex;
   justify-content: space-around;
@@ -63,6 +67,12 @@ tfoot td {
   gap: 10px;
   margin-bottom: 10px;
   padding: 10px;
+}
+
+.main-section .country a, .main-section .language a, .main-section .poi a {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
 }
 
 .main-section a {

@@ -7,13 +7,19 @@
     <title>LinguiCountry</title>
 </head>
 <body>
-    <h1>Home</h1>
-
+    <nav>
+        <h1>Home</h1>
+    </nav>
+    
     <div class="main-section">
         <div class="languages">
+            <h1>Languages</h1>
             {% for language in languages %}
             <div class="language">
-                <h1>{{language[1]}}</h1> <!-- name -->
+                <a href="/language/{{ language[1] }}">
+                    <h2>{{language[1]}}</h2> <!-- name -->
+                </a>
+                
                 <!-- add calculation of language speakers here -->
             </div>
                 
@@ -23,10 +29,13 @@
 
         </div>
         <div class="countries">
+            <h1>Countries</h1>
             {% for country in countries %}
             <div class="country">
-                <h1>{{country[1]}}</h1> <!-- name -->
-                <h1>{{country[3]}} h</h1> <!-- inhabitants -->
+                <a href="/country/{{ country[1] }}">
+                    <h1>{{country[1]}}</h1> <!-- name -->
+                    <h1>{{country[3]}} h</h1> <!-- inhabitants -->
+                </a>
             </div>
                 
             {% endfor %}
@@ -35,10 +44,13 @@
 
         </div>
         <div class="points_of_interest">
+            <h1>Points of Interest</h1>
             {% for point_of_interest in points_of_interest %}
             <div class="poi">
-                <h1>{{point_of_interest[1]}}</h1> <!-- name -->
-                <h1>{{point_of_interest[2]}}</h1> <!-- date of establishment -->
+                <a href="/point_of_interest/{{ point_of_interest[1] }}">
+                    <h1>{{point_of_interest[1]}}</h1> <!-- name -->
+                    <h1>{{point_of_interest[2]}}</h1> <!-- date of establishment -->
+                </a>
             </div>
             {% endfor %}
 
