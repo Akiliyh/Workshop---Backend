@@ -30,40 +30,28 @@
         <label for="gouv">Type of gouverment
             <input type="text" name="gouv" max="100" value="{{content['gouvernement']}}"></label><br>
 
-        <label for="lang">Languages
-            <select name="lang[]">
-                <!-- ajouter dynamiquement les langues par JS -->
-            </select>
-            </label><br>
-        <button onclick="openModal()">Ratio</button>            
+         {% for lang in languages %}
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" name="lang" value="{{ lang.id }}" onchange="toggleInput(this)">
+                {{ lang.name }}
+            </label>
+            <input type="number" name="value_{{ lang.id }}" placeholder="Valeur" style="display: none;" min="0" max="100">
+            </div>
+        {% endfor %} <br>        
         <input type="submit" value="Save">
     </form>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3>Ratio of languge</h3>
-            <!--les langues selectionné   A VOIR COMMENT FAIRE-->
-            <button onclick="closeModal()">Close</button>
-        </div>
-    </div> 
+
+<script>
+    function toggleInput(checkbox) {
+        const input = checkbox.parentElement.nextElementSibling;
+        input.style.display = checkbox.checked ? "inline-block" : "none";
+        if (!checkbox.checked) input.value = "";
+    }
+</script>
+
 </body>
 
-
-<!-- JavaScript -->
-<script>
-  function openModal() {
-    document.getElementById('modal').style.display = 'flex';
-  }
-  function closeModal() {
-    document.getElementById('modal').style.display = 'none';
-  }
-  window.onclick = function(event) {
-    const modal = document.getElementById('modal');
-    if (event.target === modal) {
-      closeModal();
-    }
-  }
-</script>
 
 </html>
 
