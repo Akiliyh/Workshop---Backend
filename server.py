@@ -24,29 +24,29 @@ def point_of_interest(namePOI):
 
 @myapp.route("/point_of_interest/action", methods=['GET', 'POST'])
 def form_poi():
-    return render_template('form.html', content=point_of_interest)
+    return render_template('form_point_of_interest.html', content=point_of_interest)
 
 @myapp.route("/country/action", methods=['GET', 'POST'])
 def form_c():
-    return render_template('form.html', content=country)
+    return render_template('form_country.html', content=country)
 
 @myapp.route("/language/action", methods=['GET', 'POST'])
 def form_l():
-    return render_template('form.html', content=language)
+    return render_template('form_language.html', content=language)
 
 # Modifications de propriétés
 
 @myapp.route("/language/action/<nameL>", methods=['GET', 'POST'])
 def form_l_update(nameL):
-    return render_template('form.html', content=nameL)
+    return render_template('form_language.html', content=nameL)
 
 @myapp.route("/country/action/<nameC>", methods=['GET', 'POST'])
 def form_c_update(nameC):
-    return render_template('form.html', content=nameC)
+    return render_template('form_country.html', content=nameC)
 
 @myapp.route("/point_of_interest/action/<namePOI>", methods=['GET', 'POST'])
 def form_poi_update(namePOI):
-    return render_template('form.html', content=namePOI)
+    return render_template('form_point_of_interest.html', content=namePOI)
 
 # @myapp.route("/update", methods=['GET', 'POST'])
 # def update():

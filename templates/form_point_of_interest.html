@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <title>Create your own Country</title>
+</head>
+
+<body>
+    <form action="/ajout" method='POST'>
+        <label for="form"></label>
+        
+        <label for="name">Name of your Point of Interest
+            <input type="text" name="name" max="50" required value="{{content['name']}}"></label><br>
+
+        <label for="type"> Type of structure
+            <select name="type">
+                <option value="1">statue</option>
+                <option value="2">forest</option>
+                <option value="3">park</option>
+                <option value="4">castel</option>
+                <option value="5">monument</option>
+                <option value="6">beatch</option>
+                <option value="7">body of water</option>
+            </select>
+        </label>
+        <label for="coun"> In which Country :
+            <select name="coun">
+                {% for coun in countries %}
+                    <option value="{{ coun.id }}">{{ coun.name }}</option>
+                {% endfor %}
+            </select>
+        </label><br> 
+          
+        <input type="submit" value="Save">
+    </form>
+</body>
+
+</html>
