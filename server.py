@@ -9,10 +9,11 @@ myapp = Flask(__name__)
 CORS(myapp)
 
 model.connect_db()
+# myCountries = model.get_countries()
 
 @myapp.route("/")
 def home():
-    return render_template('home.html', content='Hello World')
+    return render_template('home.html')
 
 @myapp.route("/country/<nameC>", methods=['GET', 'POST'])
 def country(nameC):

@@ -21,3 +21,21 @@ def connect_db():
 
     mycursor.close()
     mydb.close()
+
+    
+def get_countries():
+    connect_db()
+    mycursor = mydb.cursor()
+
+    mycursor.execute("SELECT * FROM Countries")
+    countries = mycursor.fetchall()
+    print(countries)
+
+    print('-------')
+
+    for country in mycursor:
+        print(country)
+
+    mycursor.close()
+    mydb.close()
+    return countries
