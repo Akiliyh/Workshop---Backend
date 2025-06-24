@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
     <title>LinguiCountry</title>
 </head>
 <body>
@@ -10,26 +11,39 @@
 
     <div class="main-section">
         <div class="languages">
-            {{}}
+            {% for language in languages %}
             <div class="language">
-                <h1>French</h1>
+                <h1>{{language[1]}}</h1> <!-- name -->
+                <!-- add calculation of language speakers here -->
             </div>
+                
+            {% endfor %}
+
+            <button><a href="/language/action">+</a></button>
+
         </div>
         <div class="countries">
+            {% for country in countries %}
             <div class="country">
-                <h1>France</h1>
+                <h1>{{country[1]}}</h1> <!-- name -->
+                <h1>{{country[3]}} h</h1> <!-- inhabitants -->
             </div>
-            <div class="country">
-                <h1>Iocto</h1>
-            </div>
+                
+            {% endfor %}
+
+            <button><a href="/country/action">+</a></button>
+
         </div>
         <div class="points_of_interest">
+            {% for point_of_interest in points_of_interest %}
             <div class="poi">
-                <h1>test</h1>
+                <h1>{{point_of_interest[1]}}</h1> <!-- name -->
+                <h1>{{point_of_interest[2]}}</h1> <!-- date of establishment -->
             </div>
-            <div class="poi">
-                <h1>test</h1>
-            </div>
+            {% endfor %}
+
+            <button><a href="/point_of_interest/action">+</a></button>
+
         </div>
     </div>
     

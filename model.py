@@ -9,15 +9,6 @@ def connect_db():
     )
 
     mycursor = mydb.cursor()
-
-    # mycursor.execute("SELECT * FROM Countries")
-    # countries = mycursor.fetchall()
-    # print(countries)
-
-    # print('-------')
-
-    # for country in mycursor:
-    #     print(country)
     
     return mydb, mycursor
 
@@ -36,23 +27,21 @@ def update(mycursor):
     for country in mycursor:
         print(country)
 
-    mycursor.close()
-    mydb.close()
-
     
-def get_countries():
-    connect_db()
-    mycursor = mydb.cursor()
-
+def get_countries(mycursor):
     mycursor.execute("SELECT * FROM Countries")
     countries = mycursor.fetchall()
-    print(countries)
 
-    print('-------')
-
-    for country in mycursor:
-        print(country)
-
-    mycursor.close()
-    mydb.close()
     return countries
+
+def get_languages(mycursor):
+    mycursor.execute("SELECT * FROM Languages")
+    languages = mycursor.fetchall()
+
+    return languages
+
+def get_points_of_interest(mycursor):
+    mycursor.execute("SELECT * FROM InterestPoints")
+    points_of_interest = mycursor.fetchall()
+
+    return points_of_interest

@@ -10,12 +10,15 @@ CORS(myapp)
 
 mydb, mycursor = model.connect_db()
 model.update(mycursor)
+myCountries = model.get_countries(mycursor)
+myLanguages = model.get_languages(mycursor)
+myPointsOfInterest = model.get_points_of_interest(mycursor)
 model.disconnect_db(mydb, mycursor)
 
 
 @myapp.route("/")
 def home():
-    return render_template('home.html')
+    return render_template('home.html', countries = myCountries, languages = myLanguages, points_of_interest = myPointsOfInterest)
 
 @myapp.route("/country/<nameC>", methods=['GET', 'POST'])
 def country(nameC):
