@@ -6,48 +6,78 @@ from flask_cors import CORS
 myapp = Flask(__name__)
 CORS(myapp)
 
-randValue = random.randint(0, 100)
-myList = []
-
 @myapp.route("/")
-def hello_world():
+def home():
     return render_template('home.html', content='Hello World')
 
-@myapp.route("/saisie", methods=['GET', 'POST'])
-def form():
-    placeholder_data = ["","",""]
-    return render_template('form.html', content=placeholder_data)
+@myapp.route("/country/<nameC>", methods=['GET', 'POST'])
+def country():
+    return render_template('country.html', content=nameC)
 
-@myapp.route("/update", methods=['GET', 'POST'])
-def update():
-    placeholder_data = ["","",""]
-    if request.args.get('id'):
-        placeholder_data = (myList[int(request.args.get('id'))])
-    return render_template('form.html', content=placeholder_data)
+@myapp.route("/language/<nameL>", methods=['GET', 'POST'])
+def language():
+    return render_template('language.html', content=nameL)
 
-@myapp.route("/ajout", methods=['GET', 'POST'])
-def add():  
-    if request.method == "POST":
-        name = request.form.get('game_name')
-        price = request.form.get('price')
-        desc = request.form.get('desc')
+@myapp.route("/point_of_interest/<namePOI>", methods=['GET', 'POST'])
+def point_of_interest():
+    return render_template('point_of_interest.html', content=namePOI)
 
-        myList.append({
-            'name': name,
-            'price': price,
-            'description': desc
-        })
+@myapp.route("/point_of_interest/action", methods=['GET', 'POST'])
+def form_poi():
+    return render_template('form.html', content=point_of_interest)
 
-    if request.args.get('delete') == 'true':
-        print(request.args.get('delete'))
-        game_id = int(request.args.get('id'))
-        myList.pop(game_id)
-    # redirect because if we'd refresh on the cur page we'd create another game of the same value
-    return redirect(url_for('list')) 
+@myapp.route("/country/action", methods=['GET', 'POST'])
+def form_c():
+    return render_template('form.html', content=country)
 
-@myapp.route("/list", methods=['GET', 'POST'])
-def list():  
-    return render_template('list.html', content=myList)
+@myapp.route("/language/action", methods=['GET', 'POST'])
+def form_l():
+    return render_template('form.html', content=language)
+
+# Modifications de propriétés
+
+@myapp.route("/language/action/<nameL>", methods=['GET', 'POST'])
+def form_l_update():
+    return render_template('form.html', content=nameL)
+
+@myapp.route("/country/action/<nameC>", methods=['GET', 'POST'])
+def form_c_update():
+    return render_template('form.html', content=nameC)
+
+@myapp.route("/point_of_interest/action/<namePOI>", methods=['GET', 'POST'])
+def form_poi_update():
+    return render_template('form.html', content=namePOI)
+
+# @myapp.route("/update", methods=['GET', 'POST'])
+# def update():
+#     placeholder_data = ["","",""]
+#     if request.args.get('id'):
+#         placeholder_data = (myList[int(request.args.get('id'))])
+#     return render_template('form.html', content=placeholder_data)
+
+# @myapp.route("/ajout", methods=['GET', 'POST'])
+# def add():  
+#     if request.method == "POST":
+#         name = request.form.get('game_name')
+#         price = request.form.get('price')
+#         desc = request.form.get('desc')
+
+#         myList.append({
+#             'name': name,
+#             'price': price,
+#             'description': desc
+#         })
+
+#     if request.args.get('delete') == 'true':
+#         print(request.args.get('delete'))
+#         game_id = int(request.args.get('id'))
+#         myList.pop(game_id)
+#     # redirect because if we'd refresh on the cur page we'd create another game of the same value
+#     return redirect(url_for('list')) 
+
+# @myapp.route("/list", methods=['GET', 'POST'])
+# def list():  
+#     return render_template('list.html', content=myList)
 
 # @myapp.route("/form2", methods=['GET', 'POST'])
 # def form2():
