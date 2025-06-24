@@ -18,7 +18,7 @@ model.disconnect_db(mydb, mycursor)
 
 @myapp.route("/")
 def home():
-    return render_template('home.html', countries = myCountries, languages = myLanguages, points_of_interest = myPointsOfInterest)
+    return render_template('index.html', countries = myCountries, languages = myLanguages, points_of_interest = myPointsOfInterest)
 
 @myapp.route("/country/<nameC>", methods=['GET', 'POST'])
 def country(nameC):

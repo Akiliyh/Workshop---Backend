@@ -33,8 +33,8 @@
             {% for country in countries %}
             <div class="country">
                 <a href="/country/{{ country[1] }}">
-                    <h1>{{country[1]}}</h1> <!-- name -->
-                    <h1>{{country[3]}} h</h1> <!-- inhabitants -->
+                    <h2>{{country[1]}}</h2> <!-- name -->
+                    <h2>{{country[3]}} h</h2> <!-- inhabitants -->
                 </a>
             </div>
                 
@@ -48,8 +48,8 @@
             {% for point_of_interest in points_of_interest %}
             <div class="poi">
                 <a href="/point_of_interest/{{ point_of_interest[1] }}">
-                    <h1>{{point_of_interest[1]}}</h1> <!-- name -->
-                    <h1>{{point_of_interest[2]}}</h1> <!-- date of establishment -->
+                    <h2>{{point_of_interest[1]}}</h2> <!-- name -->
+                    <h2>{{point_of_interest[2]}}</h2> <!-- date of establishment -->
                 </a>
             </div>
             {% endfor %}
