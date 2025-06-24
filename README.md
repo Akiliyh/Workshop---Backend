@@ -20,7 +20,7 @@ La création du projet et le choix du thème a été choisi collectivement. Ensu
 - [x] Création [model.py](./model.py)
 - [ ] Définition demandes à la base de données (create, insert, select, delete)
 - [ ] Gestion initialisation (def init() → insert into)
-- [ ] Gestion récupération des données pour l'affichage(def show() → select)
+- [ ] Gestion récupération des données pour l'affichage(def get() → select)
   
 #### Vue : HTML
 - [ ] Création des pages de formulaires (pays, langue, point d'intérêt)
@@ -41,10 +41,10 @@ La création du projet et le choix du thème a été choisi collectivement. Ensu
 ### 🐾 Répartition
 
 #### 🐿️ Guillaume
-- [ ] Model : def update()
-- [ ] Model : def init()
+- [ ] Model : def get()
+- [x] Model : Connexion BDD-Flask
 - [ ] Vue : accueil
-- [ ] Controller : routes
+- [x] Controller : routes
   
 #### 🐁 Lison
 - [ ] Model : def add()
@@ -53,9 +53,11 @@ La création du projet et le choix du thème a été choisi collectivement. Ensu
 - [ ] Controller : routes
 
 #### 🦐 Océane
-- [ ] Model : def show()
+- [ ] Model : def update()
+- [ ] Model : def init()
 - [ ] Model : Ajout tables
 - [ ] Vue : fiches
+- [x] général : README
 
 
 ### 🗓️ Planning
@@ -70,15 +72,25 @@ Nous gardons une trace de ce qu'il reste à faire par jour pour atteindre les re
 | 26/06 - V1  | Rendu de la V1  |
 | 27/06       | Soutenance      |
 
-### 1️⃣ Jour 1
-<!-- 3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣🔟 -->
+### 1️⃣ Jour 1 - Lundi 23/06/2025
+- [x] Trouver une idée
+- [x] Création BDD
+- [x] Définition BDD
+- [x] MCD (modèle conceptuel de données)
+- [x] Planning prévisionnel
 
-### 2️⃣ Jour 2
-- [ ] Fix BDD
-- [ ] Routes
-- [ ] Finir tâches organisation
-- [ ] Créer fichiers.py (MVP)
+### 2️⃣ Jour 2 - Mardi 24/06/2025
+- [x] Fix BDD
+- [x] Routes
+- [x] Finir tâches organisation
+- [x] Créer les fichiers .py (MVP)
 - [ ] Créer templates
+
+### 3️⃣ Jour 3 - Mercredi 25/06/2025
+### 4️⃣ Jour 4 - Jeudi 26/06/2025
+### 5️⃣ Jour 5 - Vendredi 27/06/2025
+
+<!-- 6️⃣7️⃣8️⃣9️⃣🔟 -->
 
 
 
