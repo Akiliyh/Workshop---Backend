@@ -11,15 +11,15 @@ def home():
     return render_template('home.html', content='Hello World')
 
 @myapp.route("/country/<nameC>", methods=['GET', 'POST'])
-def country():
+def country(nameC):
     return render_template('country.html', content=nameC)
 
 @myapp.route("/language/<nameL>", methods=['GET', 'POST'])
-def language():
+def language(nameL):
     return render_template('language.html', content=nameL)
 
 @myapp.route("/point_of_interest/<namePOI>", methods=['GET', 'POST'])
-def point_of_interest():
+def point_of_interest(namePOI):
     return render_template('point_of_interest.html', content=namePOI)
 
 @myapp.route("/point_of_interest/action", methods=['GET', 'POST'])
@@ -37,15 +37,15 @@ def form_l():
 # Modifications de propriétés
 
 @myapp.route("/language/action/<nameL>", methods=['GET', 'POST'])
-def form_l_update():
+def form_l_update(nameL):
     return render_template('form.html', content=nameL)
 
 @myapp.route("/country/action/<nameC>", methods=['GET', 'POST'])
-def form_c_update():
+def form_c_update(nameC):
     return render_template('form.html', content=nameC)
 
 @myapp.route("/point_of_interest/action/<namePOI>", methods=['GET', 'POST'])
-def form_poi_update():
+def form_poi_update(namePOI):
     return render_template('form.html', content=namePOI)
 
 # @myapp.route("/update", methods=['GET', 'POST'])
