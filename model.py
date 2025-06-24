@@ -10,6 +10,23 @@ def connect_db():
 
     mycursor = mydb.cursor()
 
+    # mycursor.execute("SELECT * FROM Countries")
+    # countries = mycursor.fetchall()
+    # print(countries)
+
+    # print('-------')
+
+    # for country in mycursor:
+    #     print(country)
+    
+    return mydb, mycursor
+
+def disconnect_db(mydb, mycursor):
+    mycursor.close()
+    mydb.close()
+
+
+def update(mycursor):
     mycursor.execute("SELECT * FROM Countries")
     countries = mycursor.fetchall()
     print(countries)
@@ -19,5 +36,3 @@ def connect_db():
     for country in mycursor:
         print(country)
 
-    mycursor.close()
-    mydb.close()
