@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="/ajout" method='POST'>
+    <form action="/ajout" method='POST'>  
         <label for="form"></label>
         
         <label for="name">Name of your Country
@@ -30,11 +30,33 @@
         <label for="gouv">Type of gouverment
             <input type="text" name="gouv" max="100" value="{{content['gouvernement']}}"></label><br>
 
-        <label for="lang">Languages
-            <input type="text" name="lang"></label><br>  <!--créer une déroulant proposant les langues précréées-->
-            
-        <input type="submit" value="Create">
+         {% for lang in languages %}
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" name="lang" value="{{ lang.id }}" onchange="toggleInput(this)">
+                {{ lang.name }}
+            </label>
+            <input type="number" name="value_{{ lang.id }}" placeholder="Valeur" style="display: none;" min="0" max="100">
+            </div>
+        {% endfor %} <br>        
+        <input type="submit" value="Save">
     </form>
+
+<script>
+    function toggleInput(checkbox) {
+        const input = checkbox.parentElement.nextElementSibling;
+        input.style.display = checkbox.checked ? "inline-block" : "none";
+        if (!checkbox.checked) input.value = "";
+    }
+</script>
+
 </body>
 
+
 </html>
+
+
+
+
+
+
