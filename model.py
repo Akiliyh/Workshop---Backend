@@ -46,8 +46,12 @@ def get_points_of_interest(mycursor):
 
     return points_of_interest
 
+# TO CHANGE WITH ID
 
-
+def get_point_of_interest_by_name(name, mycursor):
+    mycursor.execute("SELECT * FROM InterestPoints WHERE nameInterestPoint = '" + name + "'")
+    result = mycursor.fetchone()
+    return result
 
 def add(infos):   
     if infos == "c":
@@ -68,7 +72,7 @@ def add(infos):
         mycursor.execute('''INSERT INTO Languages VALUES (''' + id +''',"''' + infos.name + '''",''' + "'"+ infos.date +"'"+ ''',"''' + infos.desc + '''",''' + infos.type + ''',''' + infos.coun +''')''')
         mydb.commit()
 
-def delete(type, id):
+def delete(type, id, mycursor, mydb):
     if type == "c":
         mycursor.execute('''DELETE FROM Countries_has_languages WHERE idCountry= '''+ id)
         mycursor.execute('''DELETE FROM InterestPoints WHERE idCountry= '''+ id)
@@ -79,6 +83,6 @@ def delete(type, id):
         mycursor.execute('''DELETE FROM Languages WHERE idLanguage= '''+ id)
         mydb.commit()
     if type == "poi":
-        mycursor.execute('''DELETE FROM InterstPoints WHERE idPointInterst= '''+ id)
+        mycursor.execute('''DELETE FROM InterestPoints WHERE idInterestPoint= '''+ id)
         mydb.commit()
 

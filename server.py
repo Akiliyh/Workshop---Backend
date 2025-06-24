@@ -8,16 +8,14 @@ from flask_cors import CORS
 myapp = Flask(__name__)
 CORS(myapp)
 
-mydb, mycursor = model.connect_db()
-model.update(mycursor)
-myCountries = model.get_countries(mycursor)
-myLanguages = model.get_languages(mycursor)
-myPointsOfInterest = model.get_points_of_interest(mycursor)
-model.disconnect_db(mydb, mycursor)
-
-
 @myapp.route("/")
 def home():
+    mydb, mycursor = model.connect_db()
+    model.update(mycursor)
+    myCountries = model.get_countries(mycursor)
+    myLanguages = model.get_languages(mycursor)
+    myPointsOfInterest = model.get_points_of_interest(mycursor)
+    model.disconnect_db(mydb, mycursor)
     return render_template('index.html', countries = myCountries, languages = myLanguages, points_of_interest = myPointsOfInterest)
 
 @myapp.route("/country/<nameC>", methods=['GET', 'POST'])
@@ -30,11 +28,14 @@ def language(nameL):
 
 @myapp.route("/point_of_interest/<namePOI>", methods=['GET', 'POST'])
 def point_of_interest(namePOI):
-    return render_template('point_of_interest.html', content=namePOI)
+    mydb, mycursor = model.connect_db()
+    poi = model.get_point_of_interest_by_name(namePOI, mycursor)
+    model.disconnect_db(mydb, mycursor)
+    return render_template('point_of_interest.html', content=poi)
 
 @myapp.route("/point_of_interest/action", methods=['GET', 'POST'])
 def form_poi():
-    return render_template('form_point_of_interest.html', content=point_of_interest)
+    return render_template('form_point_of_interest.html', content=point_of_interest, countries=myCountries)
 
 @myapp.route("/country/action", methods=['GET', 'POST'])
 def form_c():
@@ -123,3 +124,13 @@ def form_poi_update(namePOI):
 #     randValue = random.randint(0, 100)
 #     inputValue = int(request.args.get('value'))
 #     return render_template('game.html', content=inputValue)
+
+
+# DELETE INFORMATION
+
+@myapp.route('/delete/<type>/<id>', methods=['GET', 'POST'])
+def delete(type, id):
+    mydb, mycursor = model.connect_db()
+    model.delete(type, id, mycursor, mydb)
+    model.disconnect_db(mydb, mycursor)
+    return redirect(url_for('home'))
