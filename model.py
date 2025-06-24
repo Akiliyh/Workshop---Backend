@@ -57,3 +57,4 @@ def delete(type, id):
     if type == "poi":
         mycursor.execute('''DELETE FROM InterstPoints WHERE idPointInterst= '''+ id)
         mydb.commit()
+
