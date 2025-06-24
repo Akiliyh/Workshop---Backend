@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>LinguiCountry</title>
 </head>
 <body>
@@ -34,7 +35,7 @@
             <div class="country">
                 <a href="/country/{{ country[1] }}">
                     <h2>{{country[1]}}</h2> <!-- name -->
-                    <h2>{{country[3]}} h</h2> <!-- inhabitants -->
+                    <h2>{{country[3]}} <i class="fa-solid fa-user"></i> </h2> <!-- inhabitants -->
                 </a>
             </div>
                 
