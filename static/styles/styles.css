@@ -97,7 +97,7 @@ nav h1 {
 
 .main-section .country, .main-section .poi, .main-section .language {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: lightgrey;
   border-radius: 5px;
   gap: 10px;
@@ -110,9 +110,9 @@ nav h1 {
 
 .main-section .country a, .main-section .language a, .main-section .poi a {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 10px;
-  padding: 10px;
+  padding: 10px 15px;
 }
 
 .main-section a {

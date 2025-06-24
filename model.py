@@ -35,7 +35,7 @@ def get_countries(mycursor):
     return countries
 
 def get_languages(mycursor):
-    mycursor.execute("SELECT * FROM Languages")
+    mycursor.execute("SELECT l.*, SUM(chl.nbOfLocutorsInThisCountry) AS totalSpeakers FROM Countries_has_Languages AS chl JOIN Languages AS l ON chl.idLanguage = l.idLanguage GROUP BY l.idLanguage;")
     languages = mycursor.fetchall()
 
     return languages
