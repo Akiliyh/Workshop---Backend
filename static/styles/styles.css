@@ -57,6 +57,26 @@ nav h1 {
   text-align: center;
 }
 
+#init-btn {
+  position: absolute;
+  border-style: none;
+  top: 30px;
+  right: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#init-btn i{
+  transition: cubic-bezier(.45,.4,.28,.97) 500ms;
+}
+
+#init-btn:hover i {
+  transform: rotate(180deg);
+  transition: cubic-bezier(.45,.4,.28,.97) 500ms;
+  
+}
+
 .main-section {
   display: flex;
   justify-content: space-around;
