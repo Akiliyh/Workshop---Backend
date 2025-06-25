@@ -140,3 +140,34 @@ def delete_point_of_interest(mydb, mycursor, id):
     mycursor.execute('''DELETE FROM InterestPoints WHERE idInterestPoint= '''+ id)
     mydb.commit()
 
+def reinit(mydb, mycursor):
+    mycursor.execute("""TRUNCATE TABLE InterestPoints;""") 
+    mycursor.execute("""TRUNCATE TABLE Countries_has_Languages;""") 
+    mycursor.execute("""SET FOREIGN_KEY_CHECKS = 0;""") 
+    mycursor.execute("""TRUNCATE TABLE Languages;""") 
+    mycursor.execute("""TRUNCATE TABLE Countries;""") 
+    mycursor.execute("""SET FOREIGN_KEY_CHECKS = 1;""")
+
+    mydb.commit()
+
+def reinsert(mydb, mycursor):
+    print('test')
+
+    mycursor.execute("""INSERT INTO Countries VALUES
+        (1, 'Ioctotere', 'Le Ioctotere est la terre du Iocto', 167, 'Estes', '2020-01-01', 'Dictature'),
+        (2, 'mapona', 'mapona est la royauté du bien', 131, 'ma', '2025-03-07', 'Monarchie'),
+        (3, 'Survivortopia', 'Y a que les vrais survivors qui peuvent y vivre ! Les autres ils vont survivre ailleurs !', 1, 'Survivor-City', '2025-05-27', 'Mononarchie');""")
+
+    mycursor.execute("""INSERT INTO Languages VALUES 
+        (1, 'Iocto', false, 1),
+        (2, 'toki pona', false, 1),
+        (3, 'Gnegnegnah', true, 5);""")
+
+    mycursor.execute("""INSERT INTO InterestPoints VALUES
+        (1, 'Iocto Stalin Statue', 2021, 'Une belle statue pas vrai', 1, 1),
+        (2, 'kasi soweli', 2026, 'Attention y a un ours !', 3, 2);""")
+
+    mycursor.execute("""INSERT INTO Countries_has_Languages VALUES (1, 1, 150), 
+        (2, 2, 131), (1, 2, 17), (3, 2, 20), (3, 1, 18), (3, 3, 1);""")
+
+    mydb.commit()
