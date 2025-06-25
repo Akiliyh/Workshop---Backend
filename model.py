@@ -39,16 +39,6 @@ def actionBDD(action, key="", infos = {}) :
     disconnect_db(mydb, mycursor)
     return data
 
-def update(mycursor):
-    mycursor.execute("SELECT * FROM Countries")
-    countries = mycursor.fetchall()
-    print(countries)
-
-    print('-------')
-
-    for country in mycursor:
-        print(country)
-    
 def get(mycursor, key):
     if key == "c" :
         get_countries(mycursor)
@@ -108,15 +98,41 @@ def add(mydb, mycursor, key, infos):
     elif key == "poi" :
         add_point_of_interest(mydb, mycursor, infos)
 
-def add_country(mydb, mycursor, infos): 
+def convertValue(dicti, i) :
+    if str(dicti[i]).isdigit() :
+        return f"{dicti[i]}"
+    else :
+        return f'''"{dicti[i]}"'''
 
-    mycursor.execute('''INSERT INTO Countries(nameCountry,descCountry,inhabitants,capital,date,governmentType)
-                        VALUES ("''' + str(infos['name']) + '''","''' + str(infos['desc']) + '''",''' + str(infos['nbHab']) + ''',"''' + str(infos['cap']) + '''","''' + str(infos['date']) + '''","''' + str(infos['gouv'])  +'''")''')
+def valueDictToStr(dicti, begin, end="") : #begin = first index included, end = last index included
+    foundBeginning = False
+    query = ''''''
+
+    for i in dicti :
+        # while we have not reached beginning
+        if i != begin and not foundBeginning: continue
+        # we reached beginning
+        elif i == begin and not foundBeginning: foundBeginning = True
+        elif i==end : 
+            query += convertValue(dicti, i) + ","
+            break #we reached end
+        
+        query += convertValue(dicti, i) + ","
+        
+    return query[:-1] #we don't want last ","
+
+def add_country(mydb, mycursor, infos): 
+    values = valueDictToStr(infos, "name", "gouv")
+    query = f'''INSERT INTO Countries(nameCountry,descCountry,inhabitants,capital,date,governmentType)
+               VALUES({values})'''
+    # mycursor.execute('''INSERT INTO Countries(nameCountry,descCountry,inhabitants,capital,date,governmentType)
+    #                     VALUES ("''' + str(infos['name']) + '''","''' + str(infos['desc']) + '''",''' + str(infos['nbHab']) + ''',"''' + str(infos['cap']) + '''","''' + str(infos['date']) + '''","''' + str(infos['gouv'])  +'''")''')
+    mycursor.execute(query)
 
     country_id = mycursor.lastrowid
-    print(country_id)
-    print(str(infos['lang_speakers'][0]['language_id']))
-    print(str(infos['lang_speakers'][1]['language_id']))
+    # print(country_id)
+    # print(str(infos['lang_speakers'][0]['language_id']))
+    # print(str(infos['lang_speakers'][1]['language_id']))
 
     for i in range(len(infos['lang_speakers'])):
         mycursor.execute('''
@@ -131,14 +147,46 @@ def add_language(mydb, mycursor, infos):
     if 'gend' not in infos:
         infos['gend'] = 0
 
-    mycursor.execute('''INSERT INTO Languages(nameLanguage,gender,idWordOrder)
-                        VALUES ("''' + infos['name'] + '''",''' + str(infos['gend']) + ''',''' + infos['order'] + ''')''')
+    values = valueDictToStr(infos, "name", "order")
+    query = f'''INSERT INTO Languages(nameLanguage,gender,idWordOrder)
+                VALUES({values})'''
+    mycursor.execute(query)
+    # mycursor.execute('''INSERT INTO Languages(nameLanguage,gender,idWordOrder)
+    #                     VALUES ("''' + infos['name'] + '''",''' + str(infos['gend']) + ''',''' + infos['order'] + ''')''')
     mydb.commit()
 
 def add_point_of_interest(mydb, mycursor, infos): 
-    mycursor.execute('''INSERT INTO InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
-                        VALUES ("''' + infos['name'] + '''",''' + infos['date'] + ''',"''' + infos['desc'] + '''",''' + infos['type'] + ''',''' + infos['coun'] +''')''')
+    # mycursor.execute('''INSERT INTO InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
+    #                     VALUES ("''' + infos['name'] + '''",''' + infos['date'] + ''',"''' + infos['desc'] + '''",''' + infos['type'] + ''',''' + infos['coun'] +''')''')
+
+    values = valueDictToStr(infos, "name", "coun")
+    query = f'''INSERT INTO  InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
+               VALUES({values})'''
+    mycursor.execute(query)
     mydb.commit()
+
+def update(mydb, mycursor, key, infos):
+    # UPDATE table
+    # SET nom_colonne_1 = 'nouvelle valeur'
+    # WHERE condition
+    if key == "c" :
+        update_country(mydb, mycursor, infos)
+    elif key == "l" :
+        update_language(mydb, mycursor, infos)
+    elif key == "poi" :
+        update_point_of_interest(mydb, mycursor, infos)
+    
+def update_country(mydb, mycursor, infos):
+    # infos = {}
+    query = '''UPDATE Countries SET name = 'new_name' WHERE '''
+    mycursor.execute(query)
+    mydb.commit()
+
+def update_language():
+    return
+
+def update_point_of_interest():
+    return
 
 def delete(mydb, mycursor, key, infos):
     if key == "c" :
