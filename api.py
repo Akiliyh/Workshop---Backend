@@ -37,8 +37,25 @@ def register_api_routes(myapp):
         print(data)
         # data = request.json
         # print(data)
+        lang_count = sum( # here what we want to do is to store the amount of languages people speak inside this country
+            1 for key, value in data.items()
+            if key.startswith('nbspeaker_') and value.strip()
+        )
+
+        data['lang'] = str(lang_count)
+
+        lang_speakers = []
+        for key, value in data.items():
+            if key.startswith('nbspeaker_') and value.strip():
+                lang_id = key.replace('nbspeaker_', '')
+                speakers = int(value)
+                lang_speakers.append({'language_id': lang_id, 'speakers': speakers})
+
+        data['lang_speakers'] = lang_speakers
+
         model.add_country(mydb, mycursor, data)
         model.disconnect_db(mydb, mycursor)
+        print(data)
         return jsonify({"message": "Added country"}), 201
 
     @myapp.route("/api/country/<int:id>", methods=["GET"])

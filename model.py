@@ -109,13 +109,23 @@ def add(mydb, mycursor, key, infos):
         add_point_of_interest(mydb, mycursor, infos)
 
 def add_country(mydb, mycursor, infos): 
-    mycursor.execute('''INSERT INTO Countries(nameCountry,descCountry,inhabitants,capital,date,governmentType)
-                        VALUES ("''' + infos['name'] + '''","''' + infos['desc'] + '''",''' + infos['nbHab'] + ''',"''' + infos['cap'] + '''","''' + infos['date'] + '''","''' + infos['gouv']  +'''")''')
 
-    # for i in infos.lang :
-    #     mycursor.execute('''INSERT INTO Countries_has_languages(idCountry,idLanguage,nbOfLocutorsInThisCountry) 
-    #                         VALUES ("''' + infos.id +''',''' + infos.lang[i] + ''',"''' + infos.lang[i+1] +''')''') 
+    mycursor.execute('''INSERT INTO Countries(nameCountry,descCountry,inhabitants,capital,date,governmentType)
+                        VALUES ("''' + str(infos['name']) + '''","''' + str(infos['desc']) + '''",''' + str(infos['nbHab']) + ''',"''' + str(infos['cap']) + '''","''' + str(infos['date']) + '''","''' + str(infos['gouv'])  +'''")''')
+
+    country_id = mycursor.lastrowid
+    print(country_id)
+    print(str(infos['lang_speakers'][0]['language_id']))
+    print(str(infos['lang_speakers'][1]['language_id']))
+
+    for i in range(len(infos['lang_speakers'])):
+        mycursor.execute('''
+        INSERT INTO Countries_has_Languages(idCountry, idLanguage, nbOfLocutorsInThisCountry) 
+        VALUES (''' + str(country_id) + ''',''' + str(infos['lang_speakers'][i]['language_id']) + ''',''' + str(infos['lang_speakers'][i]['speakers']) + ''')
+        ''')
+
     mydb.commit()
+
 
 def add_language(mydb, mycursor, infos): 
     if 'gend' not in infos:
