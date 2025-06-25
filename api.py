@@ -67,20 +67,20 @@ def register_api_routes(myapp):
     @myapp.route('/api/point_of_interest/<int:id>', methods=['DELETE'])
     def api_delete_poi(id):
         mydb, mycursor = model.connect_db()
-        model.delete('poi', id, mycursor, mydb)
+        model.delete(mydb, mycursor, 'poi', id)
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Point of Interest deleted"})
 
     @myapp.route('/api/language/<int:id>', methods=['DELETE'])
     def api_delete_language(id):
         mydb, mycursor = model.connect_db()
-        model.delete('l', id, mycursor, mydb)
+        model.delete(mydb, mycursor, 'l', id)
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Language deleted"})
 
     @myapp.route('/api/country/<int:id>', methods=['DELETE'])
     def api_delete_country(id):
         mydb, mycursor = model.connect_db()
-        model.delete('c', id, mycursor, mydb)
+        model.delete(mydb, mycursor, 'c', id)
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Country deleted"})

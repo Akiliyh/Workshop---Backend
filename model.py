@@ -2,9 +2,9 @@ import mysql.connector
 
 def connect_db():
     mydb = mysql.connector.connect(
-    host='163.172.165.87',
-    user='LinguiC',
-    password='ImAcGOAT',
+    host='localhost',
+    user='root',
+    password='root',
     database='LinguiC'
     )
 
@@ -121,23 +121,23 @@ def add_point_of_interest(mydb, mycursor, infos):
 
 def delete(mydb, mycursor, key, infos):
     if key == "c" :
-        delete_country(mydb, mycursor, infos.id)
+        delete_country(mydb, mycursor, infos)
     elif key == "l" :
-        delete_language(mydb, mycursor, infos.id)
+        delete_language(mydb, mycursor, infos)
     elif key == "poi" :
-        delete_point_of_interest(mydb, mycursor, infos.id)
+        delete_point_of_interest(mydb, mycursor, infos)
 
 def delete_country(mydb, mycursor, id):
-    mycursor.execute('''DELETE FROM Countries_has_languages WHERE idCountry= '''+ id)
-    mycursor.execute('''DELETE FROM InterestPoints WHERE idCountry= '''+ id)
-    mycursor.execute('''DELETE FROM Countries WHERE idCountry= '''+ id)
+    mycursor.execute('''DELETE FROM Countries_has_languages WHERE idCountry= '''+ str(id))
+    mycursor.execute('''DELETE FROM InterestPoints WHERE idCountry= '''+ str(id))
+    mycursor.execute('''DELETE FROM Countries WHERE idCountry= '''+ str(id))
     mydb.commit()
 def delete_language(mydb, mycursor, id):
-    mycursor.execute('''DELETE FROM Countries_has_languages WHERE idLanguage= '''+ id)
-    mycursor.execute('''DELETE FROM Languages WHERE idLanguage= '''+ id)
+    mycursor.execute('''DELETE FROM Countries_has_languages WHERE idLanguage= '''+ str(id))
+    mycursor.execute('''DELETE FROM Languages WHERE idLanguage= '''+ str(id))
     mydb.commit()
 def delete_point_of_interest(mydb, mycursor, id):
-    mycursor.execute('''DELETE FROM InterestPoints WHERE idInterestPoint= '''+ id)
+    mycursor.execute('''DELETE FROM InterestPoints WHERE idInterestPoint= '''+ str(id))
     mydb.commit()
 
 def reinit(mydb, mycursor):
