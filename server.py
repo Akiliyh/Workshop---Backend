@@ -33,6 +33,8 @@ def point_of_interest(namePOI):
     model.disconnect_db(mydb, mycursor)
     return render_template('point_of_interest.html', content=poi)
 
+# Formulaires
+
 @myapp.route("/point_of_interest/action", methods=['GET', 'POST'])
 def form_poi():
     mydb, mycursor = model.connect_db()
