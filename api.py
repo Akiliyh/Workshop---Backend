@@ -43,6 +43,17 @@ def register_api_routes(myapp):
         result = jsonify(model.get_points_of_interest(mycursor))
         model.disconnect_db(mydb, mycursor)
         return result
+    
+    @myapp.route("/api/point_of_interest", methods=["POST"])
+    def api_add_point_of_interest():
+        mydb, mycursor = model.connect_db()
+        data = request.form.to_dict()
+        print(data)
+        # data = request.json
+        # print(data)
+        model.add_point_of_interest(mydb, mycursor, data)
+        model.disconnect_db(mydb, mycursor)
+        return jsonify({"message": "Added point of interest"}), 201
 
     @myapp.route("/api/point_of_interest/<int:id>", methods=["GET"])
     def api_get_point_of_interest(id):
