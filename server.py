@@ -2,11 +2,21 @@ from flask import Flask, render_template, request, redirect, url_for
 import random
 import mysql.connector
 import model
+import sqlite3
 
 from flask_cors import CORS
 
 myapp = Flask(__name__)
 CORS(myapp)
+
+
+mydb, mycursor = model.connect_db()
+# Liste de Countries pour le form_point_of_interest
+mycursor.execute("SELECT idCountry, nameCountry FROM Countries")
+rows = mycursor.fetchall()
+countries = [{'idCountry': row[0], 'nameCountry': row[1]} for row in rows]
+model.disconnect_db(mydb, mycursor)
+
 
 @myapp.route("/")
 def home():
@@ -44,7 +54,13 @@ def form_poi():
 
 @myapp.route("/country/action", methods=['GET', 'POST'])
 def form_c():
-    return render_template('form_country.html', content=country)
+    # Liste de Language pour le form_country
+    mydb, mycursor = model.connect_db()
+    mycursor.execute("SELECT idLanguage, nameLanguage FROM Languages")
+    rows = mycursor.fetchall()
+    languages = [{'id': row[0], 'name': row[1]} for row in rows]
+    model.disconnect_db(mydb, mycursor)
+    return render_template('form_country.html', content=country, languages=languages)
 
 @myapp.route("/language/action", methods=['GET', 'POST'])
 def form_l():

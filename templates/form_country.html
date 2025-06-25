@@ -18,8 +18,8 @@
         <label for="desc">Description of your Country
             <input type="text" name="desc" max="500" value="{{content['how my Country is']}}"></label><br>
 
-        <label for="nbHab">Number of inhabitants out of <!--nombre d'habitant restant-->
-            <input type="number" name="nbHab" max="10000" required value="{{content['inhabitants']}}"></label><br>        
+        <label for="nbHab">Number of inhabitants out of {{hab_restants}}
+            <input type="number" name="nbHab" min="1" max="10000" required value="{{content['inhabitants']}}"></label><br>        
 
         <label for="cap">Name of your Capital
             <input type="text" name="cap" max="50" value="{{content['capital']}}"></label><br>
@@ -36,7 +36,7 @@
                 <input type="checkbox" name="lang" value="{{ lang.id }}" onchange="toggleInput(this)">
                 {{ lang.name }}
             </label>
-            <input type="number" name="value_{{ lang.id }}" placeholder="Valeur" style="display: none;" min="0" max="100">
+            <input type="number" name="nbspeaker_{{ lang.id }}" placeholder="number of speaker" style="display: none;" min="0" max="100">
             </div>
         {% endfor %} <br>        
         <input type="submit" value="Save">
