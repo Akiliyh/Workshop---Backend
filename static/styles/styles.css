@@ -111,3 +111,9 @@ nav h1 {
   height: 100%;
   display: block;
 }
+
+.fiche {
+  background-color: lightgrey;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
