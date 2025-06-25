@@ -134,12 +134,15 @@ nav h1 {
 
 
 .fiche h3 {
-  margin-left: 50px; margin-top: 10px; margin-bottom: 10px;
+  margin-left: 10%; margin-top: 10px; margin-bottom: 10px;
 }
 .fiche p{
-  margin-left: 100px; margin-top: 0px; margin-bottom: 5px;
+  margin-left: 20%; margin-top: 0px; margin-bottom: 5px;
 }
-.fiche button{
-  margin: 10px;
+.fiche .button{
+  display: flex;
   justify-content: end;
+  margin: 10px;
+  margin-right: -3%;
+  gap: 1%;
 }
