@@ -1,11 +1,17 @@
 import mysql.connector
 
 def connect_db():
+    # mydb = mysql.connector.connect(
+    # host='163.172.165.87',
+    # user='LinguiC',
+    # password='ImAcGOAT',
+    # database='LinguiC'
+    # )
     mydb = mysql.connector.connect(
     host='localhost',
     user='root',
     password='root',
-    database='LinguiC'
+    database='linguic'
     )
 
     mycursor = mydb.cursor(dictionary=True)

@@ -89,10 +89,11 @@ Nous gardons une trace de ce qu'il reste à faire par jour pour atteindre les re
 - [ ] Créer templates
 
 ### 3️⃣ Jour 3 - Mercredi 25/06/2025
-- [ ] API REST
+- [x] API REST
 - [x] Amélioration formulaires
 - [ ] Finir actions CRUD
-- [ ] Avancer front
+- [x] Avancer front
+- [x] Commencer CSS
   
 ### 4️⃣ Jour 4 - Jeudi 26/06/2025
 ### 5️⃣ Jour 5 - Vendredi 27/06/2025
