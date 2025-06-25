@@ -28,20 +28,17 @@ def home():
     model.disconnect_db(mydb, mycursor)
     return render_template('index.html', countries = myCountries, languages = myLanguages, points_of_interest = myPointsOfInterest)
 
-@myapp.route("/country/<nameC>", methods=['GET', 'POST'])
-def country(nameC):
-    return render_template('country.html', content=nameC)
+@myapp.route("/country/<int:id>", methods=['GET', 'POST'])
+def country(id):
+    return render_template('country.html', content=id)
 
-@myapp.route("/language/<nameL>", methods=['GET', 'POST'])
-def language(nameL):
-    return render_template('language.html', content=nameL)
+@myapp.route("/language/<int:id>", methods=['GET', 'POST'])
+def language(id):
+    return render_template('language.html', content=id)
 
-@myapp.route("/point_of_interest/<namePOI>", methods=['GET', 'POST'])
-def point_of_interest(namePOI):
-    mydb, mycursor = model.connect_db()
-    poi = model.get_point_of_interest_by_name(namePOI, mycursor)
-    model.disconnect_db(mydb, mycursor)
-    return render_template('point_of_interest.html', content=poi)
+@myapp.route("/point_of_interest/<int:id>", methods=['GET', 'POST'])
+def point_of_interest(id):
+    return render_template('point_of_interest.html', content=id)
 
 # Formulaires
 
@@ -68,17 +65,17 @@ def form_l():
 
 # Modifications de propriétés
 
-@myapp.route("/language/action/<nameL>", methods=['GET', 'POST'])
-def form_l_update(nameL):
-    return render_template('form_language.html', content=nameL)
+@myapp.route("/language/action/<int:id>", methods=['GET', 'POST'])
+def form_l_update(id):
+    return render_template('form_language.html', content=id)
 
-@myapp.route("/country/action/<nameC>", methods=['GET', 'POST'])
-def form_c_update(nameC):
-    return render_template('form_country.html', content=nameC)
+@myapp.route("/country/action/<int:id>", methods=['GET', 'POST'])
+def form_c_update(id):
+    return render_template('form_country.html', content=id)
 
-@myapp.route("/point_of_interest/action/<namePOI>", methods=['GET', 'POST'])
-def form_poi_update(namePOI):
-    return render_template('form_point_of_interest.html', content=namePOI)
+@myapp.route("/point_of_interest/action/<int:id>", methods=['GET', 'POST'])
+def form_poi_update(id):
+    return render_template('form_point_of_interest.html', content=id)
 
 # @myapp.route("/update", methods=['GET', 'POST'])
 # def update():
@@ -146,12 +143,3 @@ def form_poi_update(namePOI):
 #     inputValue = int(request.args.get('value'))
 #     return render_template('game.html', content=inputValue)
 
-
-# DELETE INFORMATION
-
-@myapp.route('/delete/<type>/<id>', methods=['GET', 'POST'])
-def delete(type, id):
-    mydb, mycursor = model.connect_db()
-    model.delete(type, id, mycursor, mydb)
-    model.disconnect_db(mydb, mycursor)
-    return redirect(url_for('home'))

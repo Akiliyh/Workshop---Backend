@@ -17,7 +17,7 @@
             <h1>Languages</h1>
             {% for language in languages %}
             <div class="language">
-                <a href="/language/{{ language[1] }}">
+                <a href="/language/{{ language[0] }}">
                     <h2>{{language[1]}}</h2> <!-- name -->
                     <h2>{{language[4]}} <i class="fa-solid fa-user"></i> </h2> <!-- language speakers -->
                 </a>
@@ -32,7 +32,7 @@
             <h1>Countries</h1>
             {% for country in countries %}
             <div class="country">
-                <a href="/country/{{ country[1] }}">
+                <a href="/country/{{ country[0] }}">
                     <h2>{{country[1]}}</h2> <!-- name -->
                     <h2>{{country[3]}} <i class="fa-solid fa-user"></i> </h2> <!-- inhabitants -->
                 </a>
@@ -47,7 +47,7 @@
             <h1>Points of Interest</h1>
             {% for point_of_interest in points_of_interest %}
             <div class="poi">
-                <a href="/point_of_interest/{{ point_of_interest[1] }}">
+                <a href="/point_of_interest/{{ point_of_interest[0] }}">
                     <h2>{{point_of_interest[1]}}</h2> <!-- name -->
                     <h2>{{point_of_interest[2]}}</h2> <!-- date of establishment -->
                 </a>
