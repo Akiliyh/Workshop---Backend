@@ -146,3 +146,8 @@ nav h1 {
   margin-right: -3%;
   gap: 1%;
 }
+
+.fiche #lang{
+  width: 93%;
+  align-self: center;
+}
