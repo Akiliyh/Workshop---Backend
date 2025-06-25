@@ -5,8 +5,7 @@ def register_api_routes(myapp):
     @myapp.route("/api/init", methods=["PUT"])
     def api_init():
         mydb, mycursor = model.connect_db()
-        # model.reinit(mydb, mycursor)
-        model.reinsert(mydb, mycursor)
+        model.reinit(mydb, mycursor)
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Database reinitialised"}), 201
 

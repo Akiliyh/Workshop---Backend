@@ -150,9 +150,6 @@ def reinit(mydb, mycursor):
 
     mydb.commit()
 
-def reinsert(mydb, mycursor):
-    print('test')
-
     mycursor.execute("""INSERT INTO Countries VALUES
         (1, 'Ioctotere', 'Le Ioctotere est la terre du Iocto', 167, 'Estes', '2020-01-01', 'Dictature'),
         (2, 'mapona', 'mapona est la royauté du bien', 131, 'ma', '2025-03-07', 'Monarchie'),

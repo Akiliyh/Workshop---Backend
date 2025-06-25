@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }).then(res => res.text())
             .then(res => {
                 console.log("Reinitiated all the database:", res);
+                window.location.reload();
             })
     });
 });
