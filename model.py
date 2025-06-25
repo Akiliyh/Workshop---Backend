@@ -48,6 +48,7 @@ def update(mycursor):
 
     for country in mycursor:
         print(country)
+    
 def get(mycursor, key):
     if key == "c" :
         get_countries(mycursor)
@@ -108,21 +109,19 @@ def add(mydb, mycursor, key, infos):
         add_point_of_interest(mydb, mycursor, infos)
 
 def add_country(mydb, mycursor, infos): 
-    mycursor.execute('''SELECT MAX(idCountry) FROM Countries''')
-    infos.id = mycursor.fetchone()[0] + 1
-    mycursor.execute('''INSERT INTO Countries VALUES (''' + infos.id +''',"''' + infos.name + '''","''' + infos.desc + '''",''' + infos.inhab + ''',''' + "'" + infos.date + "'" +'''"'''+ infos.gouv + '''"''' +''')''')
+    mycursor.execute('''INSERT INTO Countries(idInterestPoint,nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
+                        VALUES (''' + infos.name + '''","''' + infos.desc + '''",''' + infos.inhab + ''',''' + "'" + infos.date + "'" +'''"'''+ infos.gouv + '''"''' +''')''')
     for i in infos.lang :
-        mycursor.execute('''INSERT INTO Countries_has_languages VALUES (''' + infos.id +''',''' + infos.lang[i] + ''',"''' + infos.lang[i+1] +''')''') 
+        mycursor.execute('''INSERT INTO Countries_has_languages(idCountry,idLanguage,nbOfLocutorsInThisCountry) 
+                            VALUES (''' + infos.id +''',''' + infos.lang[i] + ''',"''' + infos.lang[i+1] +''')''') 
     mydb.commit()
 def add_language(mydb, mycursor, infos): 
-    mycursor.execute('''SELECT MAX(idLanguage) FROM Languages''')
-    infos.id = mycursor.fetchone()[0] + 1
-    mycursor.execute('''INSERT INTO Languages VALUES (''' + infos.id +''',"''' + infos.name + '''","''' + infos.gender + '''",''' + infos.order + ''')''')
+    mycursor.execute('''INSERT INTO Languages(nameLanguage,gender,idWordOrder)
+                        VALUES (''' + infos.name + '''","''' + infos.gender + '''",''' + infos.order + ''')''')
     mydb.commit()
 def add_point_of_interest(mydb, mycursor, infos): 
-    mycursor.execute('''SELECT MAX(idInterestPoint) FROM InterestPoints''')
-    infos.id = mycursor.fetchone()[0] + 1
-    mycursor.execute('''INSERT INTO Languages VALUES (''' + infos.id +''',"''' + infos.name + '''",''' + "'"+ infos.date +"'"+ ''',"''' + infos.desc + '''",''' + infos.type + ''',''' + infos.coun +''')''')
+    mycursor.execute('''INSERT INTO InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
+                        VALUES (''' + infos.name + '''",''' + "'"+ infos.date +"'"+ ''',"''' + infos.desc + '''",''' + infos.type + ''',''' + infos.coun +''')''')
     mydb.commit()
 
 def delete(mydb, mycursor, key, infos):
