@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
-import random
-import mysql.connector
 import model
-import sqlite3
+import api
 
 from flask_cors import CORS
 
@@ -17,6 +15,8 @@ rows = mycursor.fetchall()
 countries = [{'idCountry': row[0], 'nameCountry': row[1]} for row in rows]
 model.disconnect_db(mydb, mycursor)
 
+
+api.register_api_routes(myapp)
 
 @myapp.route("/")
 def home():
