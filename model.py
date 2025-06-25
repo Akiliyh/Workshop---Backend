@@ -109,7 +109,7 @@ def add(mydb, mycursor, key, infos):
         add_point_of_interest(mydb, mycursor, infos)
 
 def add_country(mydb, mycursor, infos): 
-    mycursor.execute('''INSERT INTO Countries(idInterestPoint,nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
+    mycursor.execute('''INSERT INTO Countries(nameCountry,descCountry,inhabitants,capital,date,governmentType)
                         VALUES (''' + infos.name + '''","''' + infos.desc + '''",''' + infos.inhab + ''',''' + "'" + infos.date + "'" +'''"'''+ infos.gouv + '''"''' +''')''')
     for i in infos.lang :
         mycursor.execute('''INSERT INTO Countries_has_languages(idCountry,idLanguage,nbOfLocutorsInThisCountry) 
