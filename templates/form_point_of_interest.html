@@ -32,7 +32,7 @@
         <label for="coun"> In which Country :
             <select name="coun">
                 {% for coun in countries %}
-                    <option value="{{ coun[0] }}">{{ coun[1] }}</option> <!-- country's name -->
+                    <option value="{{ coun['idCountry'] }}">{{ coun['nameCountry'] }}</option> <!-- country's name -->
                 {% endfor %}
             </select>
         </label><br> 

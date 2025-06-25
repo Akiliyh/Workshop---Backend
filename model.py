@@ -8,7 +8,7 @@ def connect_db():
     database='LinguiC'
     )
 
-    mycursor = mydb.cursor()
+    mycursor = mydb.cursor(dictionary=True)
     
     return mydb, mycursor
 

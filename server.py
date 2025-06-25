@@ -12,7 +12,7 @@ mydb, mycursor = model.connect_db()
 # Liste de Countries pour le form_point_of_interest
 mycursor.execute("SELECT idCountry, nameCountry FROM Countries")
 rows = mycursor.fetchall()
-countries = [{'idCountry': row[0], 'nameCountry': row[1]} for row in rows]
+countries = [{'idCountry': row['idCountry'], 'nameCountry': row['nameCountry']} for row in rows]
 model.disconnect_db(mydb, mycursor)
 
 
@@ -142,4 +142,3 @@ def form_poi_update(id):
 #     randValue = random.randint(0, 100)
 #     inputValue = int(request.args.get('value'))
 #     return render_template('game.html', content=inputValue)
-
