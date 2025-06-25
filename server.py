@@ -55,7 +55,7 @@ def form_c():
     mydb, mycursor = model.connect_db()
     mycursor.execute("SELECT idLanguage, nameLanguage FROM Languages")
     rows = mycursor.fetchall()
-    languages = [{'id': row[0], 'name': row[1]} for row in rows]
+    languages = [{'id': row['idLanguage'], 'name': row['nameLanguage']} for row in rows]
     model.disconnect_db(mydb, mycursor)
     return render_template('form_country.html', content=country, languages=languages)
 

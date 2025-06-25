@@ -110,10 +110,11 @@ def add(mydb, mycursor, key, infos):
 
 def add_country(mydb, mycursor, infos): 
     mycursor.execute('''INSERT INTO Countries(nameCountry,descCountry,inhabitants,capital,date,governmentType)
-                        VALUES (''' + infos.name + '''","''' + infos.desc + '''",''' + infos.inhab + ''',''' + "'" + infos.date + "'" +'''"'''+ infos.gouv + '''"''' +''')''')
-    for i in infos.lang :
-        mycursor.execute('''INSERT INTO Countries_has_languages(idCountry,idLanguage,nbOfLocutorsInThisCountry) 
-                            VALUES (''' + infos.id +''',''' + infos.lang[i] + ''',"''' + infos.lang[i+1] +''')''') 
+                        VALUES ("''' + infos['name'] + '''","''' + infos['desc'] + '''",''' + infos['nbHab'] + ''',"''' + infos['cap'] + '''","''' + infos['date'] + '''","''' + infos['gouv']  +'''")''')
+
+    # for i in infos.lang :
+    #     mycursor.execute('''INSERT INTO Countries_has_languages(idCountry,idLanguage,nbOfLocutorsInThisCountry) 
+    #                         VALUES ("''' + infos.id +''',''' + infos.lang[i] + ''',"''' + infos.lang[i+1] +''')''') 
     mydb.commit()
 
 def add_language(mydb, mycursor, infos): 
