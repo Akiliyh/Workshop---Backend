@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static',filename='script/poi.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <title>{{content}}</title>
+</head>
+<body>
+    <h2 class="titre">Point of Interest</h2>
+    <h1 class="titre">{{content[1]}}</h1>
+    <div class="fiche">
+        <div>
+            <h3>Creation date :</h3>
+            <p>{{content[2]}}</p>
+
+            <h3>Country :</h3>
+            <p>{{content[4]}}</p> <!--chercher le nameCountry-->
+
+            <h3>Type :</h3>
+            <p>{{content[5]}}</p> <!--chercher le name (dans Type)-->
+        </div>
+        <div>
+            <div class="button">
+                <a href="/point_of_interest/action/{{content[0]}}"><button>Modify Point of Interest</button></a>
+                <button id="delete-btn">Delete Point of Interest</button>
+            </div>
+            <h3>Description :</h3>
+            <p>{{content[3]}}</p>
+
+    
+        </div>
+    </div>
+    
+    <script>
+        const poiData = {
+            id: "{{ content[0] }}",
+            name: "{{ content[1] }}"
+        };
+        </script>
+</body>
+</html>
