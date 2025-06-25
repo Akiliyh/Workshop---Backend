@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static',filename='script/country.js') }}"></script>
     <title>{{content}}</title>
 </head>
 <body>
     <h1>Country</h1>
     {{content}}
+
+    <button id="delete-btn">Delete Country</button>
+
+    <script>
+    const poiData = {
+        id: "{{ content }}",
+    };
+    </script>
 </body>
 </html>

@@ -92,12 +92,12 @@ def add(infos):
 
 def delete(type, id, mycursor, mydb):
     if type == "c":
-        mycursor.execute('''DELETE FROM Countries_has_languages WHERE idCountry= '''+ str(id))
+        mycursor.execute('''DELETE FROM Countries_has_Languages WHERE idCountry= '''+ str(id))
         mycursor.execute('''DELETE FROM InterestPoints WHERE idCountry= '''+ str(id))
         mycursor.execute('''DELETE FROM Countries WHERE idCountry= '''+ str(id))
         mydb.commit()
     if type == "l":
-        mycursor.execute('''DELETE FROM Countries_has_languages WHERE idLanguage= '''+ str(id))
+        mycursor.execute('''DELETE FROM Countries_has_Languages WHERE idLanguage= '''+ str(id))
         mycursor.execute('''DELETE FROM Languages WHERE idLanguage= '''+ str(id))
         mydb.commit()
     if type == "poi":
