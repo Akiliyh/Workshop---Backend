@@ -35,6 +35,9 @@ def point_of_interest(namePOI):
 
 @myapp.route("/point_of_interest/action", methods=['GET', 'POST'])
 def form_poi():
+    mydb, mycursor = model.connect_db()
+    myCountries = model.get_countries(mycursor)
+    model.disconnect_db(mydb, mycursor)
     return render_template('form_point_of_interest.html', content=point_of_interest, countries=myCountries)
 
 @myapp.route("/country/action", methods=['GET', 'POST'])
