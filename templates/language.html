@@ -7,10 +7,32 @@
     <title>{{content}}</title>
 </head>
 <body>
-    <h1>Language</h1>
-    {{content}}
+    <h2 class="titre">Language</h2>
+    <h1 class="titre">{{content}}</h1>
+    <div class="fiche">
+        <div id="lang">
+            <h3>Number of speaker in the world :</h3>
+            <p> </p>
 
-    <button id="delete-btn">Delete Language</button>
+            <h3>Presente in those countries:</h3>
+            <p> </p>
+
+            <h3>Words order :</h3>
+            <p> </p>
+
+            <h3>:</h3>
+            <p> </p>
+
+            <h3>:</h3>
+            <p> </p>
+
+            <h3> :</h3>
+            <p> </p>
+        </div>
+        <div class="button">
+                <a href="/language/action/{{content[0]}}"><button>Modify Language</button></a>
+                <button id="delete-btn">Delete Language</button>
+        </div>
 
     <script>
     const poiData = {

@@ -4,13 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ url_for('static',filename='script/country.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
     <title>{{content}}</title>
 </head>
 <body>
-    <h1>Country</h1>
-    {{content}}
+    <h2 class="titre">Country</h2>
+    <h1 class="titre">{{content}}</h1>
+    <div class="fiche">
+        <div>
+            <h3>Population :</h3>
+            <p> inhabitants</p>
 
-    <button id="delete-btn">Delete Country</button>
+            <h3>Capital :</h3>
+            <p> </p>
+
+            <h3>Date of fondation :</h3>
+            <p> </p>
+
+            <h3>Gouvernment type :</h3>
+            <p> </p>
+
+            <h3>Languages :</h3>
+            <p> </p>
+
+            <h3>Points of interest :</h3>
+            <p> </p>
+        </div>
+        <div>
+            <div class="button">
+                <a href="/country/action/{{content[0]}}"><button>Modify Country</button></a>
+                <button id="delete-btn">Delete Country</button>
+            </div>
+            <h3>Description :</h3>
+            <p> </p>
+        </div>
+    </div>
+    
+
 
     <script>
     const poiData = {
