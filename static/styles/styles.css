@@ -111,3 +111,43 @@ nav h1 {
   height: 100%;
   display: block;
 }
+
+
+.titre {
+  text-align: center;
+}
+.fiche {
+  display: flex;
+  justify-content:space-around;
+  background-color: lightgrey;
+  border-radius: 5px;
+  margin-bottom: 10px; margin-left:10px; margin-right:10px;
+}
+
+.fiche > div:nth-child(1){
+  width: 30%;
+}
+.fiche > div:nth-child(2){
+  display :block;
+  width: 60%;
+}
+
+
+.fiche h3 {
+  margin-left: 10%; margin-top: 10px; margin-bottom: 10px;
+}
+.fiche p{
+  margin-left: 20%; margin-top: 0px; margin-bottom: 5px;
+}
+.fiche .button{
+  display: flex;
+  justify-content: end;
+  margin: 10px;
+  margin-right: -3%;
+  gap: 1%;
+}
+
+.fiche #lang{
+  width: 93%;
+  align-self: center;
+}

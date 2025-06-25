@@ -72,19 +72,19 @@ def get_point_of_interest_by_name(name, mycursor):
     return result
 
 def add(infos):   
-    if infos == "c":
+    if infos.key == "c":  #infos = {'key':'c'/'l'/'poi','name'='qqch',etc..}
         mycursor.execute('''SELECT MAX(idCountry) FROM Countries''')
         id = mycursor.fetchone()[0] + 1
         mycursor.execute('''INSERT INTO Countries VALUES (''' + id +''',"''' + infos.name + '''","''' + infos.desc + '''",''' + infos.inhab + ''',''' + "'" + infos.date + "'" +'''"'''+ infos.gouv + '''"''' +''')''')
         for i in infos.lang :
             mycursor.execute('''INSERT INTO Countries_has_Languages VALUES (''' + id +''',''' + infos.lang[i] + ''',"''' + infos.lang[i+1] +''')''') 
         mydb.commit()
-    elif infos == "l":
+    elif infos.key == "l":
         mycursor.execute('''SELECT MAX(idLanguage) FROM Languages''')
         id = mycursor.fetchone()[0] + 1
         mycursor.execute('''INSERT INTO Languages VALUES (''' + id +''',"''' + infos.name + '''","''' + infos.gender + '''",''' + infos.order + ''')''')
         mydb.commit()
-    elif infos == "poi":
+    elif infos.key == "poi":
         mycursor.execute('''SELECT MAX(idInterestPoint) FROM InterestPoints''')
         id = mycursor.fetchone()[0] + 1
         mycursor.execute('''INSERT INTO Languages VALUES (''' + id +''',"''' + infos.name + '''",''' + "'"+ infos.date +"'"+ ''',"''' + infos.desc + '''",''' + infos.type + ''',''' + infos.coun +''')''')
