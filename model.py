@@ -34,17 +34,35 @@ def get_countries(mycursor):
 
     return countries
 
+def get_country(mycursor, id):
+    mycursor.execute("SELECT * FROM Countries WHERE Countries.idCountry =" + id + ";")
+    countries = mycursor.fetchone()
+
+    return countries
+
 def get_languages(mycursor):
     mycursor.execute("SELECT l.*, SUM(chl.nbOfLocutorsInThisCountry) AS totalSpeakers FROM Countries_has_Languages AS chl JOIN Languages AS l ON chl.idLanguage = l.idLanguage GROUP BY l.idLanguage;")
     languages = mycursor.fetchall()
 
     return languages
 
+def get_language(mycursor, id):
+    mycursor.execute("SELECT l.*, SUM(chl.nbOfLocutorsInThisCountry) AS totalSpeakers FROM Countries_has_Languages AS chl JOIN Languages AS l ON chl.idLanguage = l.idLanguage WHERE l.idLanguage = " + id + ";")
+    language = mycursor.fetchone()
+
+    return language
+
 def get_points_of_interest(mycursor):
     mycursor.execute("SELECT * FROM InterestPoints")
     points_of_interest = mycursor.fetchall()
 
     return points_of_interest
+
+def get_point_of_interest(mycursor, id):
+    mycursor.execute("SELECT * FROM InterestPoints WHERE InterestPoints.idInterestPoint =" + id + ";")
+    point_of_interest = mycursor.fetchone()
+
+    return point_of_interest
 
 # TO CHANGE WITH ID
 
@@ -59,7 +77,7 @@ def add(infos):
         id = mycursor.fetchone()[0] + 1
         mycursor.execute('''INSERT INTO Countries VALUES (''' + id +''',"''' + infos.name + '''","''' + infos.desc + '''",''' + infos.inhab + ''',''' + "'" + infos.date + "'" +'''"'''+ infos.gouv + '''"''' +''')''')
         for i in infos.lang :
-            mycursor.execute('''INSERT INTO Countries_has_languages VALUES (''' + id +''',''' + infos.lang[i] + ''',"''' + infos.lang[i+1] +''')''') 
+            mycursor.execute('''INSERT INTO Countries_has_Languages VALUES (''' + id +''',''' + infos.lang[i] + ''',"''' + infos.lang[i+1] +''')''') 
         mydb.commit()
     elif infos == "l":
         mycursor.execute('''SELECT MAX(idLanguage) FROM Languages''')
@@ -74,15 +92,15 @@ def add(infos):
 
 def delete(type, id, mycursor, mydb):
     if type == "c":
-        mycursor.execute('''DELETE FROM Countries_has_languages WHERE idCountry= '''+ id)
-        mycursor.execute('''DELETE FROM InterestPoints WHERE idCountry= '''+ id)
-        mycursor.execute('''DELETE FROM Countries WHERE idCountry= '''+ id)
+        mycursor.execute('''DELETE FROM Countries_has_languages WHERE idCountry= '''+ str(id))
+        mycursor.execute('''DELETE FROM InterestPoints WHERE idCountry= '''+ str(id))
+        mycursor.execute('''DELETE FROM Countries WHERE idCountry= '''+ str(id))
         mydb.commit()
     if type == "l":
-        mycursor.execute('''DELETE FROM Countries_has_languages WHERE idLanguage= '''+ id)
-        mycursor.execute('''DELETE FROM Languages WHERE idLanguage= '''+ id)
+        mycursor.execute('''DELETE FROM Countries_has_languages WHERE idLanguage= '''+ str(id))
+        mycursor.execute('''DELETE FROM Languages WHERE idLanguage= '''+ str(id))
         mydb.commit()
     if type == "poi":
-        mycursor.execute('''DELETE FROM InterestPoints WHERE idInterestPoint= '''+ id)
+        mycursor.execute('''DELETE FROM InterestPoints WHERE idInterestPoint= '''+ str(id))
         mydb.commit()
 

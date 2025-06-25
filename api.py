@@ -1,0 +1,78 @@
+from flask import request, jsonify
+import model
+
+def register_api_routes(myapp):
+    @myapp.route("/api/language", methods=["GET"])
+    def api_get_languages():
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_languages(mycursor))
+        model.disconnect_db(mydb, mycursor)
+        return result
+
+    @myapp.route("/api/language/<int:id>", methods=["GET"])
+    def api_get_language(id):
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_language(mycursor, str(id)))
+        model.disconnect_db(mydb, mycursor)
+        return result if result else ("Not found", 404)
+
+    @myapp.route("/api/country", methods=["GET"])
+    def api_get_countries():
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_countries(mycursor))
+        model.disconnect_db(mydb, mycursor)
+        return result
+
+    @myapp.route("/api/country/<int:id>", methods=["GET"])
+    def api_get_country(id):
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_country(mycursor, str(id)))
+        model.disconnect_db(mydb, mycursor)
+        return result if result else ("Not found", 404)
+
+    @myapp.route("/api/point_of_interest", methods=["GET"])
+    def api_get_points_of_interest():
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_points_of_interest(mycursor))
+        model.disconnect_db(mydb, mycursor)
+        return result
+
+    @myapp.route("/api/point_of_interest/<int:id>", methods=["GET"])
+    def api_get_point_of_interest(id):
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_point_of_interest(mycursor, str(id)))
+        model.disconnect_db(mydb, mycursor)
+        return result
+
+    @myapp.route("/api/language", methods=["POST"])
+    def api_create_language():
+        data = request.json
+        model.insert_language(data["nameLanguage"])
+        return jsonify({"message": "Language created"}), 201
+
+    @myapp.route("/api/languages/<int:id>", methods=["PUT"])
+    def api_update_language(id):
+        data = request.json
+        model.update_language(id, data["nameLanguage"])
+        return jsonify({"message": "Language updated"})
+
+    @myapp.route('/api/point_of_interest/<int:id>', methods=['DELETE'])
+    def api_delete_poi(id):
+        mydb, mycursor = model.connect_db()
+        model.delete('poi', id, mycursor, mydb)
+        model.disconnect_db(mydb, mycursor)
+        return jsonify({"message": "Point of Interest deleted"})
+
+    @myapp.route('/api/language/<int:id>', methods=['DELETE'])
+    def api_delete_language(id):
+        mydb, mycursor = model.connect_db()
+        model.delete('l', id, mycursor, mydb)
+        model.disconnect_db(mydb, mycursor)
+        return jsonify({"message": "Language deleted"})
+
+    @myapp.route('/api/country/<int:id>', methods=['DELETE'])
+    def api_delete_country(id):
+        mydb, mycursor = model.connect_db()
+        model.delete('c', id, mycursor, mydb)
+        model.disconnect_db(mydb, mycursor)
+        return jsonify({"message": "Country deleted"})

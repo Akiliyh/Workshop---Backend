@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
-import random
-import mysql.connector
 import model
+import api
 
 from flask_cors import CORS
 
 myapp = Flask(__name__)
 CORS(myapp)
+
+api.register_api_routes(myapp)
 
 @myapp.route("/")
 def home():
