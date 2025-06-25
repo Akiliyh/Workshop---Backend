@@ -1,3 +1,7 @@
+* {
+  font-family: sans-serif;
+}
+
 form {
     display: flex;
   flex-direction: column;
@@ -44,4 +48,72 @@ tfoot th {
 
 tfoot td {
   font-weight: bold;
+}
+
+
+
+
+nav h1 {
+  text-align: center;
+}
+
+.main-section {
+  display: flex;
+  justify-content: space-around;
+}
+
+.main-section .countries, .main-section .languages, .main-section .points-of-interest {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-section .country, .main-section .poi, .main-section .language {
+  display: flex;
+  justify-content: space-between;
+  background-color: lightgrey;
+  border-radius: 5px;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.main-section .country:hover, .main-section .poi:hover, .main-section .language:hover {
+  background-color: rgb(195, 192, 192);
+}
+
+.main-section .country a, .main-section .language a, .main-section .poi a {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 15px;
+}
+
+.main-section a {
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  height: 100%;
+}
+
+.main-section button {
+  border-style: none;
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.main-section button a{
+  width: 100%;
+  line-height: 50px;
+  height: 100%;
+  display: block;
+}
+
+.fiche {
+  background-color: lightgrey;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }

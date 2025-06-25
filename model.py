@@ -53,7 +53,7 @@ def get_point_of_interest_by_name(name, mycursor):
     result = mycursor.fetchone()
     return result
 
-def add(infos, mycursor, mydb):   
+def add(infos):   
     if infos == "c":
         mycursor.execute('''SELECT MAX(idCountry) FROM Countries''')
         id = mycursor.fetchone()[0] + 1

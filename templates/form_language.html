@@ -5,32 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
-    <title>Create your own Country</title>
+    <title>Create your own Language</title>
 </head>
 
 <body>
     <form action="/ajout" method='POST'>
         <label for="form"></label>
         
-        <label for="name">Name of your Country
+        <label for="name">Name of your Language :
             <input type="text" name="name" max="50" required value="{{content['name']}}"></label><br>
         
-        <label for="desc">Description of your Country
-            <input type="text" name="desc" max="500" value="{{content['how my Country is']}}"></label><br>
+        <label for="gend">Your Language is gendered ? :
+            <input type="checkbox" name="gend" value="oui"></label><br>
 
-        <label for="nbHab">Number of inhabitants out of <!--nombre d'habitant restant-->
-            <input type="number" name="nbHab" max="10000" required value="{{content['inhabitants']}}"></label><br>        
-
-        <label for="cap">Name of your Capital
-            <input type="text" name="cap" max="50" value="{{content['capital']}}"></label><br>
-
-        <label for="date">Date of fondation
-            <input type="date" name="date" value="{{content['date']}}"></label><br>
-
-        <label for="gouv">Type of gouverment
-            <input type="text" name="gouv" max="100" value="{{content['gouvernement']}}"></label><br>
-            
-        <input type="submit" value="Create">
+        <label for="order">Order of sentence construction
+            <select name="order">
+                <option value="1">Subject-Verb-Object</option>
+                <option value="2">Subject-Object-Verb</option>
+                <option value="3">Verb-Subject-Object</option>
+                <option value="4">Verb-Object-Subject</option>
+                <option value="5">Object-Subject-Verb</option>
+                <option value="6">Object-Verb-Subject</option>       
+            </select>
+        </label>
+   
+        <input type="submit" value="Save">
     </form>
 </body>
 
