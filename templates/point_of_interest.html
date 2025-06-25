@@ -8,25 +8,25 @@
 </head>
 <body>
     <h1 class="titre">Point of Interest</h1>
+    <h2 class="titre">{{content[1]}}</h2>
     <div class="fiche">
-        <h3>Name :</h3>
-        <p>{{content.nameInterestPoint}}</p>
-        
-        <h3>Creation date :</h3>
-        <p>{{content.dateInterestPoint}}</p>
+        <div>
+            <h3>Creation date :</h3>
+            <p>{{content[2]}}</p>
 
-        <h3>Description :</h3>
-        <p>{{content.descInterestPoint}}</p>
+            <h3>Country :</h3>
+            <p>{{content[4]}}</p> <!--chercher le nameCountry-->
 
-        <h3>Country :</h3>
-        <p>{{content.idCountry}}</p> <!--chercher le nameCountry-->
-
-        <h3>Type :</h3>
-        <p>{{content.idType}}</p> <!--chercher le name (dans Type)-->
-
+            <h3>Type :</h3>
+            <p>{{content[5]}}</p> <!--chercher le name (dans Type)-->
+        </div>
+        <div>
+            <a href="/point_of_interest/action/{{content[0]}}"><button>Modify Point of Interest</button></a>
+            <a href="/delete/poi/{{content[0]}}"><button>Delete Point of Interest</button></a>
+            <h3>Description :</h3>
+            <p>{{content[3]}}</p>
+        </div>
     </div>
-    <a href="/delete/poi/{{content[0]}}">
-    <button>Delete Point of Interest</button>
-    </a>
+    
 </body>
 </html>

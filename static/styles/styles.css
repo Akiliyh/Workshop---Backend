@@ -112,8 +112,34 @@ nav h1 {
   display: block;
 }
 
+
+.titre {
+  text-align: center;
+}
 .fiche {
+  display: flex;
+  justify-content:space-around;
   background-color: lightgrey;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 10px; margin-left:10px; margin-right:10px;
+}
+
+.fiche > div:nth-child(1){
+  width: 30%;
+}
+.fiche > div:nth-child(2){
+  display :block;
+  width: 60%;
+}
+
+
+.fiche h3 {
+  margin-left: 50px; margin-top: 10px; margin-bottom: 10px;
+}
+.fiche p{
+  margin-left: 100px; margin-top: 0px; margin-bottom: 5px;
+}
+.fiche button{
+  margin: 10px;
+  justify-content: end;
 }
