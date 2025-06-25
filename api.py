@@ -63,10 +63,15 @@ def register_api_routes(myapp):
         return result
 
     @myapp.route("/api/language", methods=["POST"])
-    def api_create_language():
-        data = request.json
-        model.insert_language(data["nameLanguage"])
-        return jsonify({"message": "Language created"}), 201
+    def api_add_language():
+        mydb, mycursor = model.connect_db()
+        data = request.form.to_dict()
+        print(data)
+        # data = request.json
+        # print(data)
+        model.add_language(mydb, mycursor, data)
+        model.disconnect_db(mydb, mycursor)
+        return jsonify({"message": "Added language"}), 201
 
     @myapp.route("/api/languages/<int:id>", methods=["PUT"])
     def api_update_language(id):

@@ -9,14 +9,14 @@
 </head>
 
 <body>
-    <form action="/ajout" method='POST'>
+    <form action="/api/language" method='POST'>
         <label for="form"></label>
         
         <label for="name">Name of your Language :
-            <input type="text" name="name" max="50" required value="{{content['name']}}"></label><br>
-        
+            <input type="text" name="name" max="50" required value="{{content['name']}}"></label>
+     
         <label for="gend">Your Language is gendered ? :
-            <input type="checkbox" name="gend" value="oui"></label><br>
+            <input type="checkbox" name="gend" value="1"></label>
 
         <label for="order">Order of sentence construction
             <select name="order">

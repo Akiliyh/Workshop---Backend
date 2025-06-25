@@ -115,13 +115,18 @@ def add_country(mydb, mycursor, infos):
         mycursor.execute('''INSERT INTO Countries_has_languages(idCountry,idLanguage,nbOfLocutorsInThisCountry) 
                             VALUES (''' + infos.id +''',''' + infos.lang[i] + ''',"''' + infos.lang[i+1] +''')''') 
     mydb.commit()
+
 def add_language(mydb, mycursor, infos): 
+    if 'gend' not in infos:
+        infos['gend'] = 0
+
     mycursor.execute('''INSERT INTO Languages(nameLanguage,gender,idWordOrder)
-                        VALUES (''' + infos.name + '''","''' + infos.gender + '''",''' + infos.order + ''')''')
+                        VALUES ("''' + infos['name'] + '''",''' + str(infos['gend']) + ''',''' + infos['order'] + ''')''')
     mydb.commit()
+
 def add_point_of_interest(mydb, mycursor, infos): 
     mycursor.execute('''INSERT INTO InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
-                        VALUES (''' + infos.name + '''",''' + "'"+ infos.date +"'"+ ''',"''' + infos.desc + '''",''' + infos.type + ''',''' + infos.coun +''')''')
+                        VALUES ("''' + infos['name'] + '''",''' + infos['date'] + ''',"''' + infos['desc'] + '''",''' + infos['type'] + ''',''' + infos['coun'] +''')''')
     mydb.commit()
 
 def delete(mydb, mycursor, key, infos):
