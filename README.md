@@ -41,26 +41,29 @@ La création du projet et le choix du thème a été choisi collectivement. Ensu
 ### 🐾 Répartition
 
 #### 🐿️ Guillaume
-- [ ] Model : def get()
+- [x] Model : def get()
+- [x] Model : def init()
 - [x] Model : Connexion BDD-Flask
-- [ ] Vue : accueil
+- [x] Vue : Amélioration accueil
 - [x] Controller : routes
-- [ ] API : échange JSON
+- [x] API : échange JSON
+- [ ] API : implémentation model vers api
   
 #### 🐁 Lison
-- [ ] Model : def add()
-- [ ] Model : def delete()
+- [x] Model : def add()
+- [x] Model : def delete()
 - [ ] Vue : formulaires
 - [ ] Vue : mise en forme CSS
-- [ ] Controller : routes
+- [ ] Vue : fiches
+- [ ] Vue : accueil
+- [x] Controller : routes
 
 #### 🦐 Océane
 - [ ] Model : def update()
-- [ ] Model : def init()
 - [ ] Model : Ajout tables
-- [ ] Vue : fiches
+- [ ] Vue : Amélioration fiches
 - [x] général : README
-
+- [ ] API : implémentation model vers api
 
 ### 🗓️ Planning
 
@@ -101,6 +104,7 @@ Nous gardons une trace de ce qu'il reste à faire par jour pour atteindre les re
 - [ ] Redirect après les actions (add, modify)
 - [ ] Continuer le CSS
 - [ ] Injecter données en javascript
+
 ### 5️⃣ Jour 5 - Vendredi 27/06/2025
 
 <!-- 6️⃣7️⃣8️⃣9️⃣🔟 -->
