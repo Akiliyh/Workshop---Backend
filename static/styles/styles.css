@@ -1,3 +1,16 @@
+:root {
+    --back: #929FD3;
+    --rect: #07465F;
+    --recthover: #082e3d;
+    --title: white;
+    --text: #C0D4DD;
+    --texthover: #C8CFEC;
+}
+
+body {
+  background-color: var(--back);
+}
+
 * {
   font-family: sans-serif;
 }
@@ -70,14 +83,14 @@ nav h1 {
 .main-section .country, .main-section .poi, .main-section .language {
   display: flex;
   justify-content: space-between;
-  background-color: lightgrey;
+  background-color: var(--rect);
   border-radius: 5px;
   gap: 10px;
   margin-bottom: 10px;
 }
 
 .main-section .country:hover, .main-section .poi:hover, .main-section .language:hover {
-  background-color: rgb(195, 192, 192);
+  background-color: var(--recthover);
 }
 
 .main-section .country a, .main-section .language a, .main-section .poi a {
@@ -89,12 +102,13 @@ nav h1 {
 
 .main-section a {
   text-decoration: none;
-  color: black;
+  /* color: black; */
   width: 100%;
   height: 100%;
 }
 
 .main-section button {
+  background-color: var(--text);
   border-style: none;
   width: 50px;
   height: 50px;
@@ -105,11 +119,20 @@ nav h1 {
   padding: 0;
 }
 
+.main-section button:hover{
+  background-color: var(--texthover);
+}
+
 .main-section button a{
+  color: var(--rect);
   width: 100%;
   line-height: 50px;
   height: 100%;
   display: block;
+}
+
+.main-section button a{
+  color: var(--recthover);
 }
 
 
@@ -119,7 +142,7 @@ nav h1 {
 .fiche {
   display: flex;
   justify-content:space-around;
-  background-color: lightgrey;
+  background-color: var(--rect);
   border-radius: 5px;
   margin-bottom: 10px; margin-left:10px; margin-right:10px;
 }
@@ -146,8 +169,59 @@ nav h1 {
   margin-right: -3%;
   gap: 1%;
 }
+.fiche .button_lang{
+  display: flex;
+  justify-content: end;
+  margin: 10px;
+  margin-right: 2%;
+  gap: 2%;
+}
+
+.fiche button{
+  background-color: var(--text);
+  color: var(--rect);
+  padding: 10px;
+  border:none;
+  border-radius: 4px;
+}
+.fiche button:hover{
+  background-color: var(--texthover);
+  color: var(--recthover);
+  padding: 10px;
+}
 
 .fiche #lang{
   width: 150%;
   align-self: center;
+}
+
+h1 {
+  color: var(--title);
+}
+h2 {
+  color: var(--title);
+}
+.language h2{
+  color: var(--text);
+}
+.language:hover h2{
+  color: var(--texthover)
+}
+.country h2{
+  color: var(--text);
+}
+.country:hover h2{
+  color: var(--texthover)
+}
+.poi h2{
+  color: var(--text);
+}
+.poi:hover h2{
+  color: var(--texthover)
+}
+h3 {
+  color: var(--text);
+}
+p {
+  color: var(--text);
 }
