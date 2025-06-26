@@ -59,7 +59,27 @@ document.addEventListener("DOMContentLoaded", () => {
             })
                 .then(res => res.json())
                 .then(dataType => {
-                    type.textContent = dataType.name;
+
+                    const iconMap = {
+                        'body of water': 'fa-water',
+                        'statue': 'fa-person',
+                        'monument': 'fa-landmark',
+                        'castle': 'fa-chess-rook',
+                        'beach': 'fa-umbrella-beach',
+                        'park': 'fa-leaf',
+                        'forest': 'fa-tree',
+                    };
+
+                    const icon = document.createElement('i');
+                    const name = document.createElement('p');
+                    const iconClass = iconMap[dataType.name.toLowerCase()];
+
+                    icon.classList.add('fa-solid', iconClass);
+                    icon.style.color = 'white';
+                    name.textContent = dataType.name;
+
+                    type.appendChild(icon);
+                    type.appendChild(name);
 
                 })
         })
