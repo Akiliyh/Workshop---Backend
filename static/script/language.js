@@ -15,22 +15,24 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('/api/language/' + poiId, {
         method: 'GET',
     })
-    .then(res => res.json())
-    .then(data => {      
-        let desc = document.querySelector('.desc');
-        let inh = document.querySelector('.inhabitants');
-        let gov = document.querySelector('.gov');
-        let date = document.querySelector('.date');
-        let capital = document.querySelector('.capital');
-        let name = document.querySelector('.name');
-        
-        desc.textContent = data.descCountry;
-        inh.textContent = data.inhabitants + ' inhabitants';
-        gov.textContent = data.governmentType;
-        date.textContent = data.date;
-        capital.textContent = data.capital;
-        name.textContent = data.nameCountry;
-        document.title = data.nameCountry;
+        .then(res => res.json())
+        .then(data => {
+            let wordOrder = document.querySelector('.word-order');
+            let speakers = document.querySelector('.speakers');
+            let name = document.querySelector('.name');
 
-    })
+            document.title = data.nameLanguage;
+            speakers.textContent = data.totalSpeakers;
+            name.textContent = data.nameLanguage;
+
+
+            fetch('/api/word_order/' + data.idWordOrder, {
+                method: 'GET',
+            })
+                .then(res => res.json())
+                .then(dataWO => {
+                    wordOrder.textContent = dataWO.name;
+
+                })
+        })
 });
