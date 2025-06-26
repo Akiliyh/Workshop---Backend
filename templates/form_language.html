@@ -9,28 +9,33 @@
 </head>
 
 <body>
-    <form action="/ajout" method='POST'>
-        <label for="form"></label>
-        
-        <label for="name">Name of your Language :
-            <input type="text" name="name" max="50" required value="{{content['name']}}"></label><br>
-        
-        <label for="gend">Your Language is gendered ? :
-            <input type="checkbox" name="gend" value="oui"></label><br>
+    <div class="form">
+        <h2>Create your language :</h2>
+        <form action="/ajout" method='POST'>
+            <div>
+                <label for="form"></label>
+                
+                <label for="name">Name of your Language :
+                    <input type="text" name="name" max="50" required value="{{content['name']}}"></label><br>
+                
+                <label for="gend">Your Language is gendered ? :
+                    <input type="checkbox" name="gend" value="oui"></label><br>
 
-        <label for="order">Order of sentence construction
-            <select name="order">
-                <option value="1">Subject-Verb-Object</option>
-                <option value="2">Subject-Object-Verb</option>
-                <option value="3">Verb-Subject-Object</option>
-                <option value="4">Verb-Object-Subject</option>
-                <option value="5">Object-Subject-Verb</option>
-                <option value="6">Object-Verb-Subject</option>       
-            </select>
-        </label>
-   
-        <input type="submit" value="Save">
-    </form>
+                <label for="order">Order of sentence construction
+                    <select name="order">
+                        <option value="1">Subject-Verb-Object</option>
+                        <option value="2">Subject-Object-Verb</option>
+                        <option value="3">Verb-Subject-Object</option>
+                        <option value="4">Verb-Object-Subject</option>
+                        <option value="5">Object-Subject-Verb</option>
+                        <option value="6">Object-Verb-Subject</option>       
+                    </select>
+                </label>
+        
+                <input type="submit" value="Save" id="button_save">
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

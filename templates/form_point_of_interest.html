@@ -9,36 +9,42 @@
 </head>
 
 <body>
-    <form action="/add" method='POST'>
-        <label for="form"></label>
-        
-        <label for="name">Name of your Point of Interest
-            <input type="text" name="name" max="50" required value="{{content['name']}}"></label>
+    <div class="form">
+        <h2>Create your Point of Interest :</h2>
+        <form action="/add" method='POST'>
+            <div>
+                <label for="name">Name of your Point of Interest
+                    <input type="text" name="name" max="50" required value="{{content['name']}}"></label>
 
-        <label for="date">Date of establishment of your Point of Interest
-            <input type="number" name="date" required></label>
+                <label for="date">Date of establishment of your Point of Interest
+                    <input type="date" name="date" required></label>
 
-        <label for="type"> Type of structure
-            <select name="type">
-                <option value="1">statue</option>
-                <option value="2">forest</option>
-                <option value="3">park</option>
-                <option value="4">castle</option>
-                <option value="5">monument</option>
-                <option value="6">beach</option>
-                <option value="7">body of water</option>
-            </select>
-        </label>
-        <label for="coun"> In which Country :
-            <select name="coun">
-                {% for coun in countries %}
-                    <option value="{{ coun[0] }}">{{ coun[1] }}</option> <!-- country's name -->
-                {% endfor %}
-            </select>
-        </label><br> 
-          
-        <input type="submit" value="Save">
-    </form>
+                <label for="type"> Type of structure
+                    <select name="type">
+                        <option value="1">statue</option>
+                        <option value="2">forest</option>
+                        <option value="3">park</option>
+                        <option value="4">castle</option>
+                        <option value="5">monument</option>
+                        <option value="6">beach</option>
+                        <option value="7">body of water</option>
+                    </select>
+                </label>
+                <label for="coun"> In which Country :
+                    <select name="coun">
+                        {% for coun in countries %}
+                            <option value="{{ coun[0] }}">{{ coun[1] }}</option> <!-- country's name -->
+                        {% endfor %}
+                    </select>
+                </label><br> 
+            </div>
+            <div>
+                <label for="desc">Description of your Country</label>
+                        <textarea type="text" name="desc" max="500" value="{{content['how my Point of Interest is']}}" id="desc_case"></textarea>
+                <input type="submit" value="Save" id="button_save">
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
