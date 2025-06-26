@@ -5,7 +5,7 @@ def connect_db():
     # host='163.172.165.87',
     # user='LinguiC',
     # password='ImAcGOAT',
-    # database='LinguiC'
+    # database='LinguiC')
     
     host='localhost',
     user='root',
@@ -147,8 +147,8 @@ def add(mydb, mycursor, key, infos):
         add_point_of_interest(mydb, mycursor, infos)
 
 def convertValue(value) :
-    if value is None:
-        return "NULL"
+    # if value is None:
+    #     return "NULL"
     if value.isdigit() :
         return f"{value}"
     elif value == "" :
@@ -194,7 +194,6 @@ def add_country(mydb, mycursor, infos):
 
 def add_language(mydb, mycursor, infos): 
     if 'gend' not in infos:
-        infos['gend'] = 0
         infos['gend'] = '0'
     # Fix the order of infos if we create gend by hand
     ordered_infos = {
@@ -233,10 +232,10 @@ def update(mydb, mycursor, key, infos):
     elif key == "poi" :
         update_point_of_interest(mydb, mycursor, infos)
 
+original = {'idLanguage': 3, 'nameLanguage': 'Gnegnegnah', 'gender': 0, 'idWordOrder': 5, 'totalSpeakers': '0.1'}
+new = {'id': 3, 'name': 'Gnegnegnahkkkkk', 'gend': '1', 'order': '1'}
 def find_differences(original, new):
     differences = {}
-    print("\toriginal : ", original)
-    print("\tnew : ", new)
     keys_original = list(original.keys())
     keys_new = list(new.keys())
     for i in range(len(original)) :
@@ -245,16 +244,17 @@ def find_differences(original, new):
         
         field = field_original
         value = new[field_new]
-        if original[field] != value :
-            print("weeyou weeyou les valeurs sont differentes")
-            print(new[field_new], original[field_original])
 
+        if original[field] != value :
+            print("original : ", original)
+            print("new : ", new)
             print(field_original, new[field_new])
-            differences.update({field:value})
-    print(differences)
+            differences.update({field:convertValue(value)})
+            
+    print("\tprinting differences : ", differences)
     return differences
 
-#update countries set *name = 'truc', cap = 'truc', lang = 2* where id = 1
+#update countries set name = 'truc', cap = 'truc', lang = 2* where id = 1
 def setDifferencesQuery(original, new) :
     differences = find_differences(original, new)
     query = ""
@@ -265,7 +265,10 @@ def setDifferencesQuery(original, new) :
 
 def update_country(mydb, mycursor, infos):
     # infos = {name, desc, nbHab, cap, date, gouv, lang, nb_speaker1}
-    original = get_country(mycursor, infos['id'])
+    if "id" not in infos:
+        raise ValueError("Missing ID for update operation")
+    
+    original = get_country(mycursor, str(infos['id']))
     values = setDifferencesQuery(original, infos)
     print("values country : ", values)
     if values !="" :
@@ -273,18 +276,41 @@ def update_country(mydb, mycursor, infos):
         mycursor.execute(query)
         mydb.commit()
 
+def reorder_language_dict (infos, dict_key_to_check_value, list_of_to_delete_keys) :
+    key_to_check = list(dict_key_to_check_value.keys())[0]
+    if key_to_check not in infos.keys() :
+        inserted = False
+        for key_to_delete in list_of_to_delete_keys :
+            value = infos[key_to_delete]
+            del infos[key_to_delete]
+
+            if not inserted :
+                infos.update(dict_key_to_check_value)
+
+            infos.update({key_to_delete : value})
+        
 def update_language(mydb, mycursor, infos):
     # infos = {name, gend, order}
-    original = get_language(mycursor, infos['id'])
+    if "id" not in infos:
+        raise ValueError("Missing ID for update operation")
+    
+    original = get_language(mycursor, str(infos['id']))
+    del original['totalSpeakers']
+    reorder_language_dict(infos, {'gender':'0'}, ['order'])
+
     values = setDifferencesQuery(original, infos)
     print("values language : ", values)
     if values !="" :
         query = f'''UPDATE Languages SET {values} WHERE Languages.idLanguage ={infos["id"]};'''
+        print("\tprinting query update languages :", query)
         mycursor.execute(query)
         mydb.commit()
 
 def update_point_of_interest(mydb, mycursor, infos):
     # infos = {name, desc, date, type, coun}
+    if "id" not in infos:
+        raise ValueError("Missing ID for update operation")
+    
     original = get_point_of_interest(mycursor, infos['id'])
     values = setDifferencesQuery(original, infos)
     print("values poi : ", values)
@@ -387,8 +413,8 @@ def verif_sp_h (mycursor, idC):
     nb_h = mycursor.fetchall()
     nb_sps = nb_sps_in_c(mycursor, idC)
     if nb_h == nb_sps :
-        return true
-    return false #verifie si le nombre de personne parlant une langue quelconque dans un pays C et le même nombre que celui de la population
+        return True
+    return False #verifie si le nombre de personne parlant une langue quelconque dans un pays C et le même nombre que celui de la population
 
 def nb_hab_restant (mycursor, pop_max): #pop_max = 10000 aux dernières nouvelles
     nb_pop_world = nb_hab_tot (mycursor)
@@ -398,6 +424,6 @@ def nb_hab_restant (mycursor, pop_max): #pop_max = 10000 aux dernières nouvelle
 
 def verif_rest_hab (mycursor, pop_max):
     if nb_hab_restant (mycursor, pop_max)>0:
-        return true
-    return false #verifie s'il y a encore des habitants à mettre
+        return True
+    return False #verifie s'il y a encore des habitants à mettre
 

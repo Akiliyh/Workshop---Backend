@@ -18,23 +18,26 @@
 
     <div class="form">
         <h2>Create your language :</h2>
-        <form id="form" action="/api/language" method='POST'>
+        <!-- <form id="form" action="/api/language{{slash}}{{id}}" method='POST'> -->
+        <form action="/api/language{{slash}}{{id}}" method='POST'>
             <div>
                 
-                <label for="name">Name of your Language :
-                    <input type="text" name="name" max="50" required value="{{content['name']}}"></label><br>
+                <label for="name">Name of your language* :
+                    <input type="text" name="name" max="50" required 
+                           {% if content != {} %} value = "{{content['nameLanguage']}}" {% else %} value = "" {% endif %} >
+                </label><br>
                 
-                <label for="gend">Your Language is gendered ? :
-                    <input type="checkbox" name="gend" value="1"></label><br>
+                <label for="gend">Your language is gendered ? :
+                    <input type="checkbox" name="gend" value="1" checked></label><br>
 
                 <label for="order">Order of sentence construction
                     <select name="order">
-                        <option value="1">Subject-Verb-Object</option>
-                        <option value="2">Subject-Object-Verb</option>
-                        <option value="3">Verb-Subject-Object</option>
-                        <option value="4">Verb-Object-Subject</option>
-                        <option value="5">Object-Subject-Verb</option>
-                        <option value="6">Object-Verb-Subject</option>       
+                        <option value="1" {% if content['idType'] == '1' %} selected {% endif %}>Subject-Verb-Object</option>
+                        <option value="2" {% if content['idType'] == '2' %} selected {% endif %}>Subject-Object-Verb</option>
+                        <option value="3" {% if content['idType'] == '3' %} selected {% endif %}>Verb-Subject-Object</option>
+                        <option value="4" {% if content['idType'] == '4' %} selected {% endif %}>Verb-Object-Subject</option>
+                        <option value="5" {% if content['idType'] == '5' %} selected {% endif %}>Object-Subject-Verb</option>
+                        <option value="6" {% if content['idType'] == '6' %} selected {% endif %}>Object-Verb-Subject</option>       
                     </select>
                 </label>
         

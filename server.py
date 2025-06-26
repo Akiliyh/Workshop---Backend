@@ -65,33 +65,35 @@ def form_c():
     rows = mycursor.fetchall()
     languages = [{'id': row['idLanguage'], 'name': row['nameLanguage']} for row in rows]
     model.disconnect_db(mydb, mycursor)
-    return render_template('form_country.html', content=country, languages=languages)
+    return render_template('form_country.html', content={}, languages=languages, slash = "", id="")
 
 @myapp.route("/language/action", methods=['GET', 'POST'])
 def form_l():
-    return render_template('form_language.html', content=language)
+    return render_template('form_language.html', content={}, slash = "", id = "")
 
 # Modifications de propriétés
 
-@myapp.route("/language/action/<int:id>", methods=['GET', 'POST'])
-def form_l_update(id):
-    return render_template('form_language.html', content=id)
-
 @myapp.route("/country/action/<int:id>", methods=['GET', 'POST'])
 def form_c_update(id):
-    return render_template('form_country.html', content=id)
+    mydb, mycursor = model.connect_db()
+    content = model.get_country(mycursor, str(id))
+    return render_template('form_country.html', content=content, slash = "/", id = id)
+
+@myapp.route("/language/action/<int:id>", methods=['GET', 'POST'])
+def form_l_update(id):
+    mydb, mycursor = model.connect_db()
+    content = model.get_language(mycursor, str(id))
+    print("\tprinting content languages : ", content)
+    return render_template('form_language.html', content=content, slash = "/", id=id)
 
 @myapp.route("/point_of_interest/action/<int:id>", methods=['GET', 'POST'])
 def form_poi_update(id):
-    print("\tprinting id of poi update : ", id)
-
     mydb, mycursor = model.connect_db()
     content = model.get_point_of_interest(mycursor, id)
     myCountries = model.get_countries(mycursor)
     myTypeOfPoints = model.get_types_of_points(mycursor)
-    print("AHHH")
     print(myTypeOfPoints)
     model.disconnect_db(mydb, mycursor)
 
-    print("\tprinting content : ", content)
+    print("\tprinting content poi : ", content)
     return render_template('form_point_of_interest.html', id = id, content=content, countries = myCountries, tpoi = myTypeOfPoints, slash = "/")

@@ -85,10 +85,14 @@ def register_api_routes(myapp):
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Added language", "id": new_id}), 201
 
-    @myapp.route("/api/language/<int:id>", methods=["PUT"])
+    @myapp.route("/api/language/<int:id>", methods=["POST"])
     def api_update_language(id):
-        data = request.json
-        model.update_language(id, data["nameLanguage"])
+        mydb, mycursor = model.connect_db()
+        data = {'id':id}
+        data.update(request.form.to_dict())
+        print("\t printing data from update language : ", data)
+        model.update_language(mydb, mycursor, data)
+        model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Language updated"})
 
     @myapp.route('/api/language/<int:id>', methods=['DELETE'])
