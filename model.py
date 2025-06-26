@@ -23,7 +23,7 @@ def disconnect_db(mydb, mycursor):
 def actionBDD(action, key="", infos = {}) :
     mydb, mycursor = connect_db()
     if not infos and not key == "" :
-        data = action(mycursor, *key)
+        data = action(mycursor, key)
         print("Doing action : ",action.__name__,". Using data = action(mycursor, key) with key = ", key)
 
     elif not infos and key=="":
@@ -31,11 +31,11 @@ def actionBDD(action, key="", infos = {}) :
         print("Doing action : ",action.__name__,". Using action(mydb, mycursor) no returns")
 
     elif infos and not key == "" :
-        data = action(mydb, mycursor, *key, **infos)
+        data = action(mydb, mycursor, key, infos)
         print("Doing action : ",action.__name__,". Using data = action(mydb, mycursor, key, infos) with key = ", key, ", infos = ", infos)
 
     else :
-        data = action(mydb, mycursor, **infos)
+        data = action(mydb, mycursor, infos)
         print("Doing action : ",action.__name__,". Using data = action(mydb, mycursor, infos) with infos = ", infos)
 
     disconnect_db(mydb, mycursor)
