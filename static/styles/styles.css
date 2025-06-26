@@ -321,6 +321,13 @@ button {
   align-self: center;
 }
 
+.fiche .type {
+  text-transform: capitalize;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
 form {
   display: flex;
   flex-direction: row;

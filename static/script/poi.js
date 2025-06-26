@@ -78,8 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon.style.color = 'white';
                     name.textContent = dataType.name;
 
-                    type.appendChild(icon);
                     type.appendChild(name);
+                    type.appendChild(icon);
 
                 })
         })
