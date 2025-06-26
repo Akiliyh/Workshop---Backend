@@ -163,9 +163,10 @@ nav h1 {
 }
 
 
-.titre {
+.title, .name {
   text-align: center;
 }
+
 .fiche {
   display: flex;
   justify-content:space-around;
@@ -284,36 +285,16 @@ input{
 }
 
 
-h1 {
+h1, h2 {
   color: var(--title);
 }
-h2 {
-  color: var(--title);
-}
-.language h2{
+.language h2, .country h2, .poi h2, h3, p {
   color: var(--text);
 }
-.language:hover h2{
+.language:hover h2, .country:hover h2, .poi:hover h2{
   color: var(--texthover)
 }
-.country h2{
-  color: var(--text);
-}
-.country:hover h2{
-  color: var(--texthover)
-}
-.poi h2{
-  color: var(--text);
-}
-.poi:hover h2{
-  color: var(--texthover)
-}
-h3 {
-  color: var(--text);
-}
-p {
-  color: var(--text);
-}
+
 
 
 .fiche .languages,.fiche .poi,.fiche .country,.fiche .countries {
