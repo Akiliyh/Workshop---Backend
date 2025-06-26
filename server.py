@@ -75,7 +75,10 @@ def form_c_update(id):
 
 @myapp.route("/point_of_interest/action/<int:id>", methods=['GET', 'POST'])
 def form_poi_update(id):
-    return render_template('form_point_of_interest.html', content=id)
+    mydb, mycursor = model.connect_db()
+    myCountries = model.get_countries(mycursor)
+    model.disconnect_db(mydb, mycursor)
+    return render_template('form_point_of_interest.html', content=id, countries=myCountries)
 
 # @myapp.route("/update", methods=['GET', 'POST'])
 # def update():
