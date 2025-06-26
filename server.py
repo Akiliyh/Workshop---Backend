@@ -21,7 +21,6 @@ api.register_api_routes(myapp)
 @myapp.route("/")
 def home():
     mydb, mycursor = model.connect_db()
-    # model.update(mycursor)
     myCountries = model.get_countries(mycursor)
     myLanguages = model.get_languages(mycursor)
     myPointsOfInterest = model.get_points_of_interest(mycursor)
@@ -75,7 +74,15 @@ def form_c_update(id):
 
 @myapp.route("/point_of_interest/action/<int:id>", methods=['GET', 'POST'])
 def form_poi_update(id):
-    return render_template('form_point_of_interest.html', content=id)
+    print("\tprinting id of poi update : ", id)
+
+    mydb, mycursor = model.connect_db()
+    content = model.get_point_of_interest(mycursor, id)
+    myCountries = model.get_countries(mycursor)
+    model.disconnect_db(mydb, mycursor)
+
+    print("\tprinting content : ", content)
+    return render_template('form_point_of_interest.html', id = id, content=content, countries = myCountries)
 
 # @myapp.route("/update", methods=['GET', 'POST'])
 # def update():

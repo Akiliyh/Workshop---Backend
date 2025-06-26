@@ -114,6 +114,15 @@ def register_api_routes(myapp):
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Point of Interest deleted"})
 
+    @myapp.route("/api/point_of_interest/<int:id>", methods=["PUT"])
+    def api_update_poi(id):
+        mydb, mycursor = model.connect_db()
+        data = request.form.to_dict()
+        print(data)
+        model.update_point_of_interest(mydb, mycursor, data)
+        model.disconnect_db(mydb, mycursor)
+        return jsonify({"message": "Point of interest updated"})
+
     @myapp.route('/api/language/<int:id>', methods=['DELETE'])
     def api_delete_language(id):
         mydb, mycursor = model.connect_db()

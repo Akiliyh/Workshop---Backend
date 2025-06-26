@@ -9,20 +9,23 @@
 </head>
 
 <body>
-    <form action="/api/point_of_interest" method='POST'>
+    <!-- en gros si un content existe = lien/id
+      -->
+    
+    <form action="/api/point_of_interest/{{content}}" method='POST'>
         <label for="form"></label>
         
         <label for="name">Name of your Point of Interest
-            <input type="text" name="name" max="50" required value="{{content['name']}}"></label>
+            <input type="text" name="name" max="50" required value="{{content['nameInterestPoint']}}"></label>
 
         <label for="date">Date of establishment of your Point of Interest
-            <input type="number" name="date" required></label>
+            <input type="number" name="date" required value = "{{content['dateInterestPoint']}}"></label>
 
         <label for="desc">Description of your Point of Interest
-            <input type="text" name="desc" max="500" value="{{content['desc']}}"></label>
+            <input type="text" name="desc" max="500" value="{{content['descInterestPoint']}}"></label>
 
         <label for="type"> Type of structure
-            <select name="type">
+            <select name="type" value = "{{content['idType']}}">
                 <option value="1">statue</option>
                 <option value="2">forest</option>
                 <option value="3">park</option>

@@ -78,7 +78,7 @@ def get_points_of_interest(mycursor):
     return points_of_interest
 
 def get_point_of_interest(mycursor, id):
-    mycursor.execute("SELECT * FROM InterestPoints WHERE InterestPoints.idInterestPoint =" + id + ";")
+    mycursor.execute("SELECT * FROM InterestPoints WHERE InterestPoints.idInterestPoint =" + str(id) + ";")
     point_of_interest = mycursor.fetchone()
 
     return point_of_interest
@@ -119,7 +119,7 @@ def valueDictToStr(dict, begin, end="") : #begin = first index included, end = l
             break #we reached end
         
         values += convertValue(value) + ","
-        
+    print(values)
     return values[:-1] #we don't want last ","
 
 def add_country(mydb, mycursor, infos): 
@@ -129,7 +129,6 @@ def add_country(mydb, mycursor, infos):
     # mycursor.execute('''INSERT INTO Countries(nameCountry,descCountry,inhabitants,capital,date,governmentType)
     #                     VALUES ("''' + str(infos['name']) + '''","''' + str(infos['desc']) + '''",''' + str(infos['nbHab']) + ''',"''' + str(infos['cap']) + '''","''' + str(infos['date']) + '''","''' + str(infos['gouv'])  +'''")''')
     mycursor.execute(query)
-    
     country_id = mycursor.lastrowid
     for i in range(len(infos['lang_speakers'])):
         mycursor.execute('''
@@ -202,7 +201,7 @@ def update_language(mydb, mycursor, infos):
     # infos = {name, gend, order}
     original = get_language(mycursor, infos['id'])
     values = setDifferencesQuery(original, infos)
-    query = f'''UPDATE Languages SET {values} WHERE idLanguage ={infos["id"]};'''
+    query = f'''UPDATE Languages SET {values} WHERE Languages.idLanguage ={infos["id"]};'''
 
     mycursor.execute(query)
     mydb.commit()
