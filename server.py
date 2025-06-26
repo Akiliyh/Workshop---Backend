@@ -46,8 +46,9 @@ def point_of_interest(id):
 def form_poi():
     mydb, mycursor = model.connect_db()
     myCountries = model.get_countries(mycursor)
+    typePOI = model.get_types_of_points(mycursor)
     model.disconnect_db(mydb, mycursor)
-    return render_template('form_point_of_interest.html', content=point_of_interest, countries=myCountries)
+    return render_template('form_point_of_interest.html', content = {}, countries=myCountries, tpoi = typePOI, id = "")
 
 @myapp.route("/country/action", methods=['GET', 'POST'])
 def form_c():
@@ -87,69 +88,3 @@ def form_poi_update(id):
 
     print("\tprinting content : ", content)
     return render_template('form_point_of_interest.html', id = id, content=content, countries = myCountries, tpoi = myTypeOfPoints)
-
-# @myapp.route("/update", methods=['GET', 'POST'])
-# def update():
-#     placeholder_data = ["","",""]
-#     if request.args.get('id'):
-#         placeholder_data = (myList[int(request.args.get('id'))])
-#     return render_template('form.html', content=placeholder_data)
-
-# @myapp.route("/ajout", methods=['GET', 'POST'])
-# def add():  
-#     if request.method == "POST":
-#         name = request.form.get('game_name')
-#         price = request.form.get('price')
-#         desc = request.form.get('desc')
-
-#         myList.append({
-#             'name': name,
-#             'price': price,
-#             'description': desc
-#         })
-
-#     if request.args.get('delete') == 'true':
-#         print(request.args.get('delete'))
-#         game_id = int(request.args.get('id'))
-#         myList.pop(game_id)
-#     # redirect because if we'd refresh on the cur page we'd create another game of the same value
-#     return redirect(url_for('list')) 
-
-# @myapp.route("/list", methods=['GET', 'POST'])
-# def list():  
-#     return render_template('list.html', content=myList)
-
-# @myapp.route("/form2", methods=['GET', 'POST'])
-# def form2():
-#     return render_template('form2.html')
-
-# @myapp.route("/traitement", methods=['GET', 'POST'])
-# def traitement():
-#     # return request.args
-#     return render_template('traitement.html', content=request.args)
-#     # return "Cher" +  request.args.get('firstname') + " " + request.args.get('firstname') + ", votre demande de " + request.args.get('seats') + " places pour " + request.args.get('brest') " destination est enregistrée" 
-
-# @myapp.route("/appli")
-# def appli():
-#     return render_template('appli.html', content="Bienvenue dans l'application")
-
-# @myapp.route("/game", methods=['GET', 'POST'])
-# def game():
-#     message = ""
-#     if 'value' in request.args:
-#         inputValue = request.args.get('value', type=int)
-#         # if not inputValue.isdigit(): 
-#         #     return render_template('game.html', content="Veuillez entrer un nombre valide.")
-#         if inputValue < randValue:
-#             message = "Plus grand !"
-#         elif inputValue > randValue:
-#             message = "Plus petit !"
-#         elif inputValue == randValue:
-#             message = "C'est bon ! la réponse était " + str(randValue)
-#     return render_template('game.html', content=message)
-
-# @myapp.route("/game_response", methods=['GET', 'POST'])
-# def game_response():
-#     randValue = random.randint(0, 100)
-#     inputValue = int(request.args.get('value'))
-#     return render_template('game.html', content=inputValue)

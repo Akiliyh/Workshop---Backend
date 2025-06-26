@@ -122,7 +122,7 @@ def register_api_routes(myapp):
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Added language"}), 201
 
-    @myapp.route("/api/languages/<int:id>", methods=["PUT"])
+    @myapp.route("/api/language/<int:id>", methods=["PUT"])
     def api_update_language(id):
         data = request.json
         model.update_language(id, data["nameLanguage"])
@@ -135,7 +135,7 @@ def register_api_routes(myapp):
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Point of Interest deleted"})
 
-    @myapp.route("/api/point_of_interest/<int:id>", methods=["POST", "PUT"])
+    @myapp.route("/api/point_of_interest/<int:id>", methods=["PUT"])
     def api_update_poi(id):
         mydb, mycursor = model.connect_db()
         data = {'id':id}
