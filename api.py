@@ -119,6 +119,7 @@ def register_api_routes(myapp):
         mydb, mycursor = model.connect_db()
         data = {'id':id}
         data.update(request.form.to_dict())
+        print("data : ", data)
         model.update_point_of_interest(mydb, mycursor, data)
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Point of interest updated"})
@@ -136,6 +137,20 @@ def register_api_routes(myapp):
         model.delete(mydb, mycursor, 'c', id)
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Country deleted"})
+    
+    @myapp.route('/api/type_of_point', methods=['GET'])
+    def api_get_types():
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_types_of_points(mycursor))
+        model.disconnect_db(mydb, mycursor)
+        return result
+
+    @myapp.route('/api/type_of_point/<int:id>', methods=['GET'])
+    def api_get_type(id):
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_type_of_points(mycursor, str(id)))
+        model.disconnect_db(mydb, mycursor)
+        return result
     
     @myapp.route('/api/type_of_point', methods=['GET'])
     def api_get_types():
