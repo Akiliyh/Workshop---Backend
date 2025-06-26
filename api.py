@@ -65,6 +65,27 @@ def register_api_routes(myapp):
         model.disconnect_db(mydb, mycursor)
         return result if result else ("Not found", 404)
 
+    @myapp.route("/api/point_of_interest/country/<int:id>", methods=["GET"])
+    def api_get_poi_from_country(id):
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_points_of_interest_from_country(mycursor, str(id)))
+        model.disconnect_db(mydb, mycursor)
+        return result if result else ("Not found", 404)
+    
+    @myapp.route("/api/language/country/<int:id>", methods=["GET"])
+    def api_get_languages_from_country(id):
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_languages_from_country(mycursor, str(id)))
+        model.disconnect_db(mydb, mycursor)
+        return result if result else ("Not found", 404)
+
+    @myapp.route("/api/country/language/<int:id>", methods=["GET"])
+    def api_get_countries_from_language(id):
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_countries_from_language(mycursor, str(id)))
+        model.disconnect_db(mydb, mycursor)
+        return result if result else ("Not found", 404)
+
     @myapp.route("/api/point_of_interest", methods=["GET"])
     def api_get_points_of_interest():
         mydb, mycursor = model.connect_db()

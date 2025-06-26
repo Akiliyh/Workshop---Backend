@@ -44,9 +44,15 @@ document.addEventListener("DOMContentLoaded", () => {
             })
                 .then(res => res.json())
                 .then(dataCountry => {
-                    country.textContent = dataCountry.nameCountry;
 
-            })
+                    const link = document.createElement('a');
+                    link.href = '/country/' + data.idCountry;
+                    link.textContent = dataCountry.nameCountry;
+
+                    country.textContent = '';
+                    country.appendChild(link);
+
+                })
 
             fetch('/api/type_of_point/' + data.idType, {
                 method: 'GET',
@@ -55,6 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(dataType => {
                     type.textContent = dataType.name;
 
-            })
+                })
         })
 });
