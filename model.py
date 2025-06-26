@@ -81,6 +81,12 @@ def get_types_of_points(mycursor):
 
     return type_of_points
 
+def get_type_of_points(mycursor, id):
+    mycursor.execute("SELECT * FROM TypePOI WHERE TypePOI.idType =" + id + ";")
+    type_of_points = mycursor.fetchone()
+
+    return type_of_points
+
 def get_points_of_interest(mycursor):
     mycursor.execute("SELECT * FROM InterestPoints")
     points_of_interest = mycursor.fetchall()
@@ -93,6 +99,18 @@ def get_point_of_interest(mycursor, id):
 
     return point_of_interest
 
+def get_word_orders(mycursor):
+    mycursor.execute("SELECT * FROM WordOrder")
+    word_orders = mycursor.fetchall()
+
+    return word_orders
+
+def get_word_order(mycursor, id):
+    mycursor.execute("SELECT * FROM WordOrder WHERE WordOrder.idWordOrder =" + str(id) + ";")
+    point_of_interest = mycursor.fetchone()
+
+    return point_of_interest
+
 # TO CHANGE WITH ID
 
 def get_point_of_interest_by_name(name, mycursor):
@@ -101,7 +119,7 @@ def get_point_of_interest_by_name(name, mycursor):
     return result
 
 def get_points_of_interest_from_country(mycursor, id):
-    mycursor.execute("SELECT InterestPoints.idInterestPoint, InterestPoints.nameInterestPoint FROM Countries JOIN InterestPoints ON Countries.idCountry = InterestPoints.idCountry WHERE Countries.idCountry =" + str(id) + ";")
+    mycursor.execute("SELECT InterestPoints.idInterestPoint, InterestPoints.nameInterestPoint, InterestPoints.idType FROM Countries JOIN InterestPoints ON Countries.idCountry = InterestPoints.idCountry WHERE Countries.idCountry =" + str(id) + ";")
     word_orders = mycursor.fetchall()
 
     return word_orders
