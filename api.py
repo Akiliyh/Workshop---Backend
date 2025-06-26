@@ -46,10 +46,11 @@ def register_api_routes(myapp):
 
         data['lang_speakers'] = lang_speakers
 
-        model.add_country(mydb, mycursor, data)
+        new_id = model.add_country(mydb, mycursor, data)
         model.disconnect_db(mydb, mycursor)
         print(data)
-        return jsonify({"message": "Added country"}), 201
+        print(new_id)
+        return jsonify({"message": "Added country", "id": new_id}), 201
     
     @myapp.route('/api/country/<int:id>', methods=['DELETE'])
     def api_delete_country(id):
@@ -80,8 +81,9 @@ def register_api_routes(myapp):
         # data = request.json
         # print(data)
         model.add_language(mydb, mycursor, data)
+        new_id = mycursor.lastrowid
         model.disconnect_db(mydb, mycursor)
-        return jsonify({"message": "Added language"}), 201
+        return jsonify({"message": "Added language", "id": new_id}), 201
 
     @myapp.route("/api/language/<int:id>", methods=["PUT"])
     def api_update_language(id):
@@ -118,8 +120,9 @@ def register_api_routes(myapp):
         # data = request.json
         # print(data)
         model.add_point_of_interest(mydb, mycursor, data)
+        new_id = mycursor.lastrowid
         model.disconnect_db(mydb, mycursor)
-        return jsonify({"message": "Added point of interest"}), 201
+        return jsonify({"message": "Added point of interest", "id": new_id}), 201
     
     @myapp.route("/api/point_of_interest/<int:id>", methods=["PUT"])
     def api_update_poi(id):

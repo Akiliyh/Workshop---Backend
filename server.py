@@ -36,6 +36,13 @@ def country(id):
 def language(id):
     return render_template('language.html', content=id)
 
+@myapp.route("/language/add", methods=["POST"])
+def add_language():
+    
+    
+    # Redirect after successful save
+    return redirect(url_for('show_languages'))
+
 @myapp.route("/point_of_interest/<int:id>", methods=['GET', 'POST'])
 def point_of_interest(id):
     return render_template('point_of_interest.html', content=id)

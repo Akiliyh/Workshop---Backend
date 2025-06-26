@@ -143,6 +143,8 @@ def add(mydb, mycursor, key, infos):
         add_point_of_interest(mydb, mycursor, infos)
 
 def convertValue(value) :
+    if value is None:
+        return "NULL"
     if value.isdigit() :
         return f"{value}"
     elif value == "" :
@@ -183,6 +185,7 @@ def add_country(mydb, mycursor, infos):
         ''')
 
     mydb.commit()
+    return country_id # only useful in the form redirect cause we have two queries here so it's not working very good
 
 
 def add_language(mydb, mycursor, infos): 
