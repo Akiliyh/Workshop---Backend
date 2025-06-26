@@ -9,72 +9,40 @@
 </head>
 
 <body>
-    <form action="/api/point_of_interest/{{id}}" method='POST'>
-        <label for="form"></label>
-        
-        <label for="name">Name of your Point of Interest
-            <input type="text" name="name" max="50" required value="{{content['nameInterestPoint']}}"></label>
-
-        <label for="date">Date of establishment of your Point of Interest
-            <input type="number" name="date" required value = "{{content['dateInterestPoint']}}"></label>
-
-        <label for="desc">Description of your Point of Interest
-            <input type="text" name="desc" max="500" value="{{content['descInterestPoint']}}"></label>
-
-        <label for="type"> Type of structure
-            <select name="type">
-                {% for type in tpoi %}
-                    <option value="{{ type['idType'] }}" {% if content['idType'] == type['idType'] %}selected{% endif %}> {{ type['name'] }} </option>
-                {% endfor %}
-            </select>
-        </label>
-
-        <label for="coun"> In which Country :
-            <select name="coun">
-                {% for coun in countries %}
-                    <option value="{{ coun['idCountry'] }}" {% if content['idType'] == coun['idCountry'] %}selected{% endif %}>{{ coun['nameCountry'] }}</option> <!-- country's name -->
-                {% endfor %}
-            </select>
-        </label><br> 
-          
-        <input type="submit" value="Save">
-    </form>
-    <!--<div class="form">
+    <div class="form">
         <h2>Create your Point of Interest :</h2>
-        <form action="/add" method='POST'>
+        <form action="/api/point_of_interest/{{id}}" method='POST'>
             <div>
-                <label for="name">Name of your Point of Interest
-                    <input type="text" name="name" max="50" required value="{{content['name']}}"></label>
+                <label for="name">Name of your Point of Interest*
+                    <input type="text" name="name" max="50" required value="{{content['nameInterestPoint']}}"></label>
 
-                <label for="date">Date of establishment of your Point of Interest
-                    <input type="date" name="date" required></label>
+                <label for="date">Date of establishment of your Point of Interest*
+                    <input type="date" name="date" required value = "{{content['dateInterestPoint']}}"></label>
 
+                <label for="desc">Description of your Point of Interest</label>
+                    <textarea type="text" name="desc" max="500" value="{{content['descInterestPoint']}}" id="desc_case"></textarea>
+            </div>
+            <div>
                 <label for="type"> Type of structure
                     <select name="type">
-                        <option value="1">statue</option>
-                        <option value="2">forest</option>
-                        <option value="3">park</option>
-                        <option value="4">castle</option>
-                        <option value="5">monument</option>
-                        <option value="6">beach</option>
-                        <option value="7">body of water</option>
+                        {% for type in tpoi %}
+                            <option value="{{ type['idType'] }}" {% if content['idType'] == type['idType'] %}selected{% endif %}> {{ type['name'] }} </option>
+                        {% endfor %}
                     </select>
                 </label>
+
                 <label for="coun"> In which Country :
                     <select name="coun">
                         {% for coun in countries %}
-                            <option value="{{ coun[0] }}">{{ coun[1] }}</option> <!-- country's name -->
+                            <option value="{{ coun['idCountry'] }}" {% if content['idType'] == coun['idCountry'] %}selected{% endif %}>{{ coun['nameCountry'] }}</option> <!-- country's name -->
                         {% endfor %}
                     </select>
                 </label><br> 
-            </div>
-            <div>
-                <label for="desc">Description of your Country</label>
-                        <textarea type="text" name="desc" max="500" value="{{content['how my Point of Interest is']}}" id="desc_case"></textarea>
+                
                 <input type="submit" value="Save" id="button_save">
-            </div>
-        </form>
-    </div>-->
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
