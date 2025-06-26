@@ -172,6 +172,7 @@ nav h1 {
   background-color: var(--rect);
   border-radius: 16px;
   margin-bottom: 10px; margin-left:10px; margin-right:10px;
+  padding-bottom: 10px;
 }
 
 .fiche > div:nth-child(1){
@@ -312,4 +313,24 @@ h3 {
 }
 p {
   color: var(--text);
+}
+
+
+.fiche .languages,.fiche .poi,.fiche .country,.fiche .countries {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap : 5%;
+  margin-left:20%;
+}
+.fiche .languages > *,.fiche .poi > *,.fiche .country > *,.fiche .countries > * {
+  border : none;
+  border-radius: 4px;
+  background-color: var(--text);
+  color: var(--rect);
+  padding : 5px;
+}
+.fiche .languages > *:hover,.fiche .poi > *:hover,.fiche .country > *:hover,.fiche .countries > *:hover {
+  background-color: var(--texthover);
+  color: var(--recthover);
 }
