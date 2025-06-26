@@ -151,3 +151,17 @@ def register_api_routes(myapp):
         result = jsonify(model.get_type_of_points(mycursor, str(id)))
         model.disconnect_db(mydb, mycursor)
         return result
+
+    @myapp.route('/api/word_order', methods=['GET'])
+    def api_get_word_orders():
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_word_orders(mycursor))
+        model.disconnect_db(mydb, mycursor)
+        return result
+
+    @myapp.route('/api/word_order/<int:id>', methods=['GET'])
+    def api_get_word_order(id):
+        mydb, mycursor = model.connect_db()
+        result = jsonify(model.get_word_order(mycursor, str(id)))
+        model.disconnect_db(mydb, mycursor)
+        return result

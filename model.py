@@ -105,6 +105,18 @@ def get_point_of_interest(mycursor, id):
 
     return point_of_interest
 
+def get_word_orders(mycursor):
+    mycursor.execute("SELECT * FROM WordOrder")
+    word_orders = mycursor.fetchall()
+
+    return word_orders
+
+def get_word_order(mycursor, id):
+    mycursor.execute("SELECT * FROM WordOrder WHERE WordOrder.idWordOrder =" + str(id) + ";")
+    point_of_interest = mycursor.fetchone()
+
+    return point_of_interest
+
 # TO CHANGE WITH ID
 
 def get_point_of_interest_by_name(name, mycursor):
@@ -163,9 +175,16 @@ def add_country(mydb, mycursor, infos):
 
 def add_language(mydb, mycursor, infos): 
     if 'gend' not in infos:
-        infos['gend'] = 0
+        infos['gend'] = '0'
 
-    values = valueDictToStr(infos, "name", "order")
+    # Fix the order of infos if we create gend by hand
+    ordered_infos = {
+        "name": infos.get("name"),
+        "gend": infos.get("gend"),
+        "order": infos.get("order")
+    }
+
+    values = valueDictToStr(ordered_infos, "name", "order")
     query = f'''INSERT INTO Languages(nameLanguage,gender,idWordOrder)
                 VALUES({values});'''
     print(query)
