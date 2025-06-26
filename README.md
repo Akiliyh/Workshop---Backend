@@ -96,6 +96,11 @@ Nous gardons une trace de ce qu'il reste à faire par jour pour atteindre les re
 - [x] Commencer CSS
   
 ### 4️⃣ Jour 4 - Jeudi 26/06/2025
+- [ ] Finir le update
+- [ ] Faire les modals (pop up)
+- [ ] Redirect après les actions (add, modify)
+- [ ] Continuer le CSS
+- [ ] Injecter données en javascript
 ### 5️⃣ Jour 5 - Vendredi 27/06/2025
 
 <!-- 6️⃣7️⃣8️⃣9️⃣🔟 -->
