@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
     <script src="{{ url_for('static',filename='script/language.js') }}"></script>
     <title>{{content}}</title>
 </head>
@@ -14,21 +15,14 @@
             <h3>Number of speaker in the world :</h3>
             <p> </p>
 
-            <h3>Presente in those countries:</h3>
+            <h3>Present in those countries:</h3>
             <p> </p>
 
             <h3>Words order :</h3>
             <p> </p>
 
-            <h3>:</h3>
-            <p> </p>
-
-            <h3>:</h3>
-            <p> </p>
-
-            <h3> :</h3>
-            <p> </p>
         </div>
+        <div>
         <div class="button">
                 <a href="/language/action/{{content[0]}}"><button>Modify Language</button></a>
                 <button id="delete-btn">Delete Language</button>
