@@ -17,22 +17,21 @@
 
     <div class="form">
         <h2>Create your point of interest :</h2>
-        <form action="/api/point_of_interest" method='POST'>
+        <form action="/api/point_of_interest{{slash}}{{id}}" method='POST'>
             <div>
                 <label for="name">Name of your point of interest*
                     <input type="text" name="name" max="50" required 
                            {% if content != {} %} value  = "{{content['nameInterestPoint']}}" {% else %} value = "" {% endif %} >
                 </label>
 
-                <label for="date">Date of establishment of your point of interest*
-                    <input type="date" name="date" required 
+                <label for="date">Year of establishment of your point of interest*
+                    <input type="number" name="date" required 
                         {% if content != {} %} value = "{{content['dateInterestPoint']}}" {% else %} value = "" {% endif %}>
                 </label>
 
                 <label for="desc">Description of your point of interest</label>
-                    <textarea type="text" name="desc" max="500" 
-                        {% if content != {} %} value = "{{content['descInterestPoint']}}" {% else %} value = "" {% endif %} id="desc_case">
-                    </textarea>
+                    <textarea type="text" name="desc" max="500" id="desc_case">{% if content != {} %}{{content['descInterestPoint']}}{% endif %}</textarea>
+                    
                 
             </div>
             <div>

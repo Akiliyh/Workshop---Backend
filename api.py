@@ -121,7 +121,7 @@ def register_api_routes(myapp):
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Added point of interest"}), 201
     
-    @myapp.route("/api/point_of_interest/<int:id>", methods=["PUT"])
+    @myapp.route("/api/point_of_interest/<int:id>", methods=["POST"])
     def api_update_poi(id):
         mydb, mycursor = model.connect_db()
         data = {'id':id}
