@@ -117,7 +117,8 @@ def register_api_routes(myapp):
     @myapp.route("/api/point_of_interest/<int:id>", methods=["POST", "PUT"])
     def api_update_poi(id):
         mydb, mycursor = model.connect_db()
-        data = request.form.to_dict()
+        data = {'id':id}
+        data.update(request.form.to_dict())
         print(data)
         model.update_point_of_interest(mydb, mycursor, data)
         model.disconnect_db(mydb, mycursor)
