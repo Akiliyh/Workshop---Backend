@@ -149,7 +149,7 @@ def add_language(mydb, mycursor, infos):
 
     values = valueDictToStr(infos, "name", "order")
     query = f'''INSERT INTO Languages(nameLanguage,gender,idWordOrder)
-                VALUES({values})'''
+                VALUES({values});'''
     mycursor.execute(query)
     # mycursor.execute('''INSERT INTO Languages(nameLanguage,gender,idWordOrder)
     #                     VALUES ("''' + infos['name'] + '''",''' + str(infos['gend']) + ''',''' + infos['order'] + ''')''')
@@ -161,7 +161,7 @@ def add_point_of_interest(mydb, mycursor, infos):
 
     values = valueDictToStr(infos, "name", "coun")
     query = f'''INSERT INTO  InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
-               VALUES({values})'''
+               VALUES({values});'''
     mycursor.execute(query)
     mydb.commit()
 
@@ -175,17 +175,48 @@ def update(mydb, mycursor, key, infos):
         update_language(mydb, mycursor, infos)
     elif key == "poi" :
         update_point_of_interest(mydb, mycursor, infos)
-    
+
+def find_differences(original, new):
+    differences = {}
+    for field in original :
+        value = new[field]
+        if original[field] != value :
+            differences.update({field:value})
+    return differences
+
+#update countries set *name = 'truc', cap = 'truc', lang = 2* where id = 1
+def setDifferencesQuery(original, new) :
+    differences = find_differences(original, new)
+    for name, value in differences :
+        query += f"{name} = {convertValue(value)},"
+    return query[:-1]
+
 def update_country(mydb, mycursor, infos):
-    # infos = {}
-    query = '''UPDATE Countries SET name = 'new_name' WHERE '''
+    # infos = {name, desc, nbHab, cap, date, gouv, lang, nb_speaker1}
+    original = get_country(mycursor, infos['id'])
+    values = setDifferencesQuery(original, infos)
+    query = f'''UPDATE Countries SET {values} WHERE Countries.idCountry ={infos["id"]};'''
+
     mycursor.execute(query)
     mydb.commit()
 
-def update_language():
-    return
+def update_language(mydb, mycursor, infos):
+    # infos = {name, gend, order}
+    original = get_language(mycursor, infos['id'])
+    values = setDifferencesQuery(original, infos)
+    query = f'''UPDATE Languages SET {values} WHERE idLanguage ={infos["id"]};'''
 
-def update_point_of_interest():
+    mycursor.execute(query)
+    mydb.commit()
+
+def update_point_of_interest(mydb, mycursor, infos):
+    # infos = {name, desc, date, type, coun}
+    original = get_point_of_interest(mycursor, infos['id'])
+    values = setDifferencesQuery(original, infos)
+    query = f'''UPDATE InterestPoints SET {values} WHERE InterestPoints.idInterestPoint ={infos["id"]};'''
+
+    mycursor.execute(query)
+    mydb.commit()
     return
 
 def delete(mydb, mycursor, key, infos):
