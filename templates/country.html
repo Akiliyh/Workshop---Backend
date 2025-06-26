@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ url_for('static',filename='script/country.js') }}"></script>
+    <script src="{{ url_for('static',filename='script/modal.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
     <title>Conutry</title>
 </head>
 <body>
+
+    <div class="modal-container">
+        <div class="modal">
+            <h1>Are you really really really sure to delete this item?</h1>
+            <button id="delete-btn">Delete <i class="fa-solid fa-trash-can"></i> </button>
+            <button id="cancel-btn">Cancel <i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
+
     <h1 class="title">Country</h1>
     <h2 class="name">Country name</h2>
     <div class="fiche">
@@ -33,7 +44,7 @@
         <div>
             <div class="button">
                 <a href="/country/action/{{ content }}"><button>Modify Country</button></a>
-                <button id="delete-btn">Delete Country</button>
+                <button id="modal-btn">Delete Country</button>
             </div>
             <h3>Description :</h3>
             <p class="desc"> </p>
