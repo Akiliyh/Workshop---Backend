@@ -233,12 +233,12 @@ def delete(mydb, mycursor, key, infos):
         delete_point_of_interest(mydb, mycursor, infos)
 
 def delete_country(mydb, mycursor, id):
-    mycursor.execute('''DELETE FROM Countries_has_languages WHERE idCountry= '''+ str(id))
+    mycursor.execute('''DELETE FROM Countries_has_Languages WHERE idCountry= '''+ str(id))
     mycursor.execute('''DELETE FROM InterestPoints WHERE idCountry= '''+ str(id))
     mycursor.execute('''DELETE FROM Countries WHERE idCountry= '''+ str(id))
     mydb.commit()
 def delete_language(mydb, mycursor, id):
-    mycursor.execute('''DELETE FROM Countries_has_languages WHERE idLanguage= '''+ str(id))
+    mycursor.execute('''DELETE FROM Countries_has_Languages WHERE idLanguage= '''+ str(id))
     mycursor.execute('''DELETE FROM Languages WHERE idLanguage= '''+ str(id))
     mydb.commit()
 def delete_point_of_interest(mydb, mycursor, id):
