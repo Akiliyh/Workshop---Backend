@@ -5,85 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
-    <title>Create your own Country</title>
+    <title>Create your point of interest</title>
 </head>
 
 <body>
-    <form action="/api/point_of_interest" method='POST'>
-        <label for="form"></label>
-        <label for="name">Name of your Point of Interest
-            <input type="text" name="name" max="50" required 
-                   {% if content != {} %} value  = "{{content['nameInterestPoint']}}" {% else %} value = "" {% endif %} >
-        </label>
-
-        <label for="date">Date of establishment of your Point of Interest
-            <input type="number" name="date" required 
-                   {% if content != {} %} value = "{{content['dateInterestPoint']}}" {% else %} value = "" {% endif %}>
-        </label>
-
-        <label for="desc">Description of your Point of Interest
-            <input type="text" name="desc" max="500" 
-                   {% if content != {} %} value = "{{content['descInterestPoint']}}" {% else %} value = "" {% endif %}>
-        </label>
-
-        <label for="type"> Type of structure
-            <select name="type">
-                {% for type in tpoi %}
-                    <option 
-                        {% if tpoi != {} %} value="{{ type['idType'] }}" {% else %} value = "" {% endif %}
-                        {% if content['idType'] == type['idType'] %} selected {% endif %} > 
-                        {{ type['name'] }} 
-                    </option>
-                {% endfor %}
-            </select>
-        </label>
-
-        <label for="coun"> In which Country :
-            <select name="coun">
-                {% for coun in countries %}
-                    <option 
-                        {% if countries != {} %} value="{{ coun['idCountry'] }}" {% else %} value = "" {% endif %}
-                        {% if content['idType'] == coun['idCountry'] %} selected {% endif %}>{{ coun['nameCountry'] }}</option> <!-- country's name -->
-                {% endfor %}
-            </select>
-        </label><br> 
-          
-        <input type="submit" value="Save" id="button_save">
-    </form>
-    <!--<div class="form">
-        <h2>Create your Point of Interest :</h2>
-        <form action="/api/point_of_interest/{{id}}" method='POST'>
+    <div class="form">
+        <h2>Create your point of interest :</h2>
+        <form action="/api/point_of_interest" method='POST'>
             <div>
-                <label for="name">Name of your Point of Interest*
-                    <input type="text" name="name" max="50" required value="{{content['nameInterestPoint']}}"></label>
+                <label for="name">Name of your point of interest*
+                    <input type="text" name="name" max="50" required 
+                           {% if content != {} %} value  = "{{content['nameInterestPoint']}}" {% else %} value = "" {% endif %} >
+                </label>
 
-                <label for="date">Date of establishment of your Point of Interest*
-                    <input type="date" name="date" required value = "{{content['dateInterestPoint']}}"></label>
+                <label for="date">Date of establishment of your point of interest*
+                    <input type="date" name="date" required 
+                        {% if content != {} %} value = "{{content['dateInterestPoint']}}" {% else %} value = "" {% endif %}>
+                </label>
 
-                <label for="desc">Description of your Point of Interest</label>
-                    <textarea type="text" name="desc" max="500" value="{{content['descInterestPoint']}}" id="desc_case"></textarea>
+                <label for="desc">Description of your point of interest</label>
+                    <textarea type="text" name="desc" max="500" 
+                        {% if content != {} %} value = "{{content['descInterestPoint']}}" {% else %} value = "" {% endif %} id="desc_case">
+                    </textarea>
+                
             </div>
             <div>
                 <label for="type"> Type of structure
                     <select name="type">
                         {% for type in tpoi %}
-                            <option value="{{ type['idType'] }}" {% if content['idType'] == type['idType'] %}selected{% endif %}> {{ type['name'] }} </option>
+                            <option 
+                                {% if tpoi != {} %} value="{{ type['idType'] }}" {% else %} value = "" {% endif %}
+                                {% if content['idType'] == type['idType'] %} selected {% endif %} > {{ type['name'] }} </option>
                         {% endfor %}
                     </select>
                 </label>
 
-                <label for="coun"> In which Country :
+                <label for="coun"> In which country :
                     <select name="coun">
                         {% for coun in countries %}
-                            <option value="{{ coun['idCountry'] }}" {% if content['idType'] == coun['idCountry'] %}selected{% endif %}>{{ coun['nameCountry'] }}</option> 
+                            <option 
+                                {% if countries != {} %} value="{{ coun['idCountry'] }}" {% else %} value = "" {% endif %}
+                                {% if content['idType'] == coun['idCountry'] %} selected {% endif %}>{{ coun['nameCountry'] }}</option> <!-- country's name -->
                         {% endfor %}
                     </select>
                 </label><br> 
-                
-                <input type="submit" value="Save" id="button_save">
-            </form>
-        </div>
-    </div>
+          
+        <input type="submit" value="Save" id="button_save">
+    </form>
+   
+<div>
 </body>
 
 </html>
