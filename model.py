@@ -24,15 +24,19 @@ def actionBDD(action, key="", infos = {}) :
     mydb, mycursor = connect_db()
     if not infos and not key == "" :
         data = action(mycursor, key)
-        print("Doing action : " + str(action) , ". Using data = action(mycursor, key) with key = ", key)
+        print("Doing action : ",action.__name__,". Using data = action(mycursor, key) with key = ", key)
 
     elif not infos and key=="":
         action(mydb, mycursor)
-        print("Doing action : " + str(action) + ". Using action(mydb, mycursor) no returns")
+        print("Doing action : ",action.__name__,". Using action(mydb, mycursor) no returns")
 
-    elif infos and key != "" :
+    elif infos and not key == "" :
         data = action(mydb, mycursor, key, infos)
-        print("Doing action : " + str(action) + ". Using data = action(mydb, mycursor, key, infos) with key = ", key, ", infos = ", infos)
+        print("Doing action : ",action.__name__,". Using data = action(mydb, mycursor, key, infos) with key = ", key, ", infos = ", infos)
+
+    else :
+        data = action(mydb, mycursor, infos)
+        print("Doing action : ",action.__name__,". Using data = action(mydb, mycursor, infos) with infos = ", infos)
 
     disconnect_db(mydb, mycursor)
     return data
@@ -311,6 +315,7 @@ def delete_point_of_interest(mydb, mycursor, id):
     mydb.commit()
 
 def reinit(mydb, mycursor):
+
     mycursor.execute("""TRUNCATE TABLE InterestPoints;""") 
     mycursor.execute("""TRUNCATE TABLE Countries_has_Languages;""") 
     mycursor.execute("""SET FOREIGN_KEY_CHECKS = 0;""") 
@@ -338,3 +343,61 @@ def reinit(mydb, mycursor):
         (2, 2, 131), (1, 2, 17), (3, 2, 20), (3, 1, 18), (3, 3, 1);""")
 
     mydb.commit()
+
+
+#fonctions qu'on aura surement pas le temps d'utiliser :
+
+def nb_sp_tot (mycursor,idL):
+    mycursor.execute("SELECT sum(nbOfLocutorsInThisCountry) FROM Countries_has_languages WHERE idLanguage='"+idL+"' GROUP BY idLanguage ;")
+    nb_speaker_in_word = mycursor.fetchall()
+
+    return nb_speaker_in_word #retourne le nombre total de personne parlant une langue L
+
+def nb_hab_tot (mycursor):
+    mycursor.execute("SELECT sum(inhabitants) FROM Countries;")
+    nb_inhabitant_in_word = mycursor.fetchall()
+
+    return nb_inhabitant_in_word #retourne le nombre total d'habitant du monde
+
+def prct_sp_tot (mycursor,idL):
+    nb_h = nb_hab_tot(mycursor)
+    nb_s = nb_sp_tot(mycursor, idL)
+    nb_s_outof_h = nb_s * 100 /nb_h
+
+    return nb_s_outof_h #retourne le pourcentage de personne parlant une langue L dans le monde
+
+def prct_sp_in_c (mycursor, idC, idL):
+    mycursor.execute("SELECT nbOfLocutorsInThisCountry FROM countries_has_languages WHERE idCountry='"+idC+"' AND idLanguage='"+idL+"';")
+    nb_s = mycursor.fetchall()
+    mycursor.execute("SELECT inhabitants FROM Countries WHERE idCountry='"+idC+"';")
+    nb_h = mycursor.fetchall()
+    nb_sp_in_country = nb_s * 100 / nb_h
+
+    return nb_sp_in_country #retourne le pourcentage de gens parlant une langue L dans un pays C
+
+def nb_sps_in_c (mycursor, idC):
+    mycursor.execute("SELECT sum(nbOfLocutorsInThisCountry) FROM Countries_has_languages WHERE idCountry='"+idC+"' GROUP BY idCountry ;")
+    nb_sps_in_country = mycursor.fetchall()
+
+    return nb_sps_in_country
+    #retourne le nombre de personne parlant une langue quelconque dans un pays C (la légende raconte que c'est censé être le même nombre que d'habitant du pays)
+
+def verif_sp_h (mycursor, idC):
+    mycursor.execute("SELECT inhabitants FROM Countries WHERE idCountry='"+idC+"';")
+    nb_h = mycursor.fetchall()
+    nb_sps = nb_sps_in_c(mycursor, idC)
+    if nb_h == nb_sps :
+        return true
+    return false #verifie si le nombre de personne parlant une langue quelconque dans un pays C et le même nombre que celui de la population
+
+def nb_hab_restant (mycursor, pop_max): #pop_max = 10000 aux dernières nouvelles
+    nb_pop_world = nb_hab_tot (mycursor)
+    nb_restant = pop_max - nb_pop_world
+
+    return nb_restant #retourne le nombre d'habitants par encore placé dans un pays quelconque 
+
+def verif_rest_hab (mycursor, pop_max):
+    if nb_hab_restant (mycursor, pop_max)>0:
+        return true
+    return false #verifie s'il y a encore des habitants à mettre
+

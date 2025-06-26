@@ -95,8 +95,14 @@ nav .homepage {
   left: 0;
   padding: 10px;
   background-color: var(--text);
+  color: var(--rect);
   border-radius: 5px;
   cursor: pointer;
+}
+
+nav .homepage:hover {
+  background-color: var(--texthover);
+  color: var(--recthover);
 }
 
 nav .homepage:hover {

@@ -55,7 +55,7 @@ def form_poi():
     myCountries = model.get_countries(mycursor)
     typePOI = model.get_types_of_points(mycursor)
     model.disconnect_db(mydb, mycursor)
-    return render_template('form_point_of_interest.html', content = {}, countries=myCountries, tpoi = typePOI, id = "")
+    return render_template('form_point_of_interest.html', content = {}, countries=myCountries, tpoi = typePOI, slash = "", id = "")
 
 @myapp.route("/country/action", methods=['GET', 'POST'])
 def form_c():
@@ -94,4 +94,4 @@ def form_poi_update(id):
     model.disconnect_db(mydb, mycursor)
 
     print("\tprinting content : ", content)
-    return render_template('form_point_of_interest.html', id = id, content=content, countries = myCountries, tpoi = myTypeOfPoints)
+    return render_template('form_point_of_interest.html', id = id, content=content, countries = myCountries, tpoi = myTypeOfPoints, slash = "/")
