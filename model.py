@@ -11,10 +11,8 @@ def connect_db():
     user='root',
     password='root',
     database='linguic'
-
     )
-
-    mycursor=mydb.cursor(dictionary=True)
+    mycursor = mydb.cursor(dictionary=True)
     
     return mydb, mycursor
 
@@ -147,6 +145,8 @@ def add(mydb, mycursor, key, infos):
 def convertValue(value) :
     if value.isdigit() :
         return f"{value}"
+    elif value == "" :
+        return "NULL"
     else :
         return f'''"{value}"'''
 
@@ -188,8 +188,16 @@ def add_country(mydb, mycursor, infos):
 def add_language(mydb, mycursor, infos): 
     if 'gend' not in infos:
         infos['gend'] = 0
+        infos['gend'] = '0'
+    # Fix the order of infos if we create gend by hand
+    ordered_infos = {
+        "name": infos.get("name"),
+        "gend": infos.get("gend"),
+        "order": infos.get("order")
+    }
 
     values = valueDictToStr(infos, "name", "order")
+    values = valueDictToStr(ordered_infos, "name", "order")
     query = f'''INSERT INTO Languages(nameLanguage,gender,idWordOrder)
                 VALUES({values});'''
     print(query)
@@ -199,12 +207,14 @@ def add_language(mydb, mycursor, infos):
     mydb.commit()
 
 def add_point_of_interest(mydb, mycursor, infos): 
+    print("\tinfos add_poi : ", infos)
     # mycursor.execute('''INSERT INTO InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
     #                     VALUES ("''' + infos['name'] + '''",''' + infos['date'] + ''',"''' + infos['desc'] + '''",''' + infos['type'] + ''',''' + infos['coun'] +''')''')
 
     values = valueDictToStr(infos, "name", "coun")
     query = f'''INSERT INTO  InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
                VALUES({values});'''
+    print(query)
     mycursor.execute(query)
     mydb.commit()
 

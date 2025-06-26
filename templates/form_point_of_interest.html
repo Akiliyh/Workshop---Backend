@@ -9,7 +9,48 @@
 </head>
 
 <body>
-    <div class="form">
+    <form action="/api/point_of_interest" method='POST'>
+        <label for="form"></label>
+        <label for="name">Name of your Point of Interest
+            <input type="text" name="name" max="50" required 
+                   {% if content != {} %} value  = "{{content['nameInterestPoint']}}" {% else %} value = "" {% endif %} >
+        </label>
+
+        <label for="date">Date of establishment of your Point of Interest
+            <input type="number" name="date" required 
+                   {% if content != {} %} value = "{{content['dateInterestPoint']}}" {% else %} value = "" {% endif %}>
+        </label>
+
+        <label for="desc">Description of your Point of Interest
+            <input type="text" name="desc" max="500" 
+                   {% if content != {} %} value = "{{content['descInterestPoint']}}" {% else %} value = "" {% endif %}>
+        </label>
+
+        <label for="type"> Type of structure
+            <select name="type">
+                {% for type in tpoi %}
+                    <option 
+                        {% if tpoi != {} %} value="{{ type['idType'] }}" {% else %} value = "" {% endif %}
+                        {% if content['idType'] == type['idType'] %} selected {% endif %} > 
+                        {{ type['name'] }} 
+                    </option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label for="coun"> In which Country :
+            <select name="coun">
+                {% for coun in countries %}
+                    <option 
+                        {% if countries != {} %} value="{{ coun['idCountry'] }}" {% else %} value = "" {% endif %}
+                        {% if content['idType'] == coun['idCountry'] %} selected {% endif %}>{{ coun['nameCountry'] }}</option> <!-- country's name -->
+                {% endfor %}
+            </select>
+        </label><br> 
+          
+        <input type="submit" value="Save" id="button_save">
+    </form>
+    <!--<div class="form">
         <h2>Create your Point of Interest :</h2>
         <form action="/api/point_of_interest/{{id}}" method='POST'>
             <div>
@@ -34,7 +75,7 @@
                 <label for="coun"> In which Country :
                     <select name="coun">
                         {% for coun in countries %}
-                            <option value="{{ coun['idCountry'] }}" {% if content['idType'] == coun['idCountry'] %}selected{% endif %}>{{ coun['nameCountry'] }}</option> <!-- country's name -->
+                            <option value="{{ coun['idCountry'] }}" {% if content['idType'] == coun['idCountry'] %}selected{% endif %}>{{ coun['nameCountry'] }}</option> 
                         {% endfor %}
                     </select>
                 </label><br> 
