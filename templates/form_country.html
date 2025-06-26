@@ -9,7 +9,40 @@
 </head>
 
 <body>
-    <div class="form">
+    <form action="/api/country" method='POST'>  
+        <label for="form"></label>
+        
+        <label for="name">Name of your Country
+            <input type="text" name="name" max="50" required value="{{content['name']}}"></label>
+        
+        <label for="desc">Description of your Country
+            <input type="text" name="desc" max="500" value="{{content['how my Country is']}}"></label>
+
+        <label for="nbHab">Number of inhabitants out of {{hab_restants}}
+            <input type="number" name="nbHab" min="1" max="10000" required value="{{content['inhabitants']}}"></label>      
+
+        <label for="cap">Name of your Capital
+            <input type="text" name="cap" max="50" value="{{content['capital']}}"></label>
+
+        <label for="date">Date of fondation
+            <input type="date" name="date" value="{{content['date']}}"></label>
+
+        <label for="gouv">Type of gouverment
+            <input type="text" name="gouv" max="100" value="{{content['gouvernement']}}"></label>
+
+         {% for lang in languages %}
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" name="lang" value="{{ lang.id }}" onchange="Numberofp(this)">
+                {{ lang.name }}
+            </label>
+            <input type="number" name="nbspeaker_{{ lang.id }}" placeholder="number of speaker" style="display: none;" min="0" max="100">
+            </div>
+        {% endfor %}  
+        <input type="submit" value="Save">
+    </form>
+
+    <!--<div class="form">
         <h2>Create your Country :</h2>
         <form action="/api/country" method='POST'>  
             <div>
