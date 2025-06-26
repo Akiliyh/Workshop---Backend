@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-Variable.woff2') format('woff-variations');
+    font-weight: 200 900;
+}
+
 :root {
     --back: #929FD3;
     --rect: #07465F;
@@ -12,7 +18,7 @@ body {
 }
 
 * {
-  font-family: sans-serif;
+  font-family: 'Satoshi';
   box-sizing: border-box;
 }
 
@@ -382,12 +388,11 @@ h1, h2 {
 }
 .language h2, .country h2, .poi h2, h3, p {
   color: var(--text);
+  font-weight: 400;
 }
 .language:hover h2, .country:hover h2, .poi:hover h2{
   color: var(--texthover)
 }
-
-
 
 .fiche .languages,.fiche .poi,.fiche .country,.fiche .countries {
   display: flex;
