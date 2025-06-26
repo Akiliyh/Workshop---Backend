@@ -78,6 +78,13 @@ nav h1 {
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  background-color: var(--text);
+  color:var(--rect);
+}
+
+#init-btn:hover {
+  background-color: var(--texthover);
+  color:var(--recthover);
 }
 
 #init-btn i{
@@ -163,7 +170,7 @@ nav h1 {
   display: flex;
   justify-content:space-around;
   background-color: var(--rect);
-  border-radius: 5px;
+  border-radius: 16px;
   margin-bottom: 10px; margin-left:10px; margin-right:10px;
 }
 
@@ -220,7 +227,7 @@ form {
   flex-direction: row;
   justify-content:space-around;
   background-color: var(--rect);
-  border-radius: 5px;
+  border-radius: 16px;
   margin-bottom: 10px; margin-left:5%;
   width: 80%;
   padding: 5%;
@@ -229,7 +236,7 @@ form > div{
   display: flex;
   flex-direction: column;
   justify-content: start;
-  width: 40%;
+  width: 45%;
 }
 form #button_save{
   background-color: var(--text);
@@ -256,6 +263,7 @@ form .checkbox-group{
 
 #desc_case {
   border: none;
+  border-radius: 8px;
   height : 70%;
   width: 80%;
   resize: vertical;
@@ -273,10 +281,6 @@ input{
   margin: 10px;
   margin-left:5%;
 }
-
-
-
-
 
 
 h1 {
