@@ -98,28 +98,28 @@ def add(mydb, mycursor, key, infos):
     elif key == "poi" :
         add_point_of_interest(mydb, mycursor, infos)
 
-def convertValue(dicti, i) :
-    if str(dicti[i]).isdigit() :
-        return f"{dicti[i]}"
+def convertValue(value) :
+    if value.isdigit() :
+        return f"{value}"
     else :
-        return f'''"{dicti[i]}"'''
+        return f'''"{value}"'''
 
 def valueDictToStr(dicti, begin, end="") : #begin = first index included, end = last index included
     foundBeginning = False
-    query = ''''''
+    values = '''''' #formated values
 
-    for i in dicti :
+    for name, value in dicti :
         # while we have not reached beginning
-        if i != begin and not foundBeginning: continue
+        if name != begin and not foundBeginning: continue
         # we reached beginning
-        elif i == begin and not foundBeginning: foundBeginning = True
-        elif i==end : 
-            query += convertValue(dicti, i) + ","
+        elif name == begin and not foundBeginning: foundBeginning = True
+        elif name==end : 
+            values += convertValue(value) + ","
             break #we reached end
         
-        query += convertValue(dicti, i) + ","
+        values += convertValue(value) + ","
         
-    return query[:-1] #we don't want last ","
+    return values[:-1] #we don't want last ","
 
 def add_country(mydb, mycursor, infos): 
     values = valueDictToStr(infos, "name", "gouv")
