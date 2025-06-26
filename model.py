@@ -9,7 +9,7 @@ def connect_db():
     
     host='localhost',
     user='root',
-    password='Conan4869Kaito1412',
+    password='root',
     database='linguic'
     )
     mycursor = mydb.cursor(dictionary=True)
