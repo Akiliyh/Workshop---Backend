@@ -79,6 +79,12 @@ def get_types_of_points(mycursor):
 
     return type_of_points
 
+def get_type_of_points(mycursor, id):
+    mycursor.execute("SELECT * FROM TypePOI WHERE TypePOI.idType =" + str(id) + ";")
+    type_of_points = mycursor.fetchone()
+
+    return type_of_points
+
 def get_points_of_interest(mycursor):
     mycursor.execute("SELECT * FROM InterestPoints")
     points_of_interest = mycursor.fetchall()

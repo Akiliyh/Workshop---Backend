@@ -4,30 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ url_for('static',filename='script/language.js') }}"></script>
-    <title>{{content}}</title>
+    <title>Language</title>
 </head>
 <body>
-    <h2 class="titre">Language</h2>
-    <h1 class="titre">{{content}}</h1>
+    <h1 class="title">Language</h1>
+    <h2 class="name">Name</h2>
     <div class="fiche">
         <div id="lang">
             <h3>Number of speaker in the world :</h3>
-            <p> </p>
+            <p class="speakers"> </p>
 
-            <h3>Presente in those countries:</h3>
-            <p> </p>
+            <h3>Present in those countries:</h3>
+            <p class="countries"> </p>
 
             <h3>Words order :</h3>
-            <p> </p>
-
-            <h3>:</h3>
-            <p> </p>
-
-            <h3>:</h3>
-            <p> </p>
-
-            <h3> :</h3>
-            <p> </p>
+            <p class="word-order"> </p>
         </div>
         <div class="button">
                 <a href="/language/action/{{content[0]}}"><button>Modify Language</button></a>
