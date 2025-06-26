@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ url_for('static',filename='script/poi.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
-    <title>{{content}}</title>
+    <title>Point of Interest</title>
 </head>
 <body>
-    <h2 class="titre">Point of Interest</h2>
-    <h1 class="titre">{{content[1]}}</h1>
+    <h1 class="title">Point of Interest</h1>
+    <h2 class="name"></h2>
     <div class="fiche">
         <div>
             <h3>Creation date :</h3>
-            <p>{{content[2]}}</p>
+            <p class="date"></p>
 
             <h3>Country :</h3>
-            <p>{{content[4]}}</p> <!--chercher le nameCountry-->
+            <p class="country"></p> <!--chercher le nameCountry-->
 
             <h3>Type :</h3>
-            <p>{{content[5]}}</p> <!--chercher le name (dans Type)-->
+            <p class="type"></p> <!--chercher le name (dans Type)-->
         </div>
         <div>
             <div class="button">
@@ -27,7 +27,7 @@
                 <button id="delete-btn">Delete Point of Interest</button>
             </div>
             <h3>Description :</h3>
-            <p>{{content[3]}}</p>
+            <p class="desc"></p>
 
     
         </div>

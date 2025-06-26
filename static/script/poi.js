@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    const poiId = poiData.id;
+
     document.getElementById("delete-btn").addEventListener("click", async () => {
-        const poiId = poiData.id;
         fetch('/api/point_of_interest/' + poiId, {
             method: 'DELETE',
         }).then(res => res.text())
@@ -10,14 +12,49 @@ document.addEventListener("DOMContentLoaded", () => {
             })
     });
 
-    document.getElementById("modify-btn").addEventListener("click", async () => {
-        const poiId = poiData.id;
-        fetch('/api/point_of_interest/' + poiId, {
-            method: 'PUT',
-        }).then(res => res.text())
-            .then(res => {
-                console.log("Modify success:", res);
-                // window.location.href = "/point_of_interest/" + poiId;
+    // document.getElementById("modify-btn").addEventListener("click", async () => {
+    //     const poiId = poiData.id;
+    //     fetch('/api/point_of_interest/' + poiId, {
+    //         method: 'PUT',
+    //     }).then(res => res.text())
+    //         .then(res => {
+    //             console.log("Modify success:", res);
+    //             // window.location.href = "/point_of_interest/" + poiId;
+    //         })
+    // });
+
+    fetch('/api/point_of_interest/' + poiId, {
+        method: 'GET',
+    })
+        .then(res => res.json())
+        .then(data => {
+            let desc = document.querySelector('.desc');
+            let date = document.querySelector('.date');
+            let country = document.querySelector('.country');
+            let type = document.querySelector('.type');
+            let name = document.querySelector('.name');
+
+            desc.textContent = data.descInterestPoint;
+            date.textContent = data.dateInterestPoint;
+            name.textContent = data.nameInterestPoint;
+            document.title = data.nameInterestPoint;
+
+            fetch('/api/country/' + data.idCountry, {
+                method: 'GET',
             })
-    });
+                .then(res => res.json())
+                .then(dataCountry => {
+                    country.textContent = dataCountry.nameCountry;
+
+            })
+
+            fetch('/api/type_of_point/' + data.idType, {
+                method: 'GET',
+            })
+                .then(res => res.json())
+                .then(dataType => {
+                    type.textContent = dataType.name;
+
+            })
+        })
 });

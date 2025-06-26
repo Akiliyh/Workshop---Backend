@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ url_for('static',filename='script/country.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
-    <title>{{content}}</title>
+    <title>Conutry</title>
 </head>
 <body>
-    <h2 class="titre">Country</h2>
-    <h1 class="titre">{{content}}</h1>
+    <h1 class="title">Country</h1>
+    <h2 class="name">Country name</h2>
     <div class="fiche">
         <div>
             <h3>Population :</h3>
-            <p> inhabitants</p>
+            <p class="inhabitants"> inhabitants</p>
 
             <h3>Capital :</h3>
-            <p> </p>
+            <p class="capital"> </p>
 
             <h3>Date of fondation :</h3>
-            <p> </p>
+            <p class="date"> </p>
 
             <h3>Gouvernment type :</h3>
-            <p> </p>
+            <p class="gov"> </p>
 
             <h3>Languages :</h3>
             <p> </p>
@@ -32,11 +32,11 @@
         </div>
         <div>
             <div class="button">
-                <a href="/country/action/{{content}}"><button>Modify Country</button></a>
+                <a href="/country/action/{{ content }}"><button>Modify Country</button></a>
                 <button id="delete-btn">Delete Country</button>
             </div>
             <h3>Description :</h3>
-            <p> </p>
+            <p class="desc"> </p>
         </div>
     </div>
     

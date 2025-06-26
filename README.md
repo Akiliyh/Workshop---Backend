@@ -63,6 +63,7 @@ La création du projet et le choix du thème a été choisi collectivement. Ensu
 - [ ] Model : Ajout tables
 - [ ] Vue : Amélioration fiches
 - [x] général : README
+- [ ] général : merge
 - [ ] API : implémentation model vers api
 
 ### 🗓️ Planning
