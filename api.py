@@ -151,17 +151,3 @@ def register_api_routes(myapp):
         result = jsonify(model.get_type_of_points(mycursor, str(id)))
         model.disconnect_db(mydb, mycursor)
         return result
-    
-    @myapp.route('/api/type_of_point', methods=['GET'])
-    def api_get_types():
-        mydb, mycursor = model.connect_db()
-        result = jsonify(model.get_types_of_points(mycursor))
-        model.disconnect_db(mydb, mycursor)
-        return result
-
-    @myapp.route('/api/type_of_point/<int:id>', methods=['GET'])
-    def api_get_type(id):
-        mydb, mycursor = model.connect_db()
-        result = jsonify(model.get_type_of_points(mycursor, str(id)))
-        model.disconnect_db(mydb, mycursor)
-        return result
