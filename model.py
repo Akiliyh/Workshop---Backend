@@ -12,6 +12,14 @@ def connect_db():
     user='root',
     password='root',
     database='linguic'
+    # host='163.172.165.87',
+    # user='LinguiC',
+    # password='ImAcGOAT',
+    # database='LinguiC'
+    #host='localhost',
+    #user='root',
+    #password='Conan4869Kaito1412',
+    #database='LinguiC'
     )
 
     mycursor = mydb.cursor(dictionary=True)
