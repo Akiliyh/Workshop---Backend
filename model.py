@@ -46,6 +46,8 @@ def get(mycursor, key):
         get_languages(mycursor)
     elif key == "poi" :
         get_points_of_interest(mycursor)
+    elif key == "tpoi" :
+        get_types_of_points(mycursor)
     
 def get_countries(mycursor):
     mycursor.execute("SELECT * FROM Countries")
@@ -70,6 +72,12 @@ def get_language(mycursor, id):
     language = mycursor.fetchone()
 
     return language
+
+def get_types_of_points(mycursor):
+    mycursor.execute("SELECT * FROM TypePOI")
+    type_of_points = mycursor.fetchall()
+
+    return type_of_points
 
 def get_points_of_interest(mycursor):
     mycursor.execute("SELECT * FROM InterestPoints")

@@ -25,20 +25,17 @@
             <input type="text" name="desc" max="500" value="{{content['descInterestPoint']}}"></label>
 
         <label for="type"> Type of structure
-            <select name="type" value = "{{content['idType']}}">
-                <option value="1">statue</option>
-                <option value="2">forest</option>
-                <option value="3">park</option>
-                <option value="4">castle</option>
-                <option value="5">monument</option>
-                <option value="6">beach</option>
-                <option value="7">body of water</option>
+            <select name="type">
+                {% for type in tpoi %}
+                    <option value="{{ type['idType'] }}" {% if content['idType'] == type['idType'] %}selected{% endif %}> {{ type['name'] }} </option>
+                {% endfor %}
             </select>
         </label>
+
         <label for="coun"> In which Country :
             <select name="coun">
                 {% for coun in countries %}
-                    <option value="{{ coun['idCountry'] }}">{{ coun['nameCountry'] }}</option> <!-- country's name -->
+                    <option value="{{ coun['idCountry'] }}" {% if content['idType'] == coun['idCountry'] %}selected{% endif %}>{{ coun['nameCountry'] }}</option> <!-- country's name -->
                 {% endfor %}
             </select>
         </label><br> 

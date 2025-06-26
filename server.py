@@ -24,8 +24,9 @@ def home():
     myCountries = model.get_countries(mycursor)
     myLanguages = model.get_languages(mycursor)
     myPointsOfInterest = model.get_points_of_interest(mycursor)
+    myTypeOfPoints = model.get_types_of_points(mycursor)
     model.disconnect_db(mydb, mycursor)
-    return render_template('index.html', countries = myCountries, languages = myLanguages, points_of_interest = myPointsOfInterest)
+    return render_template('index.html', countries = myCountries, languages = myLanguages, points_of_interest = myPointsOfInterest, type_of_points = myTypeOfPoints)
 
 @myapp.route("/country/<int:id>", methods=['GET', 'POST'])
 def country(id):
@@ -79,10 +80,13 @@ def form_poi_update(id):
     mydb, mycursor = model.connect_db()
     content = model.get_point_of_interest(mycursor, id)
     myCountries = model.get_countries(mycursor)
+    myTypeOfPoints = model.get_types_of_points(mycursor)
+    print("AHHH")
+    print(myTypeOfPoints)
     model.disconnect_db(mydb, mycursor)
 
     print("\tprinting content : ", content)
-    return render_template('form_point_of_interest.html', id = id, content=content, countries = myCountries)
+    return render_template('form_point_of_interest.html', id = id, content=content, countries = myCountries, tpoi = myTypeOfPoints)
 
 # @myapp.route("/update", methods=['GET', 'POST'])
 # def update():
