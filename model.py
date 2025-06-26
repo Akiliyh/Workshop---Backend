@@ -156,13 +156,13 @@ def add_language(mydb, mycursor, infos):
     mydb.commit()
 
 def add_point_of_interest(mydb, mycursor, infos): 
-    # mycursor.execute('''INSERT INTO InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
-    #                     VALUES ("''' + infos['name'] + '''",''' + infos['date'] + ''',"''' + infos['desc'] + '''",''' + infos['type'] + ''',''' + infos['coun'] +''')''')
+    mycursor.execute('''INSERT INTO InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
+                        VALUES ("''' + infos['name'] + '''",''' + infos['date'] + ''',"''' + infos['desc'] + '''",''' + infos['type'] + ''',''' + infos['coun'] +''')''')
 
-    values = valueDictToStr(infos, "name", "coun")
-    query = f'''INSERT INTO  InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
-               VALUES({values});'''
-    mycursor.execute(query)
+    # values = valueDictToStr(infos, "name", "coun")
+    # query = f'''INSERT INTO  InterestPoints(nameInterestPoint,dateInterestPoint,descInterestPoint,idType,idCountry)
+    #            VALUES({values});'''
+    # mycursor.execute(query)
     mydb.commit()
 
 def update(mydb, mycursor, key, infos):

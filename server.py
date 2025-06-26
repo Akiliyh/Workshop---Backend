@@ -21,7 +21,7 @@ api.register_api_routes(myapp)
 @myapp.route("/")
 def home():
     mydb, mycursor = model.connect_db()
-    model.update(mycursor)
+    # model.update(mycursor)
     myCountries = model.get_countries(mycursor)
     myLanguages = model.get_languages(mycursor)
     myPointsOfInterest = model.get_points_of_interest(mycursor)
