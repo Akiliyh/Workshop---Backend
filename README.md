@@ -26,6 +26,7 @@
 
 ## 📜 Description du projet
 Ce projet<!-- a été réalisé --> est en cours de réalisation par Guillaume Boucher, Océane Drapeau et Lison Marvin. Il a <!-- eu -->lieu dans le cadre du workshop *Programmation Web S2* en IMAC1 dirigé par Sylvain Cherrier.
+Le projet prend la forme d'un jeu style godgame où l'utilisateur crée et détruit des langages et pays suite à une apocalypse. Il n'y a plus que 10 000 habitants restants où il doit les placer au sein de différentes cultures et pays.
 
 ## ⚖️ Organisation de l'équipe
 
