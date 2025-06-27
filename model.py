@@ -2,16 +2,16 @@ import mysql.connector
 
 def connect_db():
     mydb = mysql.connector.connect(
-    host='163.172.165.87',
-    user='LinguiC',
-    password='ImAcGOAT',
-    database='LinguiC')
+    # host='163.172.165.87',
+    # user='LinguiC',
+    # password='ImAcGOAT',
+    # database='LinguiC')
     
-    # host='localhost',
-    # user='root',
-    # password='root',
-    # database='linguic'
-    # )
+    host='localhost',
+    user='root',
+    password='root',
+    database='linguic'
+    )
     mycursor = mydb.cursor(dictionary=True)
     
     return mydb, mycursor

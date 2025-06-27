@@ -19,13 +19,13 @@
     <div class = "form">
         <h2>{%if content == {} %}Create your country : {%else%} Modify the country : {%endif%}</h2>
         <!-- <form id="form" action="/api/country" method='POST'> -->
-            <form id="form" action="/api/country{{slash}}{{id}}" method='POST'></form>
+        <form id="form" action="/api/country{{slash}}{{id}}" method='POST'>
             <div>  
                 <label for="name">Name of your country*
                     <input type="text" name="name" max="50" required value="{{content['nameCountry']}}"></label>
                 
                 <label for="desc">Description of your country
-                    <textarea type="text" name="desc" max="500" value="{{content[descCountry]}}" id="desc_case"></textarea>
+                    <textarea type="text" name="desc" max="500" value="" id="desc_case">{%if content != {}%}{{content[descCountry]}}{%endif%}</textarea>
             </div>
             <div>
                 <label for="nbHab">Number of inhabitants*
@@ -42,12 +42,12 @@
            
                 <label>Languages</label>
                 {% for lang in languages %}
-                <div class="checkbox-group">
-                    <label>
-                        <input type="checkbox" name="lang" value="{{ lang.id }}" onchange="Numberofp(this)" >
-                        {{ lang.name }}
-                    </label>
-                    <input type="number" name="nbspeaker_{{ lang.id }}" placeholder="number of speaker" style="display: none;" min="0" max="100">
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="lang" value="{{ lang.id }}" onchange="Numberofp(this)" >
+                            {{ lang.name }}
+                        </label>
+                        <input type="number" name="nbspeaker_{{ lang.id }}" placeholder="number of speaker" style="display: none;" min="0" max="100">
                     </div>
                 {% endfor %}  
                 <input type="submit" value="Save" id="button_save">
