@@ -51,7 +51,7 @@
                         {% for coun in countries %}
                             <option 
                                 {% if countries != {} %} value="{{ coun['idCountry'] }}" {% else %} value = "" {% endif %}
-                                {% if content['idType'] == coun['idCountry'] %} selected {% endif %}>{{ coun['nameCountry'] }}</option> <!-- country's name -->
+                                {% if content['idCountry'] == coun['idCountry'] %} selected {% endif %}>{{ coun['nameCountry'] }}</option> <!-- country's name -->
                         {% endfor %}
                     </select>
                 </label><br> 

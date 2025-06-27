@@ -227,7 +227,7 @@ nav .homepage:hover {
   height: 100%;
 }
 
-button {
+button, input {
   cursor: pointer;
 }
 
