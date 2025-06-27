@@ -28,8 +28,6 @@ def register_api_routes(myapp):
         mydb, mycursor = model.connect_db()
         data = request.form.to_dict()
         print(data)
-        # data = request.json
-        # print(data)
         lang_count = sum( # here what we want to do is to store the amount of languages people speak inside this country
             1 for key, value in data.items()
             if key.startswith('nbspeaker_') and value.strip()
@@ -52,6 +50,16 @@ def register_api_routes(myapp):
         print(new_id)
         return jsonify({"message": "Added country", "id": new_id}), 201
     
+    @myapp.route("/api/country/<int:id>", methods=["POST"])
+    def api_update_country(id):
+        mydb, mycursor = model.connect_db()
+        data = {'id':id}
+        data.update(request.form.to_dict())
+        print("\t printing data from api update country : ", data)
+        model.update_country(mydb, mycursor, data)
+        model.disconnect_db(mydb, mycursor)
+        return jsonify({"message": "Country updated"})
+
     @myapp.route('/api/country/<int:id>', methods=['DELETE'])
     def api_delete_country(id):
         mydb, mycursor = model.connect_db()
