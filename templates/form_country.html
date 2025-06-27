@@ -55,9 +55,9 @@
                     </label>
                     <input type="number" name="nbspeaker_{{ lang.id }}" 
                         {%if myLanguages == [] %} 
-                            placeholder="number of speaker" 
+                            value="number of speaker" 
                         {%elif 'nbSpeakers' in myLanguages[lang.id-1] %}
-                            placeholder = "{{myLanguages[lang.id-1].nbSpeakers}}" 
+                            value = "{{myLanguages[lang.id-1].nbSpeakers}}" 
                         {%endif%}
                         style="display: none;" min="0" max="100">
                 </div>
