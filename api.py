@@ -57,6 +57,12 @@ def register_api_routes(myapp):
         data.update(request.form.to_dict())
         print("\t printing data from api update country : ", data)
         model.update_country(mydb, mycursor, data)
+
+        dataCHL = {'id':id}
+        dataCHL.update(request.form.to_dict())
+        print("\tdataCHL = ", dataCHL)
+
+        model.update_countries_has_languages(mydb, mycursor, dataCHL)
         model.disconnect_db(mydb, mycursor)
         return jsonify({"message": "Country updated"})
 

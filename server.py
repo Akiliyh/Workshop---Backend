@@ -80,11 +80,12 @@ def form_c_update(id):
     rows = model.get_languages(mycursor)
     allLanguages = [{'id': row['idLanguage'], 'name': row['nameLanguage']} for row in rows]
     rows = model.get_languages_from_country(mycursor, str(id))
-    myLanguages = [{'id': row['idLanguage'], 'name': row['nameLanguage']} for row in rows]
+    print("\trows for myLanguages : ", rows)
+    myLanguages = [{'id': row['idLanguage'], 'name': row['nameLanguage'], 'nbSpeakers' : row['nbSpeakers']} for row in rows]
     model.disconnect_db(mydb, mycursor)
-    print("\tprinting content countries : ", content)
-    print ("\tprinting languages :", allLanguages)
-    print ("\tprinting languages :", myLanguages)
+    print("\tprinting server content countries : ", content)
+    print ("\tprinting server allLanguages :", allLanguages)
+    print ("\tprinting server myLanguages :", myLanguages)
     # to do in model then use it here : find whats in common beetween allLanguages and my Languages then in form_country use it to make checkboxes checked
     return render_template('form_country.html', content=content, languages = allLanguages, myLanguages = myLanguages, slash = "/", id = id)
 

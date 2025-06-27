@@ -295,6 +295,14 @@ def update_country(mydb, mycursor, infos):
         mycursor.execute(query)
         mydb.commit()
 
+def update_countries_has_languages(mydb, mycursor, infos):
+    # infosBDD = {idCountry, idLanguage, nbOfLocutorsInThisCountry}
+    # infosForm = {id, name, nbSpeakers}
+    if "id" not in infos:
+        raise ValueError("Missing ID for update operation")
+
+    print("infos received by model.update countries has languages :", infos)
+
 def reorder_language_dict (infos, dict_key_to_check_value, list_of_to_delete_keys) :
     key_to_check = list(dict_key_to_check_value.keys())[0]
     if key_to_check not in infos.keys() :

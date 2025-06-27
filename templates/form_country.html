@@ -53,10 +53,15 @@
                             myLanguages | map(attribute='id' ) | list %} checked {% endif %} onchange="Numberofp(this)">
                         {{ lang.name }}
                     </label>
-                    <input type="number" name="nbspeaker_{{ lang.id }}" placeholder="number of speaker"
+                    <input type="number" name="nbspeaker_{{ lang.id }}" 
+                        {%if myLanguages == [] %} 
+                            placeholder="number of speaker" 
+                        {%elif 'nbSpeakers' in myLanguages[lang.id-1] %}
+                            placeholder = "{{myLanguages[lang.id-1].nbSpeakers}}" 
+                        {%endif%}
                         style="display: none;" min="0" max="100">
                 </div>
-                {% endfor %}
+                {%endfor%}
                 <input type="submit" value="Save" id="button_save">
             </div>
         </form>
