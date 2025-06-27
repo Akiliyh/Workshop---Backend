@@ -41,17 +41,30 @@ def actionBDD(action, key="", infos = {}) :
     disconnect_db(mydb, mycursor)
     return data
 
-def get(mycursor, key):
-    if key == "c" :
-        get_countries(mycursor)
-    elif key == "l" :
-        get_languages(mycursor)
-    elif key == "poi" :
-        get_points_of_interest(mycursor)
-    elif key == "tpoi" :
-        get_types_of_points(mycursor)
-    elif key == "wo" :
-        get_word_orders(mycursor)
+def get(mydb, mycursor, key, infos = {}):
+    if not infos :
+        if key == "c" :
+            return get_countries(mycursor)
+        elif key == "l" :
+            return get_languages(mycursor)
+        elif key == "poi" :
+            return get_points_of_interest(mycursor)
+        elif key == "tpoi" :
+            return get_types_of_points(mycursor)
+        elif key == "wo" :
+            return get_word_orders(mycursor)
+    else :
+        if key == "c" :
+            return get_country(mycursor, str(infos["id"]))
+        elif key == "l" :
+            return get_language(mycursor, str(infos["id"]))
+        elif key == "poi" :
+            return get_point_of_interest(mycursor, str(infos["id"]))
+        elif key == "tpoi" :
+            return get_type_of_points(mycursor, str(infos["id"]))
+        elif key == "wo" :
+            return get_word_order(mycursor, str(infos["id"]))
+
     
 def get_countries(mycursor):
     mycursor.execute("SELECT * FROM Countries")
