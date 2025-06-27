@@ -53,8 +53,8 @@ La création du projet et le choix du thème a été choisi collectivement. Ensu
 #### Contrôleur : Flask
 - [x] Création de [server.py](./server.py)
 - [x] Création routes cohérentes
-- [ ] Récupération données de formulaires
-- [ ] Liaisons actions utilisateur (get, post, put, delete) aux actions BDD (create, insert, select, delete)
+- [x] Récupération données de formulaires
+- [x] Liaisons actions utilisateur (get, post, put, delete) aux actions BDD (create, insert, select, delete)
 
 #### Général
 - [x] Définition potentielles incohérences
@@ -70,7 +70,7 @@ La création du projet et le choix du thème a été choisi collectivement. Ensu
 - [x] Vue : Amélioration accueil
 - [x] Controller : routes
 - [x] API : échange JSON
-- [ ] API : implémentation model vers api
+- [x] API : implémentation model vers api
   
 #### 🐁 Lison
 - [x] Model : def add()
@@ -107,7 +107,7 @@ Nous utilisons l'API REST pour faire les requêtes à la base de données. Toute
 
 ### 🖥 Model - Vue - Controller
 
-Nous avons séparé les différents composants en plusieurs fichers. En effet le Model se trouve dans le fichier ```model.py``` tandis que le Controller se répartit dans les fichiers ```api.py```qui regroupe les fonctions d'API REST et ```server.py```. Vue, quant à lui, corresponds au dossier templates et static où se trouvent les fichiers HTML et CSS ainsi que JS. 
+Nous avons séparé les différents composants en plusieurs fichers. En effet le Model se trouve dans le fichier ```model.py``` tandis que le Controller se répartit dans les fichiers ```api.py```qui regroupe les fonctions d'API REST et ```server.py```. Vue, quant à lui, correspond au dossier templates et static où se trouvent les fichiers HTML et CSS ainsi que JS. 
 <img src="/static/image(readme)/MVC.jpeg" alt="capture d'écran de l'organisations des dossiers" width="30%">
 
 
@@ -143,23 +143,23 @@ Nous gardons une trace de ce qu'il reste à faire par jour pour atteindre les re
 ### 3️⃣ Jour 3 - Mercredi 25/06/2025
 - [x] API REST
 - [x] Amélioration formulaires
-- [ ] Finir actions CRUD
 - [x] Avancer front
 - [x] Commencer CSS
   
 ### 4️⃣ Jour 4 - Jeudi 26/06/2025
-- [ ] Finir le update
-- [ ] Faire les modals (pop up)
-- [ ] Redirect après les actions (add, modify)
+- [x] Finir le update
+- [x] Faire les modals (pop up)
+- [x] Redirect après les actions (add, modify)
 - [x] Continuer le CSS
-- [ ] Injecter données en javascript
+- [x] Injecter données en javascript
 
 ### 5️⃣ Jour 5 - Vendredi 27/06/2025
 
-- [ ] Fixer le update sur language et country
-- [ ] Redirect du formulaire en JS
-- [ ] Présentation 
-- [ ] Finalisation du README
+- [x] Résoudre le update sur language et country
+- [x] Redirect du formulaire en JS
+- [x] Résolution de problèmes divers
+- [x] Présentation 
+- [x] Finalisation du README
   
 
 
