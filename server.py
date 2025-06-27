@@ -65,7 +65,7 @@ def form_c():
     rows = mycursor.fetchall()
     allLanguages = [{'id': row['idLanguage'], 'name': row['nameLanguage']} for row in rows]
     model.disconnect_db(mydb, mycursor)
-    return render_template('form_country.html', content={}, allLanguages=allLanguages, myLanguages = [], slash = "", id="")
+    return render_template('form_country.html', content={}, languages=allLanguages, myLanguages = [], slash = "", id="")
 
 @myapp.route("/language/action", methods=['GET', 'POST'])
 def form_l():
