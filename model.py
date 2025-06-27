@@ -128,15 +128,15 @@ def get_points_of_interest_from_country(mycursor, id):
 
 def get_languages_from_country(mycursor, id):
     mycursor.execute("SELECT Languages.idLanguage, Languages.nameLanguage FROM Languages JOIN Countries_has_Languages ON Languages.idLanguage = Countries_has_Languages.idLanguage JOIN Countries ON Countries_has_Languages.idCountry = Countries.idCountry WHERE Countries.idCountry =" + str(id) + ";")
-    word_orders = mycursor.fetchall()
+    languages = mycursor.fetchall()
 
-    return word_orders
+    return languages
 
 def get_countries_from_language(mycursor, id):
     mycursor.execute("SELECT Countries.idCountry, Countries.nameCountry FROM Languages JOIN Countries_has_Languages ON Languages.idLanguage = Countries_has_Languages.idLanguage JOIN Countries ON Countries_has_Languages.idCountry = Countries.idCountry WHERE Languages.idLanguage =" + str(id) + ";")
-    word_orders = mycursor.fetchall()
+    countries = mycursor.fetchall()
 
-    return word_orders
+    return countries
 
 def add(mydb, mycursor, key, infos):
     if key == "c" :
