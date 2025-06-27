@@ -60,6 +60,13 @@
         if (!checkbox.checked) input.value = "";
     }
 
+    window.addEventListener("DOMContentLoaded", () => {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    checkboxes.forEach(checkbox => {
+        Numberofp(checkbox);
+    });
+    });
+
     const formSettings = {
         slash: "{{ slash }}",
         id: "{{ id }}"
