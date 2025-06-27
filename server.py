@@ -65,21 +65,21 @@ def form_c():
     rows = mycursor.fetchall()
     languages = [{'id': row['idLanguage'], 'name': row['nameLanguage']} for row in rows]
     model.disconnect_db(mydb, mycursor)
-    return render_template('form_country.html', content=country, languages=languages)
+    return render_template('form_country.html', content=country, languages=languages, slash = "", id = "")
 
 @myapp.route("/language/action", methods=['GET', 'POST'])
 def form_l():
-    return render_template('form_language.html', content=language)
+    return render_template('form_language.html', content=language, slash = "", id = "")
 
 # Modifications de propriétés
 
 @myapp.route("/language/action/<int:id>", methods=['GET', 'POST'])
 def form_l_update(id):
-    return render_template('form_language.html', content=id)
+    return render_template('form_language.html', content=id, slash = "/", id = id)
 
 @myapp.route("/country/action/<int:id>", methods=['GET', 'POST'])
 def form_c_update(id):
-    return render_template('form_country.html', content=id)
+    return render_template('form_country.html', content=id, slash = "/", id = id)
 
 @myapp.route("/point_of_interest/action/<int:id>", methods=['GET', 'POST'])
 def form_poi_update(id):
