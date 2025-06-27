@@ -147,12 +147,10 @@ def add(mydb, mycursor, key, infos):
         add_point_of_interest(mydb, mycursor, infos)
 
 def convertValue(value) :
-    if value is None:
+    if value is None or value == "":
         return "NULL"
-    if value.isdigit() :
+    elif value.isdigit() :
         return f"{value}"
-    elif value == "" :
-        return "NULL"
     else :
         return f'''"{value}"'''
 
@@ -249,7 +247,15 @@ def find_differences(original, new):
             print("original : ", original)
             print("new : ", new)
             print(field_original, new[field_new])
-            differences.update({field:convertValue(value)})
+
+            # rubbish fix code
+            # the issue here is that in convertValue we add double quotes to non string however we already have double quotes and it fucks the sql up
+            cleaned = convertValue(value)
+            if isinstance(value,str) and cleaned.startswith('"') and cleaned.endswith('"'):
+                cleaned = cleaned[1:-1]  # removes one from each side
+                differences.update({field: cleaned})
+            else:
+                 differences.update({field:convertValue(value)})
             
     print("\tprinting differences : ", differences)
     return differences
@@ -296,7 +302,7 @@ def update_language(mydb, mycursor, infos):
     
     original = get_language(mycursor, str(infos['id']))
     del original['totalSpeakers']
-    reorder_language_dict(infos, {'gender':'0'}, ['order'])
+    reorder_language_dict(infos, {'gend':'0'}, ['order'])
 
     values = setDifferencesQuery(original, infos)
     print("values language : ", values)
