@@ -1,6 +1,29 @@
 # 🌐🔥 Linguicountry
 *Imagine the lingui to your country*
 
+- [🌐🔥 Linguicountry](#-linguicountry)
+  - [📜 Description du projet](#-description-du-projet)
+  - [⚖️ Organisation de l'équipe](#️-organisation-de-léquipe)
+    - [🐜 Tâches à réaliser](#-tâches-à-réaliser)
+      - [Modèle : Base de données](#modèle--base-de-données)
+      - [Vue : HTML](#vue--html)
+      - [Contrôleur : Flask](#contrôleur--flask)
+      - [Général](#général)
+    - [🐾 Répartition](#-répartition)
+      - [🐿️ Guillaume](#️-guillaume)
+      - [🐁 Lison](#-lison)
+      - [🦐 Océane](#-océane)
+  - [📨 Le Rendu](#-le-rendu)
+    - [📝 Modèle Conceptuel des Données](#-modèle-conceptuel-des-données)
+    - [💬 API REST](#-api-rest)
+    - [🖥 Model - Vue - Controller](#-model---vue---controller)
+  - [🗓️ Planning](#️-planning)
+    - [1️⃣ Jour 1 - Lundi 23/06/2025](#1️⃣-jour-1---lundi-23062025)
+    - [2️⃣ Jour 2 - Mardi 24/06/2025](#2️⃣-jour-2---mardi-24062025)
+    - [3️⃣ Jour 3 - Mercredi 25/06/2025](#3️⃣-jour-3---mercredi-25062025)
+    - [4️⃣ Jour 4 - Jeudi 26/06/2025](#4️⃣-jour-4---jeudi-26062025)
+    - [5️⃣ Jour 5 - Vendredi 27/06/2025](#5️⃣-jour-5---vendredi-27062025)
+
 ## 📜 Description du projet
 Ce projet<!-- a été réalisé --> est en cours de réalisation par Guillaume Boucher, Océane Drapeau et Lison Marvin. Il a <!-- eu -->lieu dans le cadre du workshop *Programmation Web S2* en IMAC1 dirigé par Sylvain Cherrier.
 
@@ -23,9 +46,9 @@ La création du projet et le choix du thème a été choisi collectivement. Ensu
 - [ ] Gestion récupération des données pour l'affichage(def get() → select)
   
 #### Vue : HTML
-- [ ] Création des pages de formulaires (pays, langue, point d'intérêt)
-- [ ] Création de la page d'accueil
-- [ ] Création des pages "fiches" (pays, langue, point d'intérêt)
+- [x] Création des pages de formulaires (pays, langue, point d'intérêt)
+- [x] Création de la page d'accueil
+- [x] Création des pages "fiches" (pays, langue, point d'intérêt)
   
 #### Contrôleur : Flask
 - [x] Création de [server.py](./server.py)
@@ -52,21 +75,46 @@ La création du projet et le choix du thème a été choisi collectivement. Ensu
 #### 🐁 Lison
 - [x] Model : def add()
 - [x] Model : def delete()
-- [ ] Vue : formulaires
-- [ ] Vue : mise en forme CSS
-- [ ] Vue : fiches
-- [ ] Vue : accueil
+- [x] Vue : formulaires
+- [x] Vue : mise en forme CSS
+- [x] Vue : fiches
+- [x] Vue : accueil
 - [x] Controller : routes
 
 #### 🦐 Océane
 - [ ] Model : def update()
-- [ ] Model : Ajout tables
-- [ ] Vue : Amélioration fiches
+- [x] Model : Ajout tables
+- [x] Vue : Amélioration fiches
 - [x] général : README
-- [ ] général : merge
 - [ ] API : implémentation model vers api
+- [x] Général : Merges
+- [x] Général : Uniformisation du code
 
-### 🗓️ Planning
+## 📨 Le Rendu
+
+### 📝 Modèle Conceptuel des Données
+
+La première étape de notre travail fut de créer un MCD afin de correctement visualiser les informations et leur rangement. 
+![Modèle Conceptuel des Données](/static/image(readme)/mcd.jpg)
+Nous avons donc six tables dont une association plusieurs à plusieurs.
+Ce schéma permet d'avoir trois tables princiaples : ```Countries```, ```Languages``` et ```InterestPoints```. Les tables ```WordOrder``` et ```TypePOI``` sont des informations supplémentaires tandis que l'association ```Countries_has_Languages``` permet de relier la table ```Countries``` et la table ```Languages``` tout en conservant des informations supplémentaires
+
+### 💬 API REST
+
+Nous utilisons l'API REST pour faire les requêtes à la base de données. Toutes les fonctions utilisant les méthodes PUT, GET, POST ou DELETE sont rangées dans le fichier ```api.py```. Voici une images de quelques unes de ces fonctions :
+![capture d'écran du fichier api](/static/image(readme)/REST.jpg)
+<sup>*(Attention l'image provient d'une ancienne version, le code s'y trouvant peut avoir changé depuis)*</sup>
+
+### 🖥 Model - Vue - Controller
+
+Nous avons séparé les différents composants en plusieurs fichers. En effet le Model se trouve dans le fichier ```model.py``` tandis que le Controller se répartit dans les fichiers ```api.py```qui regroupe les fonctions d'API REST et ```server.py```. Vue, quant à lui, corresponds au dossier templates et static où se trouvent les fichiers HTML et CSS ainsi que JS. 
+<img src="/static/image(readme)/MVC.jpeg" alt="capture d'écran de l'organisations des dossiers" width="30%">
+
+
+
+
+
+## 🗓️ Planning
 
 Nous gardons une trace de ce qu'il reste à faire par jour pour atteindre les rendus intermédiaires. Ceux-ci étant partagés en 3 : le MVP (minimum viable product) le 24/06 au soir, la V1 le 26/06 au soir et la version finale.
 
@@ -90,7 +138,7 @@ Nous gardons une trace de ce qu'il reste à faire par jour pour atteindre les re
 - [x] Routes
 - [x] Finir tâches organisation
 - [x] Créer les fichiers .py (MVP)
-- [ ] Créer templates
+- [x] Créer templates
 
 ### 3️⃣ Jour 3 - Mercredi 25/06/2025
 - [x] API REST
@@ -103,12 +151,17 @@ Nous gardons une trace de ce qu'il reste à faire par jour pour atteindre les re
 - [ ] Finir le update
 - [ ] Faire les modals (pop up)
 - [ ] Redirect après les actions (add, modify)
-- [ ] Continuer le CSS
+- [x] Continuer le CSS
 - [ ] Injecter données en javascript
 
 ### 5️⃣ Jour 5 - Vendredi 27/06/2025
 
-<!-- 6️⃣7️⃣8️⃣9️⃣🔟 -->
+- [ ] Fixer le update sur language et country
+- [ ] Redirect du formulaire en JS
+- [ ] Présentation 
+- [ ] Finalisation du README
+  
+
 
 
 
