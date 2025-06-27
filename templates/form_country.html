@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
     <script src="{{ url_for('static',filename='script/form.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Create your own country</title>
+    <title>{%if content == {} %}Create your own country {%else%} Modify your country {%endif%}</title>
 </head>
 
 <body>
@@ -25,20 +25,20 @@
                     <input type="text" name="name" max="50" required value="{{content['nameCountry']}}"></label>
                 
                 <label for="desc">Description of your country
-                    <textarea type="text" name="desc" max="500" value="" id="desc_case">{%if content != {}%}{{content[descCountry]}}{%endif%}</textarea>
+                    <textarea type="text" name="desc" max="500" value="" id="desc_case">{%if content['descCountry'] %}{{content['descCountry']}}{%endif%}</textarea>
             </div>
             <div>
                 <label for="nbHab">Number of inhabitants*
                     <input type="number" name="nbHab" min="1" max="10000" required value="{{content['inhabitants']}}"></label>      
 
                 <label for="cap">Name of your capital
-                    <input type="text" name="cap" max="50" value="{{content['capital']}}"></label>
+                    <input type="text" name="cap" max="50" value="{%if content['capital'] %}{{content['capital']}}{%endif%}"></label>
 
                 <label for="date">Date of fondation
                     <input type="date" name="date" value="{{content['date']}}"></label>
 
                 <label for="gouv">Type of gouverment
-                    <input type="text" name="gouv" max="100" value="{{content['governmentType']}}"></label>
+                    <input type="text" name="gouv" max="100" value="{%if content['governmentType'] %}{{content['governmentType']}}{%endif%}"></label>
            
                 <label>Languages</label>
                 {% for lang in languages %}
