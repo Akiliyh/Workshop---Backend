@@ -2,16 +2,16 @@ import mysql.connector
 
 def connect_db():
     mydb = mysql.connector.connect(
-    # host='163.172.165.87',
-    # user='LinguiC',
-    # password='ImAcGOAT',
-    # database='LinguiC')
+    host='163.172.165.87',
+    user='LinguiC',
+    password='ImAcGOAT',
+    database='LinguiC')
     
-    host='localhost',
-    user='root',
-    password='root',
-    database='linguic'
-    )
+    # host='localhost',
+    # user='root',
+    # password='root',
+    # database='linguic'
+    # )
     mycursor = mydb.cursor(dictionary=True)
     
     return mydb, mycursor
@@ -147,8 +147,8 @@ def add(mydb, mycursor, key, infos):
         add_point_of_interest(mydb, mycursor, infos)
 
 def convertValue(value) :
-    # if value is None:
-    #     return "NULL"
+    if value is None:
+        return "NULL"
     if value.isdigit() :
         return f"{value}"
     elif value == "" :

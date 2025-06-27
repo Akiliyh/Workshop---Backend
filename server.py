@@ -77,6 +77,7 @@ def form_l():
 def form_c_update(id):
     mydb, mycursor = model.connect_db()
     content = model.get_country(mycursor, str(id))
+    print("\tprinting content countries : ", content)
     return render_template('form_country.html', content=content, slash = "/", id = id)
 
 @myapp.route("/language/action/<int:id>", methods=['GET', 'POST'])

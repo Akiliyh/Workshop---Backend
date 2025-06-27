@@ -17,7 +17,7 @@
     </nav>
 
     <div class="form">
-        <h2>Create your language :</h2>
+        <h2>{%if content == {} %}Create your language : {%else%} Modify the language : {%endif%}</h2>
         <!-- <form id="form" action="/api/language{{slash}}{{id}}" method='POST'> -->
         <form action="/api/language{{slash}}{{id}}" method='POST'>
             <div>
@@ -28,7 +28,7 @@
                 </label><br>
                 
                 <label for="gend">Your language is gendered ? :
-                    <input type="checkbox" name="gend" value="1" checked></label><br>
+                    <input type="checkbox" name="gend" value="1" {%if content['gender'] == '1'%} checked {% endif %} ></label><br>
 
                 <label for="order">Order of sentence construction
                     <select name="order">

@@ -17,8 +17,9 @@
     </nav>
 
     <div class="form">
-        <h2>Create your point of interest :</h2>
-        <form id="form" action="/api/point_of_interest{{slash}}{{id}}" method='POST'>
+        <h2>{%if content == {} %}Create your{%else%} Modify the{%endif%} point of interest</h2>
+        <!-- <form id="form" action="/api/point_of_interest{{slash}}{{id}}" method='POST'> -->
+        <form action="/api/point_of_interest{{slash}}{{id}}" method='POST'></form>
             <div>
                 <label for="name">Name of your point of interest*
                     <input type="text" name="name" max="50" required 
