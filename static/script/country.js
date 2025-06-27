@@ -57,9 +57,18 @@ document.addEventListener("DOMContentLoaded", () => {
             let languages = document.querySelector('.languages');
 
             dataL.forEach(dataL => {
+                const nbSpeakers = document.createElement('span');
+                const icon = document.createElement('i');
                 const link = document.createElement('a');
+                const userContainer = document.createElement('div');
+                icon.classList.add('fa-solid', 'fa-user');
+                nbSpeakers.textContent = dataL.nbSpeakers;
                 link.href = '/language/' + dataL.idLanguage;
                 link.textContent = dataL.nameLanguage;
+                
+                userContainer.appendChild(nbSpeakers);
+                userContainer.appendChild(icon);
+                link.appendChild(userContainer);
                 languages.appendChild(link);
             });
 

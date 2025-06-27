@@ -408,6 +408,22 @@ h1, h2 {
   gap : 5%;
   margin-left:20%;
 }
+
+.fiche a{
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  text-decoration: none;
+  align-items: baseline;
+}
+
+.fiche a div{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: baseline;
+}
+
 .fiche .languages > *,.fiche .poi > *,.fiche .country > *,.fiche .countries > * {
   border : none;
   border-radius: 4px;

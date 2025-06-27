@@ -140,7 +140,7 @@ def get_points_of_interest_from_country(mycursor, id):
     return word_orders
 
 def get_languages_from_country(mycursor, id):
-    mycursor.execute("SELECT Languages.idLanguage, Languages.nameLanguage FROM Languages JOIN Countries_has_Languages ON Languages.idLanguage = Countries_has_Languages.idLanguage JOIN Countries ON Countries_has_Languages.idCountry = Countries.idCountry WHERE Countries.idCountry =" + str(id) + ";")
+    mycursor.execute("SELECT Languages.idLanguage, Languages.nameLanguage, SUM(Countries_has_Languages.nbOfLocutorsInThisCountry) AS nbSpeakers FROM Languages JOIN Countries_has_Languages ON Languages.idLanguage = Countries_has_Languages.idLanguage JOIN Countries ON Countries_has_Languages.idCountry = Countries.idCountry WHERE Countries.idCountry =" + str(id) + " GROUP BY Languages.idLanguage, Languages.nameLanguage;;")
     languages = mycursor.fetchall()
 
     return languages
