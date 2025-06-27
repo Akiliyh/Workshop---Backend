@@ -34,7 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
             let type = document.querySelector('.type');
             let name = document.querySelector('.name');
 
-            desc.textContent = data.descInterestPoint;
+            if (data.descInterestPoint !== 'NULL') {
+                desc.textContent = data.descInterestPoint;
+            }
             date.textContent = data.dateInterestPoint;
             name.textContent = data.nameInterestPoint;
             document.title = data.nameInterestPoint;

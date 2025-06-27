@@ -27,7 +27,7 @@
 
                 <label for="desc">Description of your country
                     <textarea type="text" name="desc" max="500" value=""
-                        id="desc_case">{%if content['descCountry'] %}{{content['descCountry']}}{%endif%}</textarea>
+                        id="desc_case">{% if content['descCountry'] != 'NULL' %}{{content['descCountry']}}{%endif%}</textarea>
             </div>
             <div>
                 <label for="nbHab">Number of inhabitants*
@@ -36,14 +36,14 @@
 
                 <label for="cap">Name of your capital
                     <input type="text" name="cap" max="50"
-                        value="{%if content['capital'] %}{{content['capital']}}{%endif%}"></label>
+                        value="{%if content['capital'] != 'NULL' %}{{content['capital']}}{%endif%}"></label>
 
                 <label for="date">Date of fondation
                     <input type="date" name="date" value="{{content['date']}}"></label>
 
                 <label for="gouv">Type of gouverment
                     <input type="text" name="gouv" max="100"
-                        value="{%if content['governmentType'] %}{{content['governmentType']}}{%endif%}"></label>
+                        value="{%if content['governmentType'] != 'NULL' %}{{content['governmentType']}}{%endif%}"></label>
 
                 <label>Languages</label>
                 {% for lang in languages %}

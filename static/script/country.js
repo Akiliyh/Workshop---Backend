@@ -23,11 +23,22 @@ document.addEventListener("DOMContentLoaded", () => {
             let capital = document.querySelector('.capital');
             let name = document.querySelector('.name');
 
-            desc.textContent = data.descCountry;
+            if (data.descCountry !== 'NULL') {
+                desc.textContent = data.descCountry;
+            }
+
             inh.textContent = data.inhabitants + ' inhabitants';
-            gov.textContent = data.governmentType;
+            
             date.textContent = data.date;
-            capital.textContent = data.capital;
+
+            if (data.capital !== 'NULL') {
+                capital.textContent = data.capital;
+            }
+
+            if (data.governmentType !== 'NULL') {
+                gov.textContent = data.governmentType;
+            }
+
             name.textContent = data.nameCountry;
             document.title = data.nameCountry;
 

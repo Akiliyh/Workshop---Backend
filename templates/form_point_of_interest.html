@@ -31,7 +31,7 @@
                 </label>
 
                 <label for="desc">Description of your point of interest</label>
-                    <textarea type="text" name="desc" max="500" id="desc_case">{% if content != {} %}{{content['descInterestPoint']}}{% endif %}</textarea>
+                    <textarea type="text" name="desc" max="500" id="desc_case">{% if content['descInterestPoint'] != 'NULL' %}{{content['descInterestPoint']}}{% endif %}</textarea>
                     
                 
             </div>
