@@ -31,12 +31,13 @@
 
                 <label for="order">Order of sentence construction
                     <select name="order">
-                        <option value="1" {% if content['idType'] == '1' %} selected {% endif %}>Subject-Verb-Object</option>
-                        <option value="2" {% if content['idType'] == '2' %} selected {% endif %}>Subject-Object-Verb</option>
-                        <option value="3" {% if content['idType'] == '3' %} selected {% endif %}>Verb-Subject-Object</option>
-                        <option value="4" {% if content['idType'] == '4' %} selected {% endif %}>Verb-Object-Subject</option>
-                        <option value="5" {% if content['idType'] == '5' %} selected {% endif %}>Object-Subject-Verb</option>
-                        <option value="6" {% if content['idType'] == '6' %} selected {% endif %}>Object-Verb-Subject</option>       
+                        
+                        <option value="1" {% if content['idWordOrder'] == 1 %} selected {% endif %}>Subject-Verb-Object</option>
+                        <option value="2" {% if content['idWordOrder'] == 2 %} selected {% endif %}>Subject-Object-Verb</option>
+                        <option value="3" {% if content['idWordOrder'] == 3 %} selected {% endif %}>Verb-Subject-Object</option>
+                        <option value="4" {% if content['idWordOrder'] == 4 %} selected {% endif %}>Verb-Object-Subject</option>
+                        <option value="5" {% if content['idWordOrder'] == 5 %} selected {% endif %}>Object-Subject-Verb</option>
+                        <option value="6" {% if content['idWordOrder'] == 6 %} selected {% endif %}>Object-Verb-Subject</option>       
                     </select>
                 </label>
         
